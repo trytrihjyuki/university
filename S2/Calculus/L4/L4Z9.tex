@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{24.03.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{4/11 (10 punktów)}
+$Lemat.$
+$$
+\int_0^b f(x) = \int_0^b f(b-x)
+$$
+Podstawiając $u = b - x$ oraz $du = -dx$:
+$$
+\int_0^b f(x) = \int_b^0 f(u)du = \int_b^0 f(b-x)(-dx) = \int_0^b f(b-x)dx 
+$$
+\begin{proof}
+$$
+\int_0^\pi xf(\sin x)dx = \int_0^\pi (\pi-x)f(\sin{(\pi-x)})dx = \int_0^\pi \pi f(\sin x)dx - \int_0^\pi xf(\sin x)dx
+$$
+$$
+\int_0^\pi xf(\sin x)dx = \frac{\pi}{2}\int_0^\pi f(\sin x)dx
+$$
+\end{proof}
+\end{document}
+
+% Nieużywane Kursory

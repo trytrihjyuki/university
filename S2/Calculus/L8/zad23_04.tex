@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{23.04.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{L8z9 (4 punkty)}
+\begin{proof}
+Z warunku $\int_0^1 x^n f(x) dx = 0$, dla dowolnego wielomianu $Q(x)$:
+$$\int_0^1 Q(x) f(x) dx = 0$$
+w szczególności dla wielomianów z Twierdzenia Weierstrassa:
+$$
+0 \leq \int_0^1 f(x)f(x) dx = \int_0^1 f(x)f(x) dx - \int_0^1 P_n(x) f(x) dx = \\
+$$
+$$
+= \int_0^1 f(x) \left (f(x) - P_n(x)\right)dx \leq \int_0^1 f(x) \frac{1}{n}
+$$
+Możemy wybierać $n$ dowolnie duże, więc wtedy wartość $\int_0^1 f(x)f(x) dx$ będzie dowolnie blisko zera.\\
+Skoro całka $\int_0^1 f(x)f(x) dx = 0$ to $f(x) = 0 \quad dla \quad x \in [0,1]$, ponieważ w innym wypadku w pewnym punkcie (i jego otoczeniu, z ciągłości) funkcja przyjmowała by dodatnie wartości, więc całka nie byłaby zerowa.
+\end{proof}
+\section{L8z8 (5 punktów)}
+\begin{proof}
+Rozważmy funkcję ze wskazówki:
+$$
+g(x) = G(\arccos{x}) \quad x \in [-1,1]
+$$
+$$
+G(\theta) = g(\cos \theta) \quad \theta \in [0,\pi]
+$$
+$\arccos x$ jest funkcją ciągłą na $x \in [-1,1]$ więc $g(x)$ ciągła\\
+Niech $P_n(x)$ oznacz ciąg wielomianów przybliżający funkcję $g(x)$.
+$$
+|G(\theta) - P_n(\cos\theta)| = |G(\arccos{x}) - P_n(x)| = |g(x) - P_n(x)| < \varepsilon
+$$
+$P_n(x)$ można przekształcić do szukanej formy wielomianu korzystając z:
+$$
+{\cos^n x} = \begin{cases} \frac{1}{2^{n-1}} \left [ \sum_{r=0}^{2r<n} {n\choose2r} \cos {((n-2r)\theta)}  \right] + \frac{1}{2^n} {n\choose\frac{n}{2}}  \quad  2|n \\ \frac{1}{2^{n-1}} \left [ \sum_{r=0}^{2r<n} {n\choose2r} \cos {((n-2r)\theta)}  \right]\quad  2\nmid n
+\end{cases}
+$$
+\end{proof}
+\end{document}
+

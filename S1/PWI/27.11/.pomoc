@@ -1,0 +1,21 @@
+zad_1:
+
+git clone https://github.com/alewmoose/2048-in-terminal.git
+
+sudo apt-get install libncurses5-dev libncursesw5-dev
+
+
+real	0m0.162s
+user	0m0.139s
+sys	0m0.024s
+
+Nie liczbowe:
+real	0m0.158s
+user	0m0.133s
+sys	0m0.025s
+
+zad_2
+jak checkout zamiast
+revert nie nadpisuje histori
+git reset --hard [hash]
+git checkout [hash] .

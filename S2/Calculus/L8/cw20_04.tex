@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{20.04.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{6 (5 punktów)}
+\begin{proof}[Dowdód indukcyjny]
+\textbf{\newline Podstawa indukcji:}
+\newline
+$$
+T_0(x) = 1 \quad bo \quad
+1 = \cos 0 = \cos {0\cdot\theta}
+$$
+$$
+T_1(x) = x \quad bo \quad \cos \theta = \cos {1\cdot\theta} 
+$$
+
+\textbf{\newline Krok:}
+\newline
+Załóżmy, że istnieją wielomiany $T_n, T_{n-1}$ takie, że:
+$$
+T_n(\cos \theta) = \cos{n \theta}
+$$
+$$
+T_{n-1}(\cos \theta) = \cos{(n-1) \theta} 
+$$
+Z tożsamości trygonometrycznej (suma cosinusów):
+$$
+\cos {(n+1) \theta} + \cos {(n-1) \theta} = 2 \cos {\frac{2n}{2}\theta} \cos{\frac{2}{2}\theta} = 2 \cos{n \theta} \cos {\theta} 
+$$
+Z założenia:
+$$
+\cos {(n+1) \theta} + T_{n-1} = 2T_n \cos \theta
+$$
+Mamy więc:
+$$
+T_{n+1} = \cos{(n+1)\theta} = 2T_n \cos \theta - T_{n-1}
+$$
+Na mocy zasady indukcji, dla każdego $n$ istnieje $T_n$ taki, że: $\cos{n \theta} = T_n(\cos \theta)$
+\end{proof}
+$$
+T_2(x) = 2T_1(x) x - T_0(x) = 2x^2 - 1
+$$
+$$
+T_3(x) = 2T_2(x) x - T_1(x) = 4x^3 - 3x
+$$
+\section{7 (5 punktów)}
+\begin{proof}[Dowdód indukcyjny]
+\textbf{\newline Podstawa indukcji:}
+\newline
+$$
+U_0(x) = 1 \quad bo \quad
+1 = \frac{\sin (0 + 1)\theta}{\sin{\theta}}
+$$
+$$
+U_1(x) = 2x \quad bo \quad 2\cos\theta = \frac{\sin (1 + 1)\theta}{\sin{\theta}}
+$$
+
+\textbf{\newline Krok:}
+\newline
+Załóżmy, że istnieją wielomiany $U_n, U_{n-1}$ takie, że:
+$$
+U_n(\cos n\theta) = \frac{\sin (n + 1)\theta}{\sin{\theta}}
+$$
+$$
+U_{n-1}(\cos (n-1)\theta) = \frac{\sin n \theta}{\sin{\theta}}
+$$
+Z tożsamości trygonometrycznej (suma sinusów):
+$$
+\sin{(n-1)\theta} + \sin{(n+1)\theta} = 2 \sin n\theta \cos \theta
+$$
+Po podzieleniu przez $\sin \theta$
+$$
+\frac{\sin{(n-1)\theta}}{\sin \theta} + \frac{\sin{(n+1)\theta}}{\sin \theta} = 2 \frac{\sin n\theta}
+{\sin \theta} \cos \theta
+$$
+Z założenia:
+$$
+U_{n-1} + \frac{\sin{(n+1)\theta}}{\sin \theta}  = 2U_n \cos \theta
+$$
+Mamy więc:
+$$
+U_{n+1} = \frac{\sin{(n+1)\theta}}{\sin \theta} = 2U_n \cos \theta - U_{n-1}
+$$
+Na mocy zasady indukcji, dla każdego $n$ istnieje $U_n$ taki, że: \\$U_n(\cos n\theta) = \frac{\sin (n + 1)\theta}{\sin{\theta}}$
+\end{proof}
+$$
+U_2(x) = 2U_1(x) x - U_0(x) = 4x^2 - 1
+$$
+$$
+U_3(x) = 2U_2(x) x - U_1(x) = 8x^3 - 4x
+$$
+\end{document}
+

@@ -1,0 +1,111 @@
+blok nr. 0:
+m: 2
+n: 2
+10
+11
+
+sumy_wierszy[]: 
+0: 2
+1: 1
+
+najwyzszy[]: 
+10
+najnizszy[]: 
+00
+blok nr. 1:
+m: 4
+n: 4
+1001
+0001
+0001
+1001
+
+sumy_wierszy[]: 
+0: 2
+1: 1
+2: 1
+3: 2
+
+najwyzszy[]: 
+3-1-13
+najnizszy[]: 
+0440
++++++++++++++++[WRZUCANIE] Będę wrzucał teraz 1 blok
+wrzucany.m: 4 |||| m: 4
+blok.id = 1 ||||| Sprawdzam od krawedzy 0 bede sprawdzal aż do 0 krawedzi
+y_zatrzymania kandydat: 0 - 0  = 0 
+y_zatrzymania kandydat: 0 - 4  = -4 
+y_zatrzymania kandydat: 0 - 4  = -4 
+y_zatrzymania kandydat: 0 - 0  = 0 
+y_zatrzymania kandydat: 0 - 4  = -4 
+y_zatrzymania (pierwszy wiersz gdzie wystapi kolizja: 0
+STARE: najwyzsze_prim[0] = 0
+NOWE: najwyzsze_prim[0] = 4
+STARE: najwyzsze_prim[1] = 0
+NOWE: najwyzsze_prim[1] = 0
+STARE: najwyzsze_prim[2] = 0
+NOWE: najwyzsze_prim[2] = 0
+STARE: najwyzsze_prim[3] = 0
+NOWE: najwyzsze_prim[3] = 4
+Obecne sumy_wierszy_prim[1]: 0 dodajemy wrzucany.sumy_wierszy[0]: 2 i mamy: 2
+Obecne sumy_wierszy_prim[2]: 0 dodajemy wrzucany.sumy_wierszy[1]: 1 i mamy: 1
+Obecne sumy_wierszy_prim[3]: 0 dodajemy wrzucany.sumy_wierszy[2]: 1 i mamy: 1
+Obecne sumy_wierszy_prim[4]: 0 dodajemy wrzucany.sumy_wierszy[3]: 2 i mamy: 2
+wystaje: 0
++++++++++++++++[WRZUCANIE] Będę wrzucał teraz 0 blok
+wrzucany.m: 2 |||| m: 4
+blok.id = 0 ||||| Sprawdzam od krawedzy 0 bede sprawdzal aż do 2 krawedzi
+y_zatrzymania kandydat: 4 - 0  = 4 
+y_zatrzymania kandydat: 0 - 0  = 0 
+y_zatrzymania kandydat: 0 - 2  = -2 
+y_zatrzymania (pierwszy wiersz gdzie wystapi kolizja: 4
+STARE: najwyzsze_prim[0] = 4
+NOWE: najwyzsze_prim[0] = 6
+STARE: najwyzsze_prim[1] = 0
+NOWE: najwyzsze_prim[1] = 5
+Obecne sumy_wierszy_prim[5]: 0 dodajemy wrzucany.sumy_wierszy[0]: 2 i mamy: 2
+Obecne sumy_wierszy_prim[6]: 0 dodajemy wrzucany.sumy_wierszy[1]: 1 i mamy: 1
+wystaje: 1
+SIEMANDERO KAROLU 0
+blok.id = 0 ||||| Sprawdzam od krawedzy 1 bede sprawdzal aż do 2 krawedzi
+y_zatrzymania kandydat: 0 - 0  = 0 
+y_zatrzymania kandydat: 0 - 0  = 0 
+y_zatrzymania kandydat: 4 - 2  = 2 
+y_zatrzymania (pierwszy wiersz gdzie wystapi kolizja: 2
+STARE: najwyzsze_prim[1] = 0
+NOWE: najwyzsze_prim[1] = 4
+STARE: najwyzsze_prim[2] = 0
+NOWE: najwyzsze_prim[2] = 3
+Obecne sumy_wierszy_prim[3]: 1 dodajemy wrzucany.sumy_wierszy[0]: 2 i mamy: 3
+Obecne sumy_wierszy_prim[4]: 2 dodajemy wrzucany.sumy_wierszy[1]: 1 i mamy: 3
+wystaje: 0
+sumy_wierszy_prim[0]: 0
+sumy_wierszy_prim[1]: 2
+sumy_wierszy_prim[2]: 1
+sumy_wierszy_prim[3]: 3
+sumy_wierszy_prim[4]: 3
+sumy_wierszy_prim[5]: 0
+sumy_wierszy_prim[6]: 0
+sumy_wierszy_prim[7]: 0
+sumy_wierszy_prim[8]: 0
+sumy_wierszy_prim[9]: 0
+sumy_wierszy_prim[10]: 0
+SIEMANDERO KAROLU 1
+blok.id = 0 ||||| Sprawdzam od krawedzy 2 bede sprawdzal aż do 2 krawedzi
+y_zatrzymania kandydat: 0 - 0  = 0 
+y_zatrzymania kandydat: 4 - 0  = 4 
+y_zatrzymania kandydat: 0 - 2  = -2 
+y_zatrzymania (pierwszy wiersz gdzie wystapi kolizja: 4
+STARE: najwyzsze_prim[2] = 0
+NOWE: najwyzsze_prim[2] = 6
+STARE: najwyzsze_prim[3] = 4
+NOWE: najwyzsze_prim[3] = 5
+Obecne sumy_wierszy_prim[5]: 0 dodajemy wrzucany.sumy_wierszy[0]: 2 i mamy: 2
+Obecne sumy_wierszy_prim[6]: 0 dodajemy wrzucany.sumy_wierszy[1]: 1 i mamy: 1
+wystaje: 1
+SIEMANDERO KAROLU 2
+----------------[WRZUCANIE] Koniec wrzucania 1 blok
+SIEMANDERO KAROLU 0
+----------------[WRZUCANIE] Koniec wrzucania 0 blok
+0 <- ANSWER
+======================================

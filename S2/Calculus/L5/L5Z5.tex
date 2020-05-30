@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{26.03.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{5/5 (10 punktów)}
+Obliczmy $\int e^{\sqrt x} \sqrt x dx$:\\
+$$
+\int e^{\sqrt x} \sqrt x dx = \int e^t t 2t dt = 2\int e^t t^2 dt = 2t^2 e^t - 2\int2t e^t = 2t^2e^t-4\left(te^t - \int e^tdt \right)
+$$
+$$
+= 2t^2e^t-4\left(te^t -  e^t \right) + C = 2xe^{\sqrt x} - 4\sqrt{x}e^{\sqrt{x}} + 4e^{\sqrt{x}} + C
+$$
+
+\begin{proof}
+Podstawmy: $u = 2x^2,du = 4xdx$\\
+$$
+\int_0^1 4x^2e^{2x^2}dx
+$$
+$$
+\int_0^2 2ue^u \frac{du}{\sqrt{8u}} = \frac{2}{\sqrt{8}}\left [ \int_0^2 \sqrt{u}e^udu\right]
+$$
+Korzystamy z  $x \leq \sqrt{x}$ dla $0 \leq x \leq 1$ oraz $x \geq \sqrt{x}$ dla $ x \geq 1$:
+$$
+\frac{2}{\sqrt{8}}\left [ \int_0^2 \sqrt{u}e^udu\right] \geq \frac{2}{\sqrt{8}}\left [ \int_0^1 ue^udu + \int_1^2 \sqrt{u}e^{\sqrt u}du \right]
+$$
+Łatwo policzyć $\int_0^1 ue^udu = 1$:
+$$
+\frac{2}{\sqrt{8}}\left [1 + \int_1^2 \sqrt{u}e^{\sqrt u}du \right]
+$$
+Z górnego mamy, że wartość szukana to:
+$$
+\frac{2}{\sqrt{8}} [1 + e^{\sqrt{2}}4(2-\sqrt{2}) - 2e]
+$$
+Dalej szacując $e$:
+$$
+\int_0^1 4x^2e^{2x^2}dx = \frac{2}{\sqrt{8}} [1 + e^{\sqrt{2}}4(2-\sqrt{2}) - 2e] > \frac{2}{\sqrt{8}} [1 + (2.7)^{\sqrt{2}}4(2-\sqrt{2}) - 2(2.7)] > (1.8)^2 > (e-1)^2
+$$
+\end{proof}
+\end{document}
+

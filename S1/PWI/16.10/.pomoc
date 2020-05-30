@@ -1,0 +1,22 @@
+1)
+who (kto zalogowany)
+who -b (historia log/out)
+
+last -x reboot
+
+2)
+
+ssh-keygen -t rsa -b 4096
+
+3)
+a) chmod u=rw,g=r,o=r -R a/
+b) chmod u=rwx,g=x,o=x -R b/.txt
+   chmod u=,g=,o=rwx b/test.txt
+   chmod u=,g=,o= b/test2.txt
+
+c) for i in {1..10}; do find c/ -name "test7" -exec ln '{}' c/linki/7link$i  \; ; done
+
+d) ln -s test2.txt test3.txt
+find d/ -exec touch -t 201910111529 '{}' \;
+	
+

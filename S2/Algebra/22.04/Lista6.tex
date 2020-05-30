@@ -1,0 +1,141 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{Lista 6}
+\date{22.04.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{zad. 11 (2 punkty)}
+\subsection*{I}
+$$
+z^2 - z + 1 = 0
+$$
+$$
+\Delta = 1 - 4 = -3
+$$
+$$
+z = \frac{1 \pm 3 \sqrt i}{2}
+$$
+\subsection*{II}
+$$
+2z + \overline{z} = 6 - 5i
+$$
+Oznaczmy $a = Re(z) \quad b = Im(z)$:
+$$
+\begin{cases} 2a + a = 6 \\ 2b - b = -5 \end{cases}
+$$
+$$
+\begin{cases} a = 2 \\ b = -5 \end{cases}
+$$
+Więc $z = 2 - 5i$.
+\section{zad. 12 (2 punkty)}
+\begin{proof}
+Załóżmy niepwrost, że: $|z_k| < 1$  dla $k \leq 200$.\\
+Wiemy, że:
+$$\frac{\sum_{k = 1}^{200} z_k}{200}  = 1$$
+Wnioskujemy:
+$$
+\sum_{k = 1}^{200} Im(z_k)  = 0
+$$
+Zatem:
+$$\frac{\sum_{k = 1}^{200} Re(z_k)}{200}  = 1$$
+dalej:
+$$\sum_{k = 1}^{200} Re(z_k) = 200$$
+Ale z założenia otrzymujemy sprzeczność:
+$$\sum_{k = 1}^{200} Re(z_k) \leq \sum_{k = 1}^{200} |z_k| < 200 = \sum_{k = 1}^{200} Re(z_k)$$
+\end{proof}
+\section{zad. 13 (2 punkty)}
+\subsection*{I}
+Zauważmy, że:
+$$
+{(1 + i)}^4 = 2i \cdot {(2i)}^2 = -4
+$$
+Więc
+$$
+{(1 + i)}^{1000} = {\left({(1 + i)}^4\right)}^{250} = {(-4)}^{250} = 2^{500}
+$$
+\subsection*{II}
+$$
+\left ( \frac{1}{2} - i \frac{\sqrt 3}{2} \right)^{129} = \left ( \cos {\frac{5}{3} \pi} - i \sin {\frac{5}{3} \pi} \right)^{129} = 
+$$
+$$
+{(e^{\frac{5}{3} \pi i})}^{129} = e^{215 \pi i} = \left (\cos {215 \pi} - i \sin {215 \pi} \right) = \left (\cos {\pi} - i \sin {\pi} \right) = -1
+$$
+
+\section{zad. 15 (2 punkty)}
+\subsection*{I}
+$$
+P(z) = z^3 - 2z^2 - 5z + 6
+$$
+Zauważmy, że $P(1) = 0$, skoro $P(-2) = 0$ i wyraz wolny jest równy $6$ wnioskujemy, że w rozkładzie na czynniki liniowe będzie $(x-3)$
+\\Więc:
+$$
+P(z) = (z-1)(z+2)(z-3)
+$$
+\\\\
+\subsection*{II}
+$$
+P(z) = z^4 - 3z^3 + 3z^2 - 3z + 2
+$$
+Zauważmy $P(1) = 0$. Skoro $P(i) = 0$ to $P(-i) = 0$. Dalej wnioskujemy (wyraz wolny równy 2) $P(2) = 0$
+$$
+P(z) = (z-1)(z-2)(z+i)(z-i) = (z-1)(z-2)(z^2+1)
+$$
+
+\section{zad. 15 (2 punkty)}
+Przykładowo:
+$$
+P(x) = (x-1)(x-2)(x - (3+i))(x - (3 - i)) = x^4 - 9x^3+30x^2-42x+20
+$$
+\section{zad. 21 (2 punkty)}
+Oznaczmy szukane punkty $z^\prime, w^\prime$ z geometrii układu:
+$$
+w^\prime = z + (z-w)i
+$$
+$$
+z^\prime = w + (w-z)i
+$$
+Małe wytłumaczenie: różnica $z-w$ oznacza wektor między punktami jednej krawędzi i teraz mnożąc przez $i$ odpowiednio go rotujemy musimy jeszcze dodać punkt \textit {startowy}
+\section{zad. 24 (3 punkty)}
+Nasz wielokąt foremny możemy traktować jako rozwiązania wyrażenia:
+$$
+z^n - 1 =0
+$$
+Oznaczmy przez $A_1$ punkt odpowiadający rozwiązaniu $z_1 = 1$.\\
+Dalej korzystamy ze wzoru:
+$$
+z^n - 1 = (z-1)\left(z^{n-1}+z^{n-2}1+z^{n-3}1^2+\dots+z^2b^{n-3}+z1^{n-2}+1^{n-1}\right)
+$$
+Zatem dla dowolnego $k \neq 1$ mamy $A_k$ zeruje drugi czynnik.\\
+Mają te same pierwiastki i ten sam czynnik przy najwyższej potędze, zatem te wielomiany są indentyczne:
+$$
+z^{n-1}+z^{n-2}1+z^{n-3}1^2+\dots+z^2b^{n-3}+z+1 = (z-A_2)(z-A_3)\dots(z-A_n)
+$$
+Gdy $z = A_1$:
+$$
+A_1^{n-1}+A_1^{n-2}1+A_1^{n-3}1^2+\dots+A_1^2b^{n-3}+A_1+1 = (A_1-A_2)(A_1-A_3)\dots(A_1-A_n)
+$$
+Pamiętając $A_1 = 1$:
+$$
+n = |A_1-A_2|A_1-A_3|\dots|A_1-A_n|
+$$
+\end{document}

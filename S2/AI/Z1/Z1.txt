@@ -1,0 +1,139 @@
+Maurycy Borkowski
+
+Zadania: 1,2,3,4,5,6
+
+Punkty: 7
+
+=================================
+
+zad.1
+I)
+  0 0 0 1 1 0 0 0
+ 0
+ 0
+ 0
+ 1
+ 1
+ 0
+ 0
+ 0
+Możliwe dokładnie dwa ustawienia w środku obrazka 10 01 albo 01 10
+
+II)
+  1 1 1 1 1 1 1...
+ 1
+ 1
+ 1
+ 1
+ 1
+ 1
+ 1
+ .
+ .
+ .
+
+ Uzupełniając kolejno kolumny: w pierwszej kolumnie mamy N pozycji do wyboru, później N-1 itd. Zatem Rozwiązań jest N! > N.
+
+zad. 2
+
+model - przejście do sąsiedniego (jeżeli mamy wystarczająco paliwa) wierzchołka w grafie + odjęcie paliwa zużytego na przejazd (koszt między miastami)
+
+stan - indeks wierzchołka, w którym przebywamy oraz aktualny poziom paliwa
+
+Jeżeli celem jest przejście z jakiegoś startu do mety, powinniśmy trzymać listę odwiedzonych już wierzchołków.
+
+zad. 3,4
+h(s) = (1 - (maxymalny bak jaki jesteśmy w stanie mieć dojeżdając do s/pojemność baku))*odległość euklidesowa od mety
+
+szacujemy odległość od celu przez to ile mamy paliwa w skali całego baku
+
+zad. 5
+
+I)
+b = (2^k - 1) * 8 (wybieramy niepusty podzbiór i każdy skoczek ma 8 możliwości)
+
+II)
+min (h_1, ..., h_k) jest optymistyczna, ponieważ musimy wykonać conajmniej min (h_1, ..., h_k) ruchów, aby wszystkie skoczki były na miejscach docelowych (pesymistyczny przypadek h_i = h_j dla dowolnych i,j)
+
+max (h_1, ..., h_k) jest optymistyczna, aby wszystkie skoczki były na swoim miejscu w tym skoczek k_i tż. h(k_i) = max (h_1, ..., h_k), musimy wykonać conajmniej h(k_i) ruchów.
+
+sum_{i=1}^k h_i NIE jest optymistyczna. Kontrprzykład wszystkie skoczki znajdują się jeden ruch od ich pól docelowych. Wtedy sum_{i=1}^k h_i = K, ale wiemy że prawdziwy koszt to 1 < K.
+
+II')
+
+Odpowiedzi wraz z uzasadnieniem dla pierwszego i drugiego podpunktu się nie zmieniają.
+
+W tym przypadku sum_{i=1}^k h_i jest optymistyczna. BSO możemy poruszać się  skocziem s_i aż dostaniemy się do g_i, następnie poruszać się skoczkiem s_(i+1) itd. Wtedy wykonamy (c_i koszt dojścia skoczka s_i) c_1 + c_2 + ... + c_k > h_1 + h_2 + ... + h_k = sum_{i=1}^k h_i. Suma po lewej stronie nierówności to koszt dojścia do celu w zadaniu z k skoczkami.
+
+zad. 6
+
+I)
+6.9219% (symulacja)
+
+II)
+Wynik mocno się waha (z uwagi na zrandomizowanie algorytmu)
+104 - 124
+
+PROGRAMY:
+import random
+import sys
+import time
+
+# N = 6
+N = int(sys.argv[1])
+restart = 0
+
+def placeQueens():
+    global restart
+    diffs = set()
+    sums = set()
+    rows = []
+    for i in range(N):
+        rows.append(i)
+    random.shuffle(rows)
+    for q in range(N):
+        random.shuffle(rows)
+        flag = True
+        for row in rows:
+            if ((q+row) not in sums) and ((q-row) not in diffs):
+                flag = False
+                rows.remove(row)
+                sums.add(q+row)
+                diffs.add(q-row)
+                break
+        if flag:
+            restart+=1
+            return False
+    return True
+
+#I
+# good = 0
+# tests = 1000000
+# for i in range(tests):
+    # restart = 0
+    # placeQueens()
+    # if restart == 0:
+        # good+=1
+# print("{} no restarts on {} tests: {}%".format(good, tests, float((good/tests)*100)))
+
+#II
+t_end = time.time() + 60
+flag = False
+while time.time() < t_end and (not flag):
+    flag = placeQueens()
+
+
+SKRYPT POMOCNICZY:
+
+runtime=1
+counter=4
+
+while [ $runtime -le 5 ]
+do
+    echo "queens: $counter"
+    start=`date +%s`
+    python3 hetmany.py $counter
+    end=`date +%s`
+    runtime=$((end-start))
+    counter=$(($counter + 1))
+done

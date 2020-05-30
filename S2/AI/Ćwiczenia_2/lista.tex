@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\graphicspath{ {.} }
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{Ćwiczenia 2 SI}
+\date{21.04.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+\section{1}
+Heurystyką do zadania o Sokobanie może być policzenie sumy po skrzynkach najbliższego pola docelowego. Odległość to manhatan lub bfs (żeby ewentualne uwzględnić ściany).
+\section{2}
+\subsection*{2 skoczki}
+Łatwo zauważyć, że zamatować możemy tylko przy bandzie. Liczymy odległość (mahatan) matowanego króla od bandy dodajemy odległość od najbliższego pola oddalonego od dwa od docelowej pozycji matowanego (ruchy króla matującego) i dodajemy odległość skoczków od docelowych podzielona przez 3. \\Wybieramy najtańszą docelową pozycję matowanego króla.
+
+\section{3}
+Możemy patrzeć w, którą stronę BFS wejdzie w największą ilość pól. Dodatkowo robimy symulację co gracz może o nas wiedzieć, tzn. robimy processing naszych ruchów tak jak robimy to z ruchami przeciwnika. Bierzemy ruch, który maksymalizuje pierwszą wartość a jak są \textit {porównywalne} minimalizujemy drugą.
+\section{4}
+Eliminacja węzła $C(A,B,C)$ 3 zmiennych do binarnego:\\ Tworzymy nową zmienną $X \in D_X = D_A \times D_B$. Teraz muszą zostać spełnione 3 węzły:
+\\$X_1 = A$
+\\$X_2 = B$
+\\$C^{\prime}(X,C)$\\
+$C^\prime$ zmieniamy z $C$ zmieniając wyrażenie arytmetyczne zawierające $A,B$ na $X$.
+\section{5}
+Będziemy patrzeć na minimalne i maksymalne wartości tych sum: $\sum_{i=0}^N c_ix_i \circ y$ analizując kolejne więzy.\\
+Gdy:\\\\
+$\circ \quad to \quad =\quad $ ograniczamy $D_y$ od góry i od dołu przez $min$ i $max$. W pozostałych przypadkach tylko od góry (ostro lub nie) przez $max$ z $y$.\\
+Czasowa: $O(w \cdot N \cdot d)$ gdzie $w$ to ilość węzłów  $N$ ilość zmiennych w węźle a $d$ wielkość dziedziny.
+
+\section{6}
+Najpierw wykonujemy AC-3 by zapewnić spójność łukową $O(nd^3)$, teraz (ukorzeniamy) idziemy od dowolnego liścia i przypisujemy synom wartości żeby były spełnione więzy na krawędziach $O(nd)$.
+
+\section{7}
+Będziemy usuwać z grafu dopóki jest drzewem wierzchołki z największymi dziedzinami i więzami, w których są.\\
+Jeżeli później AC-3 z tym wartościowaniem się zatnie to losoujemy jeszcze raz (albo iterujemy kolejny wybór jak chodzimy po drzewie).
+\section{8}
+a) \quad hill climbing idziemy zachłannie zawsze do najlepszego\\\\
+b) \quad bfs\\
+c) \quad wykonuje tylko polepszające ruchy aż się zatnie - first choice hill climbing\\
+d) \quad wykonuje tylko polepszające ruchy jak się zatnie losowo wybiera ruch\\
+e) \quad hill climbing, tylko mutujemy więc nie wybieramy najlepszego mutanta (najlepszy ruch).\\
+
+\section{9}
+a) \quad mutacje polegają na dojściu do najlepszego stanu z obecnego\\
+b) \quad Ograniczamy rozmiar kolejki, usuwamy te o największych wartościach.\\
+c) \quad dopuszczać z pewnym prawdopodobieństwem rozmnażanie się słabszych osobników\\
+d) \quad pamiętamy gorszych osobników nie pozwalamy na ich nowe mutację i krzyżówki\\
+\end{document}
+
+% Nieużywane Kursory

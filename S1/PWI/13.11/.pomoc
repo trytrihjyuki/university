@@ -1,0 +1,12 @@
+zad.1
+pdflatex zad_1.tex 
+
+xdg-open zad_1.pdf
+
+ls | grep -E -v '(zad_1.tex|.pomoc)' | xargs rm
+
+w sprawozdanie.pdf powstały łącza do bibliografii
+
+zad_2
+
+verbatim wkleja komendy zamiast je wykonać

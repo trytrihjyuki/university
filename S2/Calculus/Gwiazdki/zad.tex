@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{08.06.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{SUMA: 40 punktów}
+\section{L5z9* (10 punktów)}
+$$
+\xi(x) = \int_0^x{f(t)dt}
+$$
+Szukamy fukcji f tż:
+$$
+f(x) = e^{-\xi(x)}
+$$
+Przy oznaczeniu $F$ jako funkcji pierwotnej $f$:
+$$
+f(x) = e^{-F(x)}
+$$
+$$
+F^\prime(x) = e^{-F(x)}
+$$
+$$
+F^\prime(x)e^{F(x)} = 1
+$$
+Zauważamy:
+$$
+\left( e^{F(x)} \right)^\prime = 1
+$$
+Wnioskujemy $F(x) = \log x$, dalej:
+$$
+F(x)^\prime = \frac{1}{x} = f(x)
+$$
+Możemy sprawdzić:
+$$
+f(x) = \frac{1}{x} = e^{-\log x} = e^{-\int_0^x{\frac{1}{t}dt}} = e^{-\xi(x)}
+$$\\\\\\\\\\\\\\\\\\\
+\section{L5z10* (10 punktów)}
+\begin{proof}
+$$
+\int_a^b x^n f(x)dx = 0
+$$
+\end{proof}
+\section{L5z13* (10 punktów)}
+\section{L11z13* (10 punktów)}
+%Trzeba e^x oszacować ze szeregu taylora
+%https://math.stackexchange.com/questions/2569710/a-function-whose-partial-derivatives-exist-at-a-point-but-is-not-continuous
+\end{document}
+

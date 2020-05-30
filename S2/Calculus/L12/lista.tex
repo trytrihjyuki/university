@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{28.05.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{SUMA: 17 punktów}
+\section{L9z12* (10 punktów)}
+Policzmy wartość całki dla parametru $\alpha = 0$:
+$$
+\int_0^\infty \frac{dx}{2(1+x^2)} = \frac{1}{2} \cdot arctg{x} |_0^\infty = \frac{\pi}{4}
+$$
+Policzmy różnicę całek dla dowolnego parametru i zerowego parametru:
+$$
+\int_0^\infty \frac{dx}{2(1+x^2)} - \int_0^\infty \frac{dx}{(1+x^2)(1+x^\alpha)} = \int_0^\infty \frac{1}{2(1+x^2)} - \frac{1}{(1+x^2)(1+x^\alpha)} dx =
+$$
+Zróbmy podstawienie:
+$$
+=\int_0^\infty \frac{x^\alpha - 1}{2(1+x^2)(1+x^\alpha)} = \int_0^{\frac{\pi}{2}} \cos^2{x} \cdot \frac{{\tg x}^\alpha - 1}{{\tg{x}}^\alpha + 1} \leq \int_0^{\frac{\pi}{2}} \cdot \frac{{\tg x}^\alpha - 1}{{\tg{x}}^\alpha + 1}
+$$
+Przeanalizujmy wykres funkcji $\frac{{\tg x}^\alpha - 1}{{\tg{x}}^\alpha + 1}$ na przedziale $[0,\frac{\pi}{2}]$.\\
+Zauważamy $x = \frac{\pi}{4}$ to jest jego miejsce zerowe. Co więcej na tym przedziale:
+$$
+\frac{{\tg x}^\alpha - 1}{{\tg{x}}^\alpha + 1} = - \frac{\tg{(\frac{\pi}{2} - x)}^\alpha - 1}{{\tg{(\frac{\pi}{2} - x)}^\alpha + 1}}
+$$
+(Nie udowodniałem tego tu, chyba nie o to chodziło w zadaniu, żeby się nad tym pastwić) Zatem ta całka jest zerowa. (Dodatnie zbijają ujemne)\\\\\\
+Wobec tego, całka różnicy więc i różnica całek (dla $\alpha = 0$ i $\alpha$ dowolnego też jest zerowa) więc ostatecznie wartość całki nie zależy od parametru $\alpha$ ponadto:
+$$
+\int_0^\infty \frac{dx}{(1+x^2)(1+x^\alpha)} = \frac{\pi}{4}
+$$\\\\
+\section{L12z3 (4 punkty)}
+\begin{proof}
+Z założeń:
+$$
+\frac{\partial h}{\partial x} > \left| \frac{\partial h}{\partial y} \right| \geq 0
+$$
+Dalej z Tw. Lagrange'a, dla pewnych punktów a,b:
+$$
+\frac{h(\pi,e) - h(0,e)}{\pi} = \frac{\partial}{\partial x} h(a,e)
+$$
+$$
+\frac{h(0,e) - h(0,0)}{e} = \frac{\partial}{\partial y} h(0,b)
+$$
+Dalej z powyższego:
+$$
+h(\pi,e) - h(0,0) = \pi \frac{\partial}{\partial x} h(a,e) + e \frac{\partial}{\partial y} h(0,b) = e \frac{\partial}{\partial x} h(a,e) + e \frac{\partial}{\partial y} h(0,b) + (\pi - e)\frac{\partial}{\partial x} h(a,e)
+$$
+Wszystkie składniki po prawej stronie równości są $> 0$, więc:
+$$
+h(\pi,e) - h(0,0) > 0
+$$
+\end{proof}
+\section{L12z4 (3 punkty)}
+\begin{proof}
+Z Tw. Lagrange'a, dla pewnych punktów a, b:
+$$
+\frac{s(3,4) - s(0,4)}{3} = \frac{\partial}{\partial u} s(a,4)
+$$
+$$
+\frac{s(0,4) - s(0,0)}{4} = \frac{\partial}{\partial v} s(3,b)
+$$
+Dalej:
+$$
+s(3,4) - s(0,4) = 3\frac{\partial}{\partial u} s(a,4)
+$$
+$$
+s(0,4) - s(0,0) = 4\frac{\partial}{\partial v} s(3,b)
+$$
+Zatem dla pewnych a,b zachodzi:
+$$
+s(3,4) - s(0,0) = 3\frac{\partial}{\partial u} s(a,4) + 4\frac{\partial}{\partial v} s(3,b)
+$$
+Korzystając z założenia $s(3,4) = s(0,0)$, dla pewnych a,b mamy:
+$$
+s(3,4) - s(0,0) = 0 = 3\frac{\partial}{\partial u} s(a,4) + 4\frac{\partial}{\partial v} s(3,b)
+$$
+\end{proof}
+\end{document}
+

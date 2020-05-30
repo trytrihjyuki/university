@@ -1,0 +1,66 @@
+#lang racket
+
+; --------- ;
+; Wyrazenia ;
+; --------- ;
+
+(struct const    (val)      #:transparent)
+(struct binop    (op l r)   #:transparent)
+(struct var-expr (id)       #:transparent)
+(struct var-dead (id)       #:transparent)
+(struct let-expr (id e1 e2) #:transparent)
+
+(define (expr? e)
+  (match e
+    [(const n) (number? n)]
+    [(binop op l r) (and (symbol? op) (expr? l) (expr? r))]
+    [(var-expr x) (symbol? x)]
+    [(var-dead x) (symbol? x)]
+    [(let-expr x e1 e2) (and (symbol? x) (expr? e1) (expr? e2))]
+    [_ false]))
+
+(define (parse q)
+  (cond
+    [(number? q) (const q)]
+    [(symbol? q) (var-expr q)]
+    [(and (list? q) (eq? (length q) 3) (eq? (first q) 'let))
+     (let-expr (first (second q))
+               (parse (second (second q)))
+               (parse (third q)))]
+    [(and (list? q) (eq? (length q) 3) (symbol? (first q)))
+     (binop (first q)
+            (parse (second q))
+            (parse (third q)))]))
+
+; ---------------------------------- ;
+; Wyszukaj ostatnie uzycie zmiennych ;
+; ---------------------------------- ;
+
+(define env-empty            (set))
+
+(define (env-add x env)
+  (let* ([l-env (set->list env)]
+         [l-f-env (filter
+                   (lambda(varr) (not (eq? id (var-bound-id varr)))) l-env)])
+    (list->set (append l-f-env (list x)))))
+
+(define(env-lookup x env) (set-member? env x))
+
+(define (pala var e)
+    (match e
+    [(const n) #f]
+    [(binop op l r) (or (pala var l) (pala var r))]
+    [(var-expr x) (eq? x var)]
+    [(let-expr x e1 e2) (if (eq? x var)
+                            (pala var e1)
+                            (or (pala var e1) (pala var e2)))]))
+
+(define (find-dead-vars-env e)
+  (match e
+    [(const n) (env)]
+    [(binop op l r) (cond
+                      [(and (var-expr? l)  (var-expr? r)) (if (eq?]
+    [(var-expr x) ]
+    [(let-expr x e1 e2) (and (symbol? x) (expr? e1) (expr? e2))]))
+
+; mozesz tez oczywiscie dopisac tu jakies procedury

@@ -1,0 +1,89 @@
+=====================
+A)
+
+Q(xs,ys) === (list? (map f (append xs ys)))
+
+BSO
+
+Q(xs,ys) === P(zs) === (list? (map f zs))
+
+gdzie, zs to (append xs ys) w tym podstawieniowym modelu obliczeniowym operacja append zostanie wykonana pierwsza.
+
+Rozważmy, jedyne dwa możliwe przypadki:
+
+I (podstawa)
+
+Pokażmy, że (list? (map f null))
+
+(list? (map f null)) === z definicji map
+(list? (if (null? null) null ...)) === z reguł if i null?
+(list? null) ;#t
+
+Pierwszy przypadek udowodniony 
+
+II (krok)
+
+Weźmy dowolne x,xs (tż. nie zachodzi (null? xs)) i załóżmy, że P(xs). Pokażemy P((cons x xs)):
+
+(list? (map f (cons x xs))) === z definicji map
+(list? (if (null? (cons x xs)) null (cons (f (car (cons x xs))) (map f (cdr (cons x xs)))))) === z reguł dla if i null
+(list? (cons (f (car (cons x xs))) (map f (cdr (cons x xs))))) === z reguł cons, car, cdr
+(list? (cons (f x) (map f xs)))
+
+Z założenia (list? (map f xs)). Dodatkowo wiemy że jeżeli (list? a) to dla dowolnego b (list? (cons b a)).
+Wobec powyższego drugi przypadek udowodniony.
+
+Na mocy zasady indukcji oraz I i II kończymy dowód.
+
+=====================
+B)
+
+Q(xs,ys) === (list? (filter p? (append xs ys)))
+
+BSO
+
+Q(xs,ys) === P(zs) === (list? (filter p? zs))
+
+gdzie, zs to (append xs ys) w tym podstawieniowym modelu obliczeniowym operacja append zostanie wykonana pierwsza.
+
+Rozważmy, jedyne dwa możliwe przypadki:
+
+I (podstawa)
+
+Pokażmy, że (list? (filter p? null))
+
+(list? (filter p? null)) === z definicji filter
+(list? ((cond ((null? null) null) ...)) === z reguł cond i null?
+(list? null) ;#t
+
+Pierwszy przypadek udowodniony.
+
+II (krok)
+
+Weźmy dowolne x,xs i załóżmy, że P(xs). Pokażemy P((cons x xs)):
+
+(list? (filter p? (cons x xs))) === z definicji filter
+(list? (cond ((null? (cons x xs)) null) ((p? (car (cons x xs))) (cons (car (cons x xs)) (filter p? (cdr (cons x xs))))
+(else (filter p? (cdr (cons x xs))))))) === z reguł dla cond i null?
+(list? (cond ((p? (car (cons x xs))) (cons (car (cons x xs)) (filter p? (cdr (cons x xs)))) (else (filter p? (cdr (cons x xs)))))))
+
+rozpatrzmy jedyne dwa możliwe przypadki:
+
+i) (p? (car (cons x xs)) = #t
+P((cons x xs)) === (list? (cons (car (cons x xs)) (filter p? (cdr (cons x xs))))) === z reguł cons, car, cdr
+(list? (cons x (filter p? xs)))
+
+Z założenia P(xs). Dodatkowo wiemy że jeżeli (list? a) to dla dowolnego b (list? (cons b a)).
+Wobec powyższego pierwszy pod przypadek drugiego przypadku udowodniony.
+
+ii) (p? (car (cons x xs)) = #f
+P((cons x xs)) === (list? (filter p? (cdr (cons x xs))) === z reguł cons, cdr
+(list? (filter p? xs))
+
+Z założenia (list? (map f xs)). Dodatkowo wiemy że jeżeli (list? a) to dla dowolnego b (list? (cons b a)).
+
+Jest to wprost założenie P(xs). Drugi pod przypadek udowodniony.
+
+Z i) oraz ii) udowodniliśmy II.
+
+Na mocy zasady indukcji oraz I i II kończymy dowód.

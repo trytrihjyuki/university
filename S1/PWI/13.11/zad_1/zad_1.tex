@@ -1,0 +1,149 @@
+\documentclass[a4paper]{article}
+% Kodowanie latain 2
+%\usepackage[latin2]{inputenc}
+\usepackage[T1]{fontenc}
+% Można też użyć UTF-8
+\usepackage[utf8]{inputenc}
+
+% Język
+\usepackage[polish]{babel}
+% \usepackage[english]{babel}
+
+% Rózne przydatne paczki:
+% - znaczki matematyczne
+\usepackage{amsmath, amsfonts}
+% - wcięcie na początku pierwszego akapitu
+\usepackage{indentfirst}
+% - komenda \url 
+\usepackage{hyperref}
+% - dołączanie obrazków
+\usepackage{graphics}
+% - szersza strona
+\usepackage[nofoot,hdivide={2cm,*,2cm},vdivide={2cm,*,2cm}]{geometry}
+\frenchspacing
+% - brak numerów stron
+\pagestyle{empty}
+
+% dane autora
+\author{Jakub Michaliszyn}
+\title{Przykładowy plik w systemie \LaTeX}
+\date{\today}
+
+% początek dokumentu
+\begin{document}
+\maketitle
+To jest przykładowy akapit.
+
+To jest nowy akapit.\\
+To jest ten sam akapit po znaku\footnote{Znak nowej linii składa się z dwóch znaków.} nowej linii.
+
+To jest fragment pracy naukowej:
+\medskip
+
+We say that a co-B\"uchi automaton ${\cal{A}}=\langle \Sigma , Q, q_0, \delta , \alpha\rangle$ is in the {\bf normal form} iff for each $\langle q, a, q'\rangle \in \delta$ if $q$ is in $\alpha$, then also $q'$ is in $\alpha$. Note that for a given NCW 
+${\cal{A}}=\langle \Sigma, Q, q_0, \delta , \alpha\rangle$
+the automaton ${\cal{A'}}=\langle \Sigma, Q', \langle q_0, 0\rangle, \delta', \alpha\times\{1\}\rangle$, where 
+$Q'=Q\times\{0\} \cup \alpha \times \{1\}$ and 
+$\delta'=\{\langle \langle q, i\rangle, a, \langle q', j \rangle\rangle \; | \; \langle q, a, q'\rangle \in \delta \wedge i \leq j 
+\wedge  \langle q, i\rangle,\langle q', j \rangle\in Q' \}$ 
+is in the normal form, recognizes the same language and has at most $2|Q|$ states.
+
+ 
+
+\bigskip
+
+ 
+ Na kolejnych stronach jest kawałek pracy ze strukturą.
+\newpage
+ 
+ \begin{abstract}
+ W tej pracy spróbujemy rozszerzyć logikę ze strażnikami $\mathrm{GF^2}$ o możliwość używania pewnych konstrukcji z logiki modalnej PDL. 
+ Najpierw pokażemy, że dodanie możliwości stosowania złożenia, nawet po ograniczeniu do relacji występujących jedynie w strażnikach, prowadzi do nierozstrzygalności problemu spełnialności. 
+ Następnie rozważymy stosowanie operacji przechodniego domknięcia relacji atomowych. Z wcześniejszych wyników wiadomo, że zezwolenie na używanie przechodniego domknięcia w dowolnym miejscu formuły prowadzi do nierozstrzygalności problemu spełnialności. 
+ Okazuje się jednak, że jeśli zezwalamy na stosowanie przechodniego domknięcia tylko dla relacji, które występują jedynie w strażnikach, to taka logika jest rozstrzygalna w czasie podwójnie wykładniczym, więc, na mocy wcześniejszych wyników, \textsc{2Expspace}-zupełna.
+\end{abstract}
+
+\section{Wprowadzenie}
+Logiki modalne zostały wprowadzone w celu poszerzenia rachunku zdań o możliwość wyrażania \emph{możliwości} ($\lozenge$) i \emph{konieczności} ($\square$). 
+Początkowo te logiki były wykorzystywane głównie przez filozofów. 
+Wraz z rozwojem komputerów zaczęto szukać sposobu, aby wykorzystywać te logiki do weryfikacji programów komputerowych oraz sprzętu. 
+Ze względu na stosunkowo małą siłę wyrazu klasyczne logiki modalne okazują się jednak często niewystarczające, więc zaproponowano wiele rozszerzeń tych logik.
+
+Zdaniowa logika dynamiczna (PDL), wprowadzona w \cite{FLA77}, jest jednym z najbardziej znanych rozszerzeń logik modalnych. 
+Szczególnie dobrze nadaje się do opisywania własności programów zapisanych w imperatywnych językach programowania, gdyż pozwala elegancko wyrażać pętle oraz składanie instrukcji. 
+Rok po wprowadzeniu logiki PDL w pracy \cite{PRA78} udowodniono, że problem spełnialności dla tej logiki jest \textsc{Exptime}-zupełny. 
+Dla porównania, problem spełnialności dla zwykłych logik modalnych jest \textsc{PSpace}-zupełny.
+
+Strzeżony fragment logiki pierwszego rzędu, zwany również logiką ze strażnikami ($\mathrm{GF}$), został po raz pierwszy wprowadzony w pracy \cite{ANB96}. 
+Główną motywacją przy definiowaniu tej logiki była chęć zanurzenia logiki modalnej w logice pierwszego rzędu w taki sposób, by nie utracić rozstrzygalności podstawowych problemów decyzyjnych. 
+W odróżnieniu od zwykłej logiki pierwszego rzędu, w logice ze strażnikami wymagamy, by po każdym kwantyfikatorze pojawił się \emph{strażnik}, to znaczy formuła, która ogranicza wszystkie zmienne wolne występujące w podformule, którą wiąże ten kwantyfikator. 
+Pełną definicję $\mathrm{GF}$ można znaleźć w rozdziale \ref{preliminaria}.
+
+W pracy, w której zdefiniowano $\mathrm{GF}$ (\cite{ANB96}), pokazano również dowód rozstrzygalności problemu spełnialności dla wariantu $\mathrm{GF}$ bez równości. 
+W ogólnym przypadku problem spełnialności okazał się być \textsc{2Exptime}-zupełny (\cite{GRA98}), jednak przy ograniczonej liczbie zmiennych w formule problem staje się jedynie \textsc{Exptime}-zupełny. 
+Dla porównania, fragment logiki pierwszego rzędu z dwiema zmiennymi ($\mathrm{FO^2}$) jest \textsc{NExptime}-zupełny (\cite{GKV97}).
+
+Okazuje się, że zdania standardowej logiki modalnej można w prosty sposób przełożyć na zdania logiki ze strażnikami z dwiema zmiennymi, zastępując zmienne przez unarne predykaty oraz operatory modalne przez kwantyfikatory (\cite{BEN76}, \cite{BEN84}). 
+Taki przekład zwiększa złożoność obliczeniową problemu spełnialności z \textsc{PSpace} do \textsc{Exptime}, jednak w $\mathrm{GF^2}$ można wyrazić więcej własności. 
+
+(\dots)
+
+
+\section{Preliminaria}\label{preliminaria}
+\subsection{Rodzaje logik}
+(\dots)
+\subsection{Pojęcia związane z logikami}
+(\dots)
+\subsection{Alternujące maszyny Turinga}
+(\dots)
+\subsection{Klasy złożoności obliczeniowej}
+(\dots)
+\subsection{Postaci normalne}
+(\dots)
+\section{Nierozstrzygalność złożenia}\label{nierozstrzygalnosc-zlozenia}
+(\dots)
+\section{Własność modelu rozgałęzionego}\label{rozstrzygalnosc-fo2}
+(\dots)
+\section{Ujęcie algorytmiczne}\label{algorytm}
+\subsection{Opis algorytmu}
+(\dots)
+\subsection{Algorytm}
+(\dots)
+\subsection{Analiza algorytmu}
+(\dots)
+\section{Podsumowanie}
+(\dots)
+
+% Osadzona bibliografia; zwykle bibliografię się generuje narzędziem bibtex, ale jest ono poza ramami tego przedmiotu.
+\begin{thebibliography}{12}
+    \bibitem{ANB96}
+    H. Andreka, I. Nemeti, J. van Benthem. Modal languages and bounded fragments of predicate logic. \emph{Journal of Philosophical Logic}, 27:217-274, 1998. 
+    \bibitem{AFA97} 
+    S. Arora, R. Fagin. On winning strategies in Ehrenfeucht--Fraiss'e games. \emph{Theoretical Computer Science}, 174(1--2):97--121, 1997. 
+    \bibitem{BEN76} 
+    J. van Benthem. Modal Correspondence Theory, \emph{dissertation, Mathematical Institute, University of Amsterdam}, 1976.
+    \bibitem{BEN84} 
+    J. van Benthem. 'Correspondence Theory'. In \emph{D. Gabbay, F. Guenthner, Handbook of Philosophical Logic, vol. II}, Reidel, Dordrecht, 1984.
+    \bibitem{FLA77} 
+    M. J. Fischer, R. E. Ladner. Propositional modal logic of programs. In \emph{Proceedings of the Ninth Annual ACM Symposium on theory of Computing (Boulder, Colorado, United States, May 04 - 04, 1977). STOC '77. ACM}, New York, NY, 286-294, 1977.
+    \bibitem{GKV97}
+    E. Gr\"{a}del, P. G. Kolaitis, and M. Y. Vardi. On the decision problem for two-variable first-order logic. \emph{Bulletin of Symbolic Logic}, 3(1):53--69, Mar, 1997.
+    \bibitem{GRA98} 
+    E. Gr\"{a}del. On the restraining power of guards. \emph{Journal of Symbolic Logic}, 64(4):1719-1742, 1999.
+    \bibitem{KAZ06}
+    Y. Kazakov. Saturation-Based Decision Procedures for Extensions of the Guarded Fragment.
+    \emph{PhD thesis}, Universit\"{a}t des Saarlandes, Saarbr\"{u}cken, Germany, March 2006.
+    \bibitem{PRA78}
+    V. R. Pratt 1978. A practical decision method for propositional dynamic logic (Preliminary Report). In \emph{Proceedings of the Tenth Annual ACM Symposium on theory of Computing (San Diego, California, United States, May 01 - 03, 1978)}. STOC '78. ACM, New York, NY, 326-337, 1978.
+    \bibitem{SCO62} 
+    D. Scott. A decision method for validity of sentences in two variables. \emph{J. Symb. Logic} 27, 477, 1962.
+    \bibitem{SZT04} 
+    W. Szwast, L. Tendera. The guarded fragment with transitive guards. \emph{Annals of Pure and Applied Logic}, 128, 227-276, 2004.
+\end{thebibliography}
+
+\end{document}
+
+% \documentclass{article}
+% \begin{document}
+% Hello , world!
+% \end{document}

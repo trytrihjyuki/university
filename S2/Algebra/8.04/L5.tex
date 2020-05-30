@@ -1,0 +1,377 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{Lista 5}
+\date{8.04.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{zad. 2 (1 punkt)}
+\subsection*{I}
+Łatwo zauważyć, że z tej postaci można dojść do macierzy diagonalnej (też górnotrójkątnej) stosując operacje elementarne. Dodajemy kolejne wiersze przemnożone przez odpowieni skalar od góry do dołu, idąc od wiersza $n$ do wiersza $1$.\\
+Z wniosku z wykładu, wiemy że wyznacznik macierzy górnotrójkątnej to iloczyn wyrazów na jej głównej przekątnej:
+$$
+\begin{vmatrix}
+a_{11} & 0 & 0 & \cdots & 0 \\
+a_{21} & a_{22} & 0 & \cdots & 0 \\
+a_{31} & a_{32} & a_{33} & \cdots & 0 \\
+\vdots & \vdots & \vdots & \quad & \vdots \\
+a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn} \\
+\end{vmatrix} = 
+\begin{vmatrix}
+a_{11} & 0 & 0 & \cdots & 0 \\
+0 & a_{22} & 0 & \cdots & 0 \\
+0 & 0 & a_{33} & \cdots & 0 \\
+\vdots & \vdots & \vdots & \quad & \vdots \\
+0 & 0 & 0 & \cdots & a_{nn} \\
+\end{vmatrix} = a_{11} \cdot a_{22} \dots a_{nn}
+$$
+\subsection*{II}
+Najpierw używamy $\lfloor{\frac{n}{2}} \rfloor$ operacji zmian wierszy aż dojdziemy do macierzy górnotrójkątnej. Później z wniosku z wykładu liczymy wyznacznik:
+$$
+\begin{vmatrix}
+0 & \cdots & 0 & 0 & a_{1n} \\
+0 & \cdots & 0 & a_{2,n-1} & a_{2n} \\
+0 & \cdots & a_{3,n-2} & a_{3,n-1} & a_{3n} \\
+\vdots & \quad & \vdots & \vdots & \vdots\\
+a_{n1} & \cdots & a_{n,n-2} & a_{n,n-1} & a_{nn} \\
+\end{vmatrix} = {(-1)}^{\lfloor{\frac{n}{2}} \rfloor}
+\begin{vmatrix}
+a_{n1} & \cdots & a_{n,n-2} & a_{n,n-1} & a_{nn} \\
+\vdots & \vdots & \vdots & \quad & \vdots \\
+0 & \cdots & a_{3,n-2} & a_{3,n-1} & a_{3n} \\
+0 & \cdots & 0 & a_{2,n-1} & a_{2n} \\
+0 & \cdots & 0 & 0 & a_{1n} \\
+\end{vmatrix} = 
+$$
+$$
+= {(-1)}^{\lfloor{\frac{n}{2}} \rfloor} \cdot a_{n1} \dots a_{2,n-1} \cdot a_{1n}
+$$
+\\\\
+\section{zad. 3 (1 punkt)}
+Korzystając z rozwinięcia Laplace'a:
+\subsection*{I}
+$$
+\begin{vmatrix}
+a & 3 & 0 & 5 \\
+0 & b & 0 & 2 \\
+1 & 2 & c & 3 \\
+0 & 0 & 0 & d \\
+\end{vmatrix} =
+d
+\begin{vmatrix}
+a & 3 & 0 \\
+0 & b & 0 \\
+1 & 2 & c \\
+\end{vmatrix} =
+dc
+\begin{vmatrix}
+a & 3\\
+0 & b\\
+\end{vmatrix} =dc \cdot (ab - 3\cdot0) = abcd
+$$
+\subsection*{II}
+$$
+\begin{vmatrix}
+1 & 0 & 2 & a \\
+2 & 0 & b & 0 \\
+3 & c & 4 & 5 \\
+d & 0 & 0 & 0 \\
+\end{vmatrix} = 
+d
+\begin{vmatrix}
+0 & 2 & a \\
+0 & b & 0 \\
+c & 4 & 5 \\
+\end{vmatrix} = 
+dc
+\begin{vmatrix}
+2 & a \\
+b & 0 \\
+\end{vmatrix} = =dc \cdot (2\cdot0 - ab) = -abcd
+$$
+\section{zad. 4 (1 punkt)}
+Najpierw stosujemy operacje elementarne dodawania wierszy pomnożonych przez odpowiedni skalar, a później stosujemy rozwinięcie Laplace'a.
+\subsection*{I}
+$$
+\begin{vmatrix}
+1 & 2 & 3 & 4 \\
+-3 & 2 & -5 & 13 \\
+1 & -2 & 10 & 4 \\
+-2 & 9 & -8 & 25 \\
+\end{vmatrix} = 
+\begin{vmatrix}
+0 & 4 & -7 & 0 \\
+-3 & 2 & -5 & 13 \\
+1 & -2 & 10 & 4 \\
+-2 & 9 & -8 & 25 \\
+\end{vmatrix} = 
+(-1)\cdot4
+\begin{vmatrix}
+-3 & -5 & 13 \\
+1 & 10 & 4 \\
+-2 & -8 & 25 \\
+\end{vmatrix}
+-7
+\begin{vmatrix}
+-3 & 2  & 13 \\
+1 & -2  & 4 \\
+-2 & 9  & 25 \\
+\end{vmatrix} = 301
+$$
+\subsection*{II}
+$$
+\begin{vmatrix}
+7 & 6 & 9 & 4 & -4 \\
+1 & 0 & -2 & 6 & 6 \\
+7 & 8 & 9 & -1 & -6 \\
+1 & -1 & -2 & 4 & 5 \\
+-7 & 0 & -9 & 2 & -2 \\
+\end{vmatrix} = 
+\begin{vmatrix}
+0 & 6 & 0 & 6 & -6 \\
+1 & 0 & -2 & 6 & 6 \\
+7 & 8 & 9 & -1 & -6 \\
+1 & -1 & -2 & 4 & 5 \\
+-7 & 0 & -9 & 2 & -2 \\
+\end{vmatrix} = 
+\begin{vmatrix}
+0 & 6 & 0 & 6 & -6 \\
+1 & -6 & -2 & 0 & 12 \\
+7 & 8 & 9 & -1 & -6 \\
+1 & -1 & -2 & 4 & 5 \\
+-7 & 0 & -9 & 2 & -2 \\
+\end{vmatrix} = 
+$$
+$$
+=
+\begin{vmatrix}
+0 & 6 & 0 & 6 & -6 \\
+1 & -6 & -2 & 0 & 12 \\
+7 & 8 & 9 & -1 & -6 \\
+1 & -1 & -2 & 4 & 5 \\
+0 & 8 & 0 & 1 & -8 \\
+\end{vmatrix} = 
+\begin{vmatrix}
+0 & 6 & 0 & 6 & -6 \\
+1 & -6 & -2 & 0 & 12 \\
+7 & 8 & 9 & -1 & -6 \\
+1 & -1 & -2 & 4 & 5 \\
+0 & 0 & 0 & -7 & 0 \\
+\end{vmatrix} = 
+(-1)(-7)
+\begin{vmatrix}
+0 & 6 & 0 & -6 \\
+1 & -6 & -2 &  12 \\
+7 & 8 & 9 & -6 \\
+1 & -1 & -2 &  5 \\
+\end{vmatrix} = 
+$$
+$$
+=7
+\begin{vmatrix}
+0 & 6 & 0 & -6 \\
+1 & -6 & -2 &  12 \\
+7 & 8 & 9 & -6 \\
+0 & 5 & 0 &  -7 \\
+\end{vmatrix}
+=7(-1)6
+\begin{vmatrix}
+1  & -2 &  12 \\
+7  & 9 & -6 \\
+0  & 0 &  -7 \\
+\end{vmatrix} +
+7(-1)(-6)
+\begin{vmatrix}
+1 & -6 & -2 \\
+7 & 8 & 9 \\
+0 & 5 & 0 \\
+\end{vmatrix} = 42(161 - 115) = 1932
+$$
+\section{zad. 6 (1 punkt)}
+a)\\
+Wiemy: $det(\lambda A) = {\lambda}^n det(A)$ więc wyznacznik zmieni się na przeciwny gdy $n$ będzie nieparzyste.
+\\\\b)\\
+\\\\c)\\
+Możemy zamieniać kolejnie kolumny, zmian będzie potrzeba $n -1$ więc wyznacznik będzie trzeba pomnożyć przez ${(-1)}^{n-1}$.
+\\\\d)\\
+Podobnie jak w zad. 2 więc wyznacznik będzie trzeba pomnożyć przez ${(-1)}^{\lfloor{\frac{n}{2}} \rfloor}$.
+\section{zad. 7 (2 punkty)}
+\subsection*{I}
+Dodajmy pierwszy wiersz do każdego wiersza:
+$$
+\begin{vmatrix}
+1 & 2 & 3 & \dots & n\\
+-1 & 0 & 3 & \dots & n\\
+-1 & -2 & 0 & \dots & n\\
+\vdots & \vdots & \vdots & \quad &\vdots\\
+-1 & -2 & -3 & \dots & 0\\
+\end{vmatrix} = 
+\begin{vmatrix}
+1 & 2 & 3 & \dots & n\\
+0 & 2 & 6 & \dots & 2n\\
+0 & 0 & 3 & \dots & 3n\\
+\vdots & \vdots & \vdots & \quad &\vdots\\
+0 & 0 & 0 & \dots & n\\
+\end{vmatrix} = 1 \cdot 2 \dots \cdot n = n!
+$$
+\subsection*{II}
+Odejmijmy od wszystkich wierszy pierwszy wiersz:
+$$
+\begin{vmatrix}
+1 & 1 & \dots & 1 & -n\\
+1 & 1 & \dots & -n & 1\\
+\vdots & \vdots & \quad & \vdots &\vdots\\
+1 & -n & \dots & 1 & 1\\
+-n & 1 & \dots & 1 & 1\\
+\end{vmatrix} = 
+\begin{vmatrix}
+1 & 1 & \dots & 1 & -n\\
+0 & 0 & \dots & -(n+1) & n+1\\
+\vdots & \vdots & \quad & \vdots &\vdots\\
+0 & -(n+1) & \dots & 0 & n + 1\\
+-(n+1) & 0 & \dots & 0 & n + 1\\
+\end{vmatrix} = 
+$$
+Dodajemy do ostatniego pierwszy wiersz pomnożony przez $n+1$:
+$$
+=
+\begin{vmatrix}
+1 & 1 & \dots & 1 & -n\\
+0 & 0 & \dots & -(n+1) & n+1\\
+\vdots & \vdots & \quad & \vdots &\vdots\\
+0 & -(n+1) & \dots & 0 & n + 1\\
+0 & n+1 & \dots & n+1 &  -(n + 1)(n-1)\\
+\end{vmatrix} = 
+$$
+Zamieniamy wiersze w środku kolejnością:
+$$
+={(-1)}^{\lfloor{\frac{n-2}{2}} \rfloor}
+\begin{vmatrix}
+1 & 1 & \dots & 1 & -n\\
+0 & -(n+1) & \dots & 0 & n + 1\\
+\vdots & \vdots & \quad & \vdots &\vdots\\
+0 & 0 & \dots & -(n+1) & n+1\\
+0 & n+1 & \dots & n+1 &  -(n + 1)(n-1)\\
+\end{vmatrix}=
+$$
+Odejmujemy od ostatniego wiersza każdy oprócz pierwszego wiersz i ostatecznie otrzymujemy:
+$$
+={(-1)}^{\lfloor{\frac{n-2}{2}} \rfloor}
+\begin{vmatrix}
+1 & 1 & \dots & 1 & -n\\
+0 & -(n+1) & \dots & 0 & n + 1\\
+\vdots & \vdots & \quad & \vdots &\vdots\\
+0 & 0 & \dots & -(n+1) & n+1\\
+0 & 0 & \dots & 0 &  -(n + 1)\\
+\end{vmatrix}={(-1)}^{\lfloor{\frac{n-2}{2}} \rfloor}{(-1)}^{n-1}(n+1)^{n-1}
+$$
+\section{zad. 8 (2 punkty)}
+\subsection*{I}
+Z rozwinięcia Laplace'a pierwszej kolumny:
+$$
+\begin{vmatrix}
+x & y & 0 & \dots & 0 & 0 \\
+0 & x & y & \dots & 0 & 0 \\
+0 & 0 & x & \dots & 0 & 0 \\
+\vdots & \vdots & \vdots & \quad &\vdots &\vdots \\
+0 & 0 & 0 & \dots & x & y \\
+x & 0 & 0 & \dots & 0 & y \\
+\end{vmatrix}
+=x
+\begin{vmatrix}
+ x & y & \dots & 0 & 0 \\
+ 0 & x & \dots & 0 & 0 \\
+ \vdots & \vdots & \quad &\vdots &\vdots \\
+ 0 & 0 & \dots & x & y \\
+ 0 & 0 & \dots & 0 & y \\
+\end{vmatrix}
++ {(-1)}^n x
+\begin{vmatrix}
+ y & 0 & \dots & 0 & 0 \\
+ x & y & \dots & 0 & 0 \\
+ 0 & x & \dots & 0 & 0 \\
+ \vdots & \vdots & \quad &\vdots &\vdots \\
+0 & 0 & \dots & x & y \\
+\end{vmatrix}=
+$$
+$$
+= x^{n-2} + {(-1)}^{n+1}+ x\cdot y^{n-1}
+$$
+
+\subsection*{II}
+Odejmujemy od każdego wiersza pierwszy:
+$$
+\begin{vmatrix}
+a_1 + x & a_2 & \dots & a_n \\
+a_1  & a_2 +x & \dots & a_n \\
+\vdots  & \vdots & \quad & \vdots \\
+a_1  & a_2  & \dots & a_n + x \\
+\end{vmatrix}=
+\begin{vmatrix}
+a_1 + x & a_2 & \dots & a_n \\
+-x & x & \dots & 0 \\
+\vdots  & \vdots & \quad & \vdots \\
+-x & 0  & \dots &  x \\
+\end{vmatrix}=
+$$
+Skorzystamy z rozwinięcia Laplace'a względem pierwszej kolumny:
+$$
+(a_1 + x)x^{n-1} + (-x)a_2x^{n-2} + a_2\cdot 0 \dots = a_1x^{n-1} + x^n - a_2x^{n-2}
+$$
+
+\section{zad. 13 (2 punkty)}
+Pamiętając wzór:
+$$
+\sum_{\sigma \in S_n} {\varepsilon}_{\sigma} a_{1,{\sigma}_1} a_{2,{\sigma}_2} \dots a_{n,{\sigma}_n}
+$$
+Skoro wszystkie wyrazy $A$ są całkowite to dodowolna suma sum ich też jest całkowita.\\
+Mamy: $det(A) \in \mathbb{Z}$\\
+podobnie: $det(A^{-1}) \in \mathbb{Z}$
+Z multyplikatywności wyznacznika:
+$$
+1 = det(E) = det(AA^{-1}) = det(A)det(A^{-1})
+$$
+iloczyn dwóch liczb całkowitych jest równy jeden wtw. gdy te liczby to $\pm 1$.\\
+$$
+det(A) \in \{-1,1\}
+$$
+\\\\
+\section{zad. 13 (2 punkty)}
+\begin{proof}
+Pamiętając wzór:
+$$
+\sum_{\sigma \in S_n} {\varepsilon}_{\sigma} a_{1,{\sigma}_1} a_{2,{\sigma}_2} \dots a_{n,{\sigma}_n}
+$$
+Sumujemy po wszystkich permutacjach więc napewno wystąpi czynnik:
+$$
+{\varepsilon}_{\sigma} a_{1,1} a_{2,2} \dots a_{n,n}
+$$
+Wyznacznik konkretnie macierzy $A-xE$ zawiera więc składnik:
+$$
+\pm (a_{1,1}-x)(a_{2,2}-x) \dots (a_{n,n}-x)
+$$
+zatem:
+$$
+det(A-xE) = \pm x^n + Q(x)
+$$
+\end{proof}
+\end{document}

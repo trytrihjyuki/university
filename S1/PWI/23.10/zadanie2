@@ -1,0 +1,2 @@
+rm wszystkie1; touch wszystkie1; for f in `find /usr/share -type f -name "*right" `  ; do if ! grep -q "good" $f  ; then echo "$f";  cat $f | tee -a wszystkie1 > /dev/null  ; fi ; done 
+

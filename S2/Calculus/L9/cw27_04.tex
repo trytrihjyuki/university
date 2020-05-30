@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{27.04.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{SUMA: 10 punktów}
+\section{L9z8 (5 punktów)}
+\subsection*{a}
+$\int_0^\infty \frac{\sin x}{\sqrt x} dx$ ma dwie osobliwości: $0,\infty$
+\subsection*{$\infty$}
+Z twierdzenia o wartości średniej:
+$$
+\left| \int_{b^\prime}^{b^{\prime\prime}} \frac{\sin x}{\sqrt x} dx \right | = \left | \frac{1}{\sqrt {b^\prime}} \int_{b^\prime}^\xi \sin x dx \right | = \left | \frac{\cos {b^\prime} - \cos {\xi}}{\sqrt {b^\prime}} \right | \leq \frac{2}{\sqrt {b^\prime}}
+$$
+dla ustalonego $\varepsilon$ bierzemy $b_0 = \frac{4}{\varepsilon^2}$ wtedy dla $b_0 < b^{\prime} < b^{\prime\prime}$ mamy:\\ $\left| \int_{b^\prime}^{b^{\prime\prime}} \frac{\sin x}{\sqrt x} dx \right | < \varepsilon$
+\\Z warunku Cauchyego: całka jest zbieżna w osobliwości w $\infty$
+\subsection*{$0$}
+$$
+\int_{0}^{c} \frac{\sin x}{\sqrt x} dx = \int_{0}^{c} \frac{\sin x}{x}{\sqrt x}dx \leq  \int_{0}^{c} {\sqrt x} dx = C
+$$
+Z kryterium porównawczego całka jest zbieżna (bezwzględnie) w osobliwości $0$.
+\\\\
+Zatem całka jest zbieżna bezwzględnie.\\\\
+\subsection*{b}
+$\int_0^\infty \frac{\cos x}{\sqrt x (x+1)} dx$ ma dwie osobliwości: $0,\infty$
+\subsection*{$\infty$}
+Z twierdzenia o wartości średniej:
+$$
+\left| \int_{b^\prime}^{b^{\prime\prime}} \frac{\cos x}{\sqrt x (x+1)} dx \right | = \left | \frac{1}{\sqrt {b^\prime} (1 + b^\prime)} \int_{b^\prime}^\xi \sin x dx \right | = \left | \frac{\cos {b^\prime} - \cos {\xi}}{{\sqrt {b^\prime} (1 + b^\prime)}} \right | \leq \frac{2}{\sqrt {b^\prime} (1 + b^\prime)}
+$$
+Analogiczne rozumowanie jak w \textbf{a}\\
+\\Z warunku Cauchyego: całka jest zbieżna w osobliwości w $\infty$
+\subsection*{$0$}
+$$
+\left| \int_{0}^{c} \frac{\cos x}{\sqrt x (x+1)} dx \right | \leq \left| \int_{0}^{c} \frac{1}{\sqrt x (x+1)} dx \right| \leq \left| \int_{0}^{c} \frac{1}{\sqrt x} dx \right| = \sqrt c
+$$
+Z kryterium porównawczego całka jest zbieżna (bezwzględnie) w osobliwości $0$.
+\\\\
+Zatem całka jest zbieżna bezwzględnie.\\\\
+\section{3 przykłady rachunkowe (6 punktów)}
+\subsection*{I}
+$$
+\int_0^\pi \frac{dx}{\sin x} \quad punkty\quad osobliwe: \pi, 0
+$$
+Dla $x \in [0,\pi] \quad x > \sin x$ z tego: $\frac{1}{\sin x} > \frac{1}{x}$.\\
+Dalej z kryterium porównawczego
+$$
+\int_0^\pi \frac{1}{\sin x} dx > \int_0^\pi \frac{1}{x} dx
+$$
+Całka po prawej nierówności nie jest zbieżna bo $\lim_{x \to 0^+} \ln x = \infty$
+\subsection*{II}
+$$
+\int_0^\infty \frac{\cos x}{1 + x^2}  dx\quad punkty\quad osobliwe: 0, \infty
+$$
+$$
+\int_{c}^\infty \frac{\cos x}{1 + x^2}  dx < \int_{c}^\infty \frac{1}{x^2} = -\frac{1}{x} \mid^\infty_c \rightarrow 
+\frac{1}{c}
+$$
+Sprawdźmy w 0:
+$$
+\int_{0}^{c} \frac{\cos x}{1 + x^2}  dx < \int_{0}^c \frac{1}{1 + x^2} = -\arctan x \mid^c_0 \rightarrow = -\arctan c
+$$
+Zatem całka jest zbieżna.\\\\
+\subsection*{III}
+$$
+\int_0^1 \frac{\cos x}{\sqrt x} dx \quad punkty\quad osobliwe:  0
+$$
+$$
+\int_0^1 \frac{\cos x}{\sqrt x} dx <\int_0^1 \frac{1}{\sqrt x} dx = 2 \sqrt x \mid^1_0 = 2
+$$
+\end{document}
+

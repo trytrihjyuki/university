@@ -1,0 +1,46 @@
+1)
+
+& na końcu uruchamia w tle w subshellu
+
+nohup - No Hangups - wykonuje się nawet gdy user się wylogujeps 
+
+ps -eF | grep maurykd+ - listuje procesy -e wszystkie -f full format
+
+-f UID        PID  PPID  C STIME TTY          TIME CMD
+
++/- ostatnia do backgroundu dodana pierwsza wyskoczy przy fg bez argumentu
+
+ctrl z - stop
+ctrl c - zabija nohup też
+
+
+2)
+
+[KOMENDA]: find /usr/share -type f -name *right | xargs grep -L 'good' | xargs cat  > ~/Desktop/Studia/PWI/23.10/wszystkie
+
+3)
+
+wget http://www.gutenberg.org/files/27062/27062-0.txt
+
+a)
+
+[ŹLE] grep -F -e '*Julia.*' -e '*Julia*' romeo_i_julia.txt |  wc -l
+
+diff  <(grep -F '*Julia.*' romeo_i_julia.txt) <(grep '\*Julia.\*' romeo_i_julia.txt)
+
+[KOMENDA]: grep '\*Julia\.\*' romeo_i_julia.txt |  wc -l
+
+b)
+
+[KOMENDA]: grep '\**\.\*' romeo_i_julia.txt |  wc -l
+
+c)
+
+[KOMENDA]: grep -o '\*.*\.\*' romeo_i_julia.txt | sort | uniq
+
+sort potrzebny bo uniq wywala takie same sasiednie linijki
+
+d)
+
+[KOMENDA]: grep -o '\*.*\.\*' romeo_i_julia.txt | sort | uniq -c | sort -nr
+

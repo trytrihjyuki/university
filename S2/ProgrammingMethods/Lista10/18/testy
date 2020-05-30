@@ -1,0 +1,9 @@
+(eval (parse '(uniform (cons 1 (cons 2 (cons 3 (cons 4 (cons 5 (cons 6 null)))))))))
+
+(eval (parse '(if (flip  0.3  true  false) "wygrana" "przegrana")))
+
+(eval (parse '(if (flip  0.3  true  false)
+(if (flip  0.3  true  false)
+"wygrana"
+"przegrana")
+"przegrana")))

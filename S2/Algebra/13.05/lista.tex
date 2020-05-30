@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{calrsfs}
+\usetikzlibrary{arrows}
+\graphicspath{ {.} }
+\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{Algebra L9 (suma 14 punktów)}
+\date{13.05.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+\section{zad. 4 (1 punkt)}
+\subsection*{I}
+$$
+A=
+\begin{pmatrix}
+2 & 0 \\
+0 & 2 \\
+\end{pmatrix}
+$$
+$$
+\mu_{\pazocal{A}}(t) = t-2
+$$
+\subsection*{II}
+$$
+B=
+\begin{pmatrix}
+2 & 1 \\
+1 & 3 \\
+\end{pmatrix}
+$$
+$$
+\mu_{\pazocal{B}}(t) = t^3-4\cdot t^2 + 5
+$$
+\\Rozpisałem na kartce potęgi macierzy i zgadłem wielomiany.
+\section{zad. 6 (1 punkt)}
+$$
+[[X, Y], Z] + [[Y, Z],X] + [[X, Z], Y] = 0
+$$
+$$
+(XY-YX)Z - Z(XY-YX) + (YZ-ZY)X - X(YZ-ZY) + (XZ-ZX)Y - Y(XZ-ZX) =
+$$
+Z łączności dodawania:
+$$
+XYZ -YXZ - ZXY + ZYX + YZX -ZYX - XYZ + XZY + XZY - ZXY -YXZ + YZX = 0
+$$\\\\
+\section{zad. 7 (2 punkty)}
+$$
+[M_u,M_v] = 
+\begin{pmatrix}
+0 & -u_3 & u_2 \\
+u_3 & 0 & -u_1 \\
+-u_2 & u_1 & 0 \\
+\end{pmatrix} \cdot
+\begin{pmatrix}
+0 & -v_3 & v_2 \\
+v_3 & 0 & -v_1 \\
+-v_2 & v_1 & 0 \\
+\end{pmatrix} -
+\begin{pmatrix}
+0 & -v_3 & v_2 \\
+v_3 & 0 & -v_1 \\
+-v_2 & v_1 & 0 \\
+\end{pmatrix} \cdot
+\begin{pmatrix}
+0 & -u_3 & u_2 \\
+u_3 & 0 & -u_1 \\
+-u_2 & u_1 & 0 \\
+\end{pmatrix} =
+$$
+$$
+\begin{pmatrix}
+0 & u_2v_1 - u_1v_2 & u_3v_1 - u_1v_3 \\
+u_1v_2 - u_2v_1 & 0 & u_3v_2 - u_2v_3 \\
+u_1v_3 - u_3v_1 & u_2v_3-u_3v_2 & 0 \\
+\end{pmatrix} =
+M_{u\times v}
+$$
+Skoro dla dowolnych wektorów możemy zapisać ich iloczyn wektorowy w postaci komutatora macierzowego a z \textbf{zad. 6} wiemy, że on spełnia tożsamość Jacobiego to iloczyn wektorowy też ją spełnia.
+\section{zad. 8 (2 punkty)}
+\subsection*{I}
+$$
+m_D^B(F\circ G) = m_D^C(F)m_C^B(G)
+$$
+Uzasadnienie:\\
+\begin{itemize}
+\item Prawa: wektor zapisany w bazie B przenosimy przekształceniem G jest zapisany w bazie C, mamy wektor w bazie C następnie przenosimy go przekształceniem F jest zapisany w bazie D.
+\item Lewa: wektor zapisany w bazie B przenosimy przekształceniem G jest zapisany w pewnej bazie teraz na niego nakładamy przekształcenie F i jest zapisany w bazie B.
+\end{itemize}
+\subsection*{II}
+
+$
+m_{B^\prime}^B(Id_U)
+$
+zgodnie z przyjętym (na wykładzie) oznaczeniem jest macierzą przejścia z bazy $B$ do $B^\prime$
+\section{zad. 9 (2 punkty)}
+\subsection*{$\Rightarrow$}
+Skoro $F$ jest izomorfizmem to istnieje $F^{-1}:W\rightarrow V$:
+$$
+E = m_C^C(F\circ F^{-1}) = m_D^C(F)m_C^D(F^{-1})
+$$
+Znaleźliśmy macierz odwrotną, zatem szukana macierz jest odwracalna.
+\subsection*{$\Leftarrow$}
+Oznaczmy macierz odwrotną jako G.
+$$
+E = m_D^C(F)G
+$$
+Wnioskujemy że $G$ jest macierzą pewnego przekształcenia liniowego, które bierze wektory z W w bazie D i \textit{wyrzuca} wektory z V z bazy C. Dalej:
+$$
+E = m_D^C(F)m_C^D(H) = m_C^C(F\circ H) = m_C^C(Id)
+$$
+Więc: $F\circ H = Id$ z tego F jest izomorfizmem.
+\section{zad. 10 (2 punkty)}
+\subsection*{I}
+$$
+\mu_{\pazocal{A}}(t) = t^2 - 6t + 5
+$$
+Rozwiązuję układ równań:
+$$
+\begin{cases}
+a^2 + bc - 6a + 5 = 0\\
+d^2 + bc - 6d + 5 = 0\\
+ab+bd-6b=0\\
+ac+cd-6c=0\\
+\end{cases}
+$$
+Wnioskuje $a = d = 3$, wtedy $b,c$ prawie dowolne:
+$$
+A =
+\begin{pmatrix}
+3 & 5 \\
+1 & 3 \\
+\end{pmatrix}
+$$
+\subsection*{II}
+$$
+\mu_{\pazocal{B}}(t) = t^2 - 4t + 4
+$$
+Rozwiązuję układ równań:
+$$
+\begin{cases}
+a^2 + bc - 4a + 4 = 0\\
+d^2 + bc - 4d + 4 = 0\\
+ab+bd-4b=0\\
+ac+cd-4c=0\\
+\end{cases}
+$$
+Wnioskuje $a = d = 2$, wtedy $b,c$ prawie dowolne:
+$$
+B =
+\begin{pmatrix}
+2 & 4 \\
+1 & 2 \\
+\end{pmatrix}
+$$
+\section{zad. 12 (2 punkty)}
+Najogólnieszą postacią elementu z $K[A]$ jest:
+$$
+a_0 A^m + a_1 A^{m-1} +a_2 A^{m-2} + \dots + a_{m-1}A + a_mE
+$$
+Jak widać, żeby stworzyć go wystarczy baza: ${A,E}$. Oczywiste, że $\{A,E\} \leq 2$
+
+\section{zad. 13 (2 punkty)}
+Skoro $V = ker \pazocal{P} \oplus Im \pazocal{P}$ to każdy wektor z $V$ zapisujemy jednoznacznie:\\
+$v = u + w$ gdzie $u \in ker \pazocal{P}$ oraz $w \in Im \pazocal{P}$\\
+Z liniowości $\pazocal{P}$:\\
+$$
+\pazocal{P}v = \pazocal{P}u + \pazocal{P}w = \pazocal{P}w
+$$
+A to już jest definicja rzutu (z szarego z Kostrikina).
+\end{document}
+

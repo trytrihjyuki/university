@@ -1,0 +1,703 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{Lista 10 (suma: 15 punktów)}
+\date{27.05.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+\section{zad. 2 (1 punkt)}
+$$
+\begin{cases}
+A
+\begin{pmatrix}
+1\\
+0\\
+\end{pmatrix}
+= 
+\begin{pmatrix}
+-\frac{1}{2}\\
+0\\
+\end{pmatrix}\\
+A
+\begin{pmatrix}
+1\\
+1\\
+\end{pmatrix}
+= 
+\begin{pmatrix}
+1\\
+1\\
+\end{pmatrix}\\
+\end{cases}
+$$
+Mamy więc:
+$$
+\begin{cases}
+a = -\frac{1}{2}\\
+c \cdot 1 = 0\\
+a + b = 1\\
+c + d = 1\\
+\end{cases}
+$$
+zatem:
+$$
+A =
+\begin{pmatrix}
+-\frac{1}{2} && \frac{3}{2}\\
+0 && 1\\
+\end{pmatrix}
+$$
+\section{zad. 3 (1 punkt)}
+\subsection*{I}
+$$\pazocal{X}_A(t) = 
+\begin{vmatrix}
+t-2 && 0\\
+0 && t-3\\
+\end{vmatrix}
+= (t-2)(t-3)
+$$
+Podprzestrzenie własne dla wartości własnych 2,3:
+$$
+\begin{pmatrix}
+2 && 0\\
+0 && 3\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+\end{pmatrix} =
+\begin{pmatrix}
+2x\\
+2y\\
+\end{pmatrix}
+$$
+$$
+V^2 = \{\begin{pmatrix}
+k\\
+0\\
+\end{pmatrix} : k \in \mathbb{R}\}
+$$
+$$
+\begin{pmatrix}
+2 && 0\\
+0 && 3\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+\end{pmatrix} =
+\begin{pmatrix}
+3x\\
+3y\\
+\end{pmatrix}
+$$
+$$
+V^3 = \{\begin{pmatrix}
+0\\
+k\\
+\end{pmatrix} : k \in \mathbb{R}\}
+$$
+\subsection*{II}
+$$\pazocal{X}_A(t) = 
+\begin{vmatrix}
+t-1 && -2\\
+0 && t-1\\
+\end{vmatrix}
+= (t-1)^2
+$$
+Podprzestrzeń własna dla wartości własnej 1:
+$$
+\begin{pmatrix}
+1 && 2\\
+0 && 1\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+\end{pmatrix} =
+\begin{pmatrix}
+x + 2y\\
+y\\
+\end{pmatrix} = 
+\begin{pmatrix}
+x\\
+y\\
+\end{pmatrix}
+$$
+$$
+V^1 = \{\begin{pmatrix}
+k\\
+0\\
+\end{pmatrix} : k \in \mathbb{R}\}
+$$
+\section{zad. 4 (1 punkt)}
+$$
+\begin{vmatrix}
+t-5 && -1\\
+0 && t-5\\
+\end{vmatrix}=
+\begin{vmatrix}
+t-5 && 0\\
+0 && t-5\\
+\end{vmatrix}
+= (t-5)^2
+$$
+Sprawdźmy dla krotność geometryczną wartości własnej (wymiar podprzestrzeni własnej) obu macierzy :
+$$
+\begin{pmatrix}
+5 && 0\\
+0 && 5\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+\end{pmatrix} =
+\begin{pmatrix}
+5x\\
+5y\\
+\end{pmatrix} = 
+\begin{pmatrix}
+5x\\
+5y\\
+\end{pmatrix}
+$$
+$$
+V^5 = \{\begin{pmatrix}
+k\\
+p\\
+\end{pmatrix} : k,p \in \mathbb{R}\}
+$$
+Macierz $\begin{pmatrix}
+5 && 0\\
+0 && 5\\
+\end{pmatrix}$ diagonalizuje się spełnia wszystkie warunki twierdzenia (wymiar pp. wł. jest równy krotności pierwiastka wielomianu charakterystycznego).
+$$
+\begin{pmatrix}
+5 && 1\\
+0 && 5\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+\end{pmatrix} =
+\begin{pmatrix}
+5x + y\\
+5y\\
+\end{pmatrix} = 
+\begin{pmatrix}
+5x\\
+5y\\
+\end{pmatrix}
+$$
+$$
+V^5 = \{\begin{pmatrix}
+k\\
+0\\
+\end{pmatrix} : k \in \mathbb{R}\}
+$$
+Macierz $\begin{pmatrix}
+5 && 1\\
+0 && 5\\
+\end{pmatrix}$ nie diagonalizuje się wymiar pp. wł.  nie jest równy krotności pierwiastka wielomianu charakterystycznego (wymiar 1, krotność 2).
+\\\\\\\\
+\section{zad. 5 (1 punkt)}
+\subsection*{I}
+$$\pazocal{X}_A(t) =
+\begin{vmatrix}
+t-1 && 0 && 0\\
+0 && t-1 && 0\\
+0 && 0 && t-1\\
+\end{vmatrix} =
+(t-1)^3
+$$
+Jedna wartość własna 1 o krotności algebraicznej 3. Sprawdźmy krotność geometryczną:
+$$
+\begin{pmatrix}
+1 && 0 && 0\\
+0 && 1 && 0\\
+0 && 0 && 1\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+z\\
+\end{pmatrix} =
+\begin{pmatrix}
+x\\
+y\\
+z\\
+\end{pmatrix}
+$$
+$$
+V^1 = \mathbb{R}^3
+$$
+Krotność geometryczna równa krotności algebraicznej (równe 3).
+\subsection*{II}
+$$\pazocal{X}_A(t) =
+\begin{vmatrix}
+t-2 && 0 && 0\\
+0 && t+1 && 0\\
+0 && 0 && t+1\\
+\end{vmatrix} =
+(t-2)(t+1)^2
+$$
+Dwie wartości własne: -1 o krotności algebraicznej 2 i 2 o krotności alg. 1. Sprawdźmy krotności geometryczne:
+$$
+\begin{pmatrix}
+2 && 0 && 0\\
+0 && -1 && 0\\
+0 && 0 && -1\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+z\\
+\end{pmatrix} =
+\begin{pmatrix}
+-x\\
+-y\\
+-z\\
+\end{pmatrix}
+$$
+$$
+V^{-1} = \{\begin{pmatrix}
+0\\
+k\\
+p\\
+\end{pmatrix} : k,p \in \mathbb{R}\}
+$$
+Krotność geometryczna równa krotności algebraicznej (równe 2).
+$$
+\begin{pmatrix}
+2 && 0 && 0\\
+0 && -1 && 0\\
+0 && 0 && -1\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+z\\
+\end{pmatrix} =
+\begin{pmatrix}
+2x\\
+2y\\
+2z\\
+\end{pmatrix}
+$$
+$$
+V^{2} = \{\begin{pmatrix}
+k\\
+0\\
+0\\
+\end{pmatrix} : k \in \mathbb{R}\}
+$$
+Krotność geometryczna równa krotności algebraicznej (równe 1).
+\section{zad. 6 (1 punkt)}
+\begin{proof}
+Wielomianem charakterystycznym macierzy górnotrójkątnej jest:
+$$
+\pazocal{X}_A(t) =(t - a_{11})(t - a_{22})\dots(t - a_{nn})
+$$
+Z założeń $a_{ii} \neq a_{jj}$ dla $i \neq j$, zatem wielomian charakterystyczny ma n różnych pierwiastków, dokładnie: $a_{11},a_{22},\dots,a_{nn}$.\\
+Wszystkie wartości własne są proste, więc całe widmo też jest proste. Z twierdzenia jeżeli widmo jest proste to macierz operatora jest diagonalizowalna.
+\end{proof}
+\section{zad. 8 (2 punkty)}
+$$M =
+\begin{pmatrix}
+3 && 0\\
+4 && 2\\
+\end{pmatrix}
+$$
+$$
+\pazocal{X}_M(t) =(t-3)(t-2)
+$$
+Dwie wartości własne $\lambda = 3, \mu = 2$ szukamy wektorów własnych:
+\subsection*{$\lambda = 3$}
+$$
+\begin{pmatrix}
+3 && 0\\
+4 && 2\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+3x\\
+3y\\
+\end{pmatrix}
+$$
+Wektor własny: $\begin{pmatrix}
+1\\
+4\\
+\end{pmatrix}$
+\subsection*{$\mu = 2$}
+$$
+\begin{pmatrix}
+3 && 0\\
+4 && 2\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+2x\\
+2y\\
+\end{pmatrix}
+$$
+Wektor własny: $\begin{pmatrix}
+0\\
+1\\
+\end{pmatrix}$
+Zatem M = $\begin{pmatrix}
+1 && 0\\
+4 && 1\\
+\end{pmatrix}
+\begin{pmatrix}
+3 && 0\\
+0 && 2\\
+\end{pmatrix}
+\begin{pmatrix}
+1 && 0\\
+-4 && 1\\
+\end{pmatrix}$
+$$
+M^6 = \begin{pmatrix}
+1 && 0\\
+4 && 1\\
+\end{pmatrix}
+\begin{pmatrix}
+3^6 && 0\\
+0 && 2^6\\
+\end{pmatrix}
+\begin{pmatrix}
+1 && 0\\
+-4 && 1\\
+\end{pmatrix} =
+\begin{pmatrix}
+3^6 && 0\\
+4\cdot3^6 && 2^6\\
+\end{pmatrix}
+\begin{pmatrix}
+1 && 0\\
+-4 && 1\\
+\end{pmatrix}
+= \begin{pmatrix}
+3^6 && 0\\
+2660 && 2^6\\
+\end{pmatrix}
+$$
+% \section{zad. 9 (2 punkty)}
+% $$A=
+% \begin{pmatrix}
+% 3\sqrt3 && -7\\
+% 1 && -\sqrt3\\
+% \end{pmatrix}
+% $$
+\section{zad. 10 (2 punkty)}
+\subsection*{I}
+Wszystkie wektory należące do płaszczyzny po rzucie na nią nie zmieniają się. Wartość własna 1, pp. własna płaszczyzna, na którą jest rzut.\\
+Wektory prostopadłe do niej po rzucie się zerują. Wartość własna 0, pp. własna wektory prostopadłe do płaszczyzny.
+\subsection*{II}
+Wszystkie wektory należące do płaszczyzny po odbiciu symetrycznym względem niej nie zmieniają się. Wartość własna 1, pp. własna płaszczyzna, na którą jest rzut.\\
+Wektory prostopadłe do niej po wykonaniu symetrii \textit{obracają się}. Wartość własna -1, pp. własna wektory prostopadłe do płaszczyzny.
+\section{zad. 11 (2 punkty)}
+\subsection*{I}
+$$M =
+\begin{pmatrix}
+1 && 4 && -1\\
+0 && 3 && -5\\
+0 && 0 && -2\\
+\end{pmatrix}
+$$
+$$
+\pazocal{X}_M(t) =(t-1)(t-3)(t+2)
+$$
+Trzy wartości własne $\lambda = 1, \mu = 3, \gamma = -2$ szukamy wektorów własnych (małe rachunki robiłem na kartce do obliczania pp. wł.):
+\subsection*{$\lambda = 1$}
+$$
+\begin{pmatrix}
+1 && 4 && -1\\
+0 && 3 && -5\\
+0 && 0 && -2\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+z\\
+\end{pmatrix} =
+\begin{pmatrix}
+x\\
+y\\
+z\\
+\end{pmatrix}
+$$
+$$
+V^{1} = \{\begin{pmatrix}
+k\\
+0\\
+0\\
+\end{pmatrix} : k \in \mathbb{R}\}
+$$ 
+\subsection*{$\mu = 3$}
+$$
+\begin{pmatrix}
+1 && 4 && -1\\
+0 && 3 && -5\\
+0 && 0 && -2\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+z\\
+\end{pmatrix} =
+\begin{pmatrix}
+3x\\
+3y\\
+3z\\
+\end{pmatrix}
+$$
+$$
+V^{3} = \{\begin{pmatrix}
+2k\\
+k\\
+0\\
+\end{pmatrix} : k \in \mathbb{R}\}
+$$
+\subsection*{$\gamma = -2$}
+$$
+\begin{pmatrix}
+1 && 4 && -1\\
+0 && 3 && -5\\
+0 && 0 && -2\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+z\\
+\end{pmatrix} =
+\begin{pmatrix}
+-2x\\
+-2y\\
+-2z\\
+\end{pmatrix}
+$$
+$$
+V^{-1} = \{\begin{pmatrix}
+-k\\
+k\\
+k\\
+\end{pmatrix} : k \in \mathbb{R}\}
+$$
+Ostatecznie:
+$$
+M =
+\begin{pmatrix}
+1 && 2 && -1\\
+0 && 1 && 1\\
+0 && 0 && 1\\
+\end{pmatrix}
+\begin{pmatrix}
+1 && 0 && 0\\
+0 && 3 && 0\\
+0 && 0 && -2\\
+\end{pmatrix}
+\begin{pmatrix}
+1 && 2 && -1\\
+0 && 1 && 1\\
+0 && 0 && 1\\
+\end{pmatrix}^{-1}
+$$
+\subsection*{II}
+$$M =
+\begin{pmatrix}
+2 && -1 && 2\\
+5 && -3 && 3\\
+-1 && 0 && -2\\
+\end{pmatrix}
+$$
+$$
+\pazocal{X}_M(t) = (t+1)^3
+$$
+Jedna wartość własna $\lambda = -1$ szukamy wektorów własnych:
+\subsection*{$\lambda = -1$}
+$$
+\begin{pmatrix}
+2 && -1 && 2\\
+5 && -3 && 3\\
+-1 && 0 && -2\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+z\\
+\end{pmatrix} =
+\begin{pmatrix}
+-x\\
+-y\\
+-z\\
+\end{pmatrix}
+$$
+$$
+\begin{cases}
+2x - y + 2z = -x\\
+5x -3y + 3z = -y\\
+-x -2z = -z
+\end{cases}
+$$
+Z powyższego:
+$$
+V^{-1} = \{\begin{pmatrix}
+k\\
+k\\
+-k\\
+\end{pmatrix} : k \in \mathbb{R}\}
+$$
+Krotność algebraiczna $\neq$ krotność geometryczna ($1 < 3$). Zatem macierz nie jest diagonalizowalna.\\\\\\\\\\\\\\\\\\\\\
+\section{zad. 12 (2 punkty)}
+\subsection*{I}
+$$
+A=
+\begin{pmatrix}
+1 && 0 && -1\\
+2 && 0 && 2\\
+2 && -1 && 4\\
+\end{pmatrix}
+$$
+$$
+\pazocal{X}_A(t) = (t-2)^2(t-1)
+$$
+\subsection*{$\lambda = 2$}
+$$
+\begin{pmatrix}
+1 && 0 && -1\\
+2 && 0 && 2\\
+2 && -1 && 4\\
+\end{pmatrix}
+\begin{pmatrix}
+x\\
+y\\
+z\\
+\end{pmatrix}=
+\begin{pmatrix}
+2x\\
+2y\\
+2z\\
+\end{pmatrix}
+$$
+$$
+\begin{cases}
+x - z = 2x\\
+2x + 2y = 2y\\
+2x - y + 4z = 2z\\
+\end{cases}
+$$
+Ten układ nie ma rozwiązania nietrywialnego. Zatem wymiar pp. wł. jest równy 0. Więc $A$ nie jest diagonalizowalna.
+\subsection*{II}
+$$
+A=
+\begin{pmatrix}
+4 && -5 && 2\\
+5 && -7 && 3\\
+6 && -9 && 4\\
+\end{pmatrix}
+$$
+$$
+\pazocal{X}_A(t) =
+\begin{vmatrix}
+t-4 && 5 && -2\\
+-5 && t+7 && -3\\
+-6 && 9 && t-4\\
+\end{vmatrix}
+=
+(t-4)
+\begin{vmatrix}
+t+7 && -3\\
+9 && t-4\\
+\end{vmatrix}
+-5
+\begin{vmatrix}
+-5 && -3\\
+-6 && t-4\\
+\end{vmatrix}
++2
+\begin{vmatrix}
+-5 && t+7\\
+-6 && 9\
+\end{vmatrix} =
+$$
+$$
+t^3  - t^2
+$$
+Wielomian charakterystyczny nie rozkłada się na czynniki liniowe w $\mathbb{R}$ zatem $A$ nie jest diagonalizowalna.
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\section{zad. 14 (2 punkty)}
+Metodą prób i błędów wyznaczyłem wzór następnie udowodniłem jego poprawność.
+$$
+\begin{pmatrix}
+\lambda && 1 && 0\\
+0 && \lambda && 1\\
+0 && 0 && \lambda\\
+\end{pmatrix}^n
+=
+\begin{pmatrix}
+\lambda^n && n\lambda^{n-1} && \frac{n(n-1)}{2}\lambda^{n-2}\\
+0 && \lambda^n && n\lambda^{n-1}\\
+0 && 0 && \lambda^n\\
+\end{pmatrix}
+$$
+\begin{proof}
+\subsection*{\\podstawa indukcji:}
+Dla 1 mamy ten sam wzór, działą.
+\subsection*{krok:}
+Załóżmy, że dla n wzór jest poprawny. Teraz:
+$$
+\begin{pmatrix}
+\lambda && 1 && 0\\
+0 && \lambda && 1\\
+0 && 0 && \lambda\\
+\end{pmatrix}^{n+1}
+=
+\begin{pmatrix}
+\lambda^n && n\lambda^{n-1} && \frac{n(n-1)}{2}\lambda^{n-2}\\
+0 && \lambda^n && n\lambda^{n-1}\\
+0 && 0 && \lambda^n\\
+\end{pmatrix}
+\begin{pmatrix}
+\lambda && 1 && 0\\
+0 && \lambda && 1\\
+0 && 0 && \lambda\\
+\end{pmatrix}
+=
+$$
+$$
+=\begin{pmatrix}
+\lambda^{n+1} && (n+1)\lambda^{n} && \frac{n(n+1)}{2}\lambda^{n-1}\\
+0 && \lambda^{n+1} && (n+1)\lambda^{n}\\
+0 && 0 && \lambda^{n+1}\\
+\end{pmatrix}
+$$
+Na mocy zasady indukcji ten wzór jest poprawny dla dowolnego $n \in \mathbb{N}$
+\end{proof}
+\end{document}

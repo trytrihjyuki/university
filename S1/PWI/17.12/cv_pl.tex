@@ -1,0 +1,188 @@
+\documentclass[11pt]{article}
+\usepackage[paper=a4paper,left=24mm,right=24mm,top=20mm,bottom=20mm]{geometry}
+
+\usepackage[english, ngerman]{babel}
+\usepackage{amsmath}                                % For textit, textbf, etc
+\usepackage{graphicx}                               % For includegraphics
+\usepackage{wrapfig}                                % For wrapfig environment
+\usepackage{paralist}                               % For compactitem 
+
+\pagestyle{empty}                                   % No pagenumbers/headers/footers
+
+%%% Custom sectioning (sectsty package)
+\usepackage{sectsty}
+\sectionfont{%                                      % Change font of \section command
+    \usefont{OT1}{phv}{m}{n}%                       
+    \sectionrule{0pt}{0pt}{-10pt}{1pt}
+}
+\subsectionfont{%                                   % Change font of \subsection command
+    \usefont{OT1}{phv}{m}{n}%                       
+    %\sectionrule{0pt}{0pt}{-10pt}{1pt}
+}
+
+%%% Macros
+\newcommand{\sepspace}{\vspace*{1em}}               % Vertical space macro
+\newcommand{\NewPart}[1]{\section*{\uppercase{#1}}}
+\newcommand{\NewSubPart}[1]{\subsection*{#1}}
+
+\newcommand{\MyName}[1]{
+    \noindent
+    \Huge \usefont{OT1}{phv}{m}{n} #1 \hfill        % Name
+    \par \normalsize \normalfont
+}
+
+\newcommand{\SimpleEntry}[1]{
+    \noindent\hangindent=0.5cm\hangafter=0          % Indentation
+    #1 \par                                         % Entry 
+}
+
+\newcommand{\TimeEntry}[4]{
+    \noindent\hangindent=0.5cm\hangafter=0          % Indentation
+    \parbox{3cm}{                                   % Box to align text
+        \textit{#1}                                 % Time
+    }
+    \textbf{#2}                                     % What
+    \text{#3}                                       % Work
+    \normalsize \par
+}
+
+\newcommand{\TimeEntryFocus}[5]{
+    \noindent\hangindent=0.5cm\hangafter=0          % Indentation
+    \parbox{3cm}{                                   % Box to align text
+        \textit{#1}                                 % Time
+    }
+    \textbf{#2}                                     % What
+    \text{#3} \par                                  % School
+    \noindent\hangindent=3.7cm\hangafter=0
+    \textit{#4}                                     % Average, Focus, etc
+    \normalsize \par
+}
+
+\newcommand{\TimeEntryDesc}[4]{
+    \noindent\hangindent=0.5cm\hangafter=0          % Indentation
+    \parbox{3cm}{                                   % Box to align text
+        \textit{#1}                                 % Time
+    }
+    \textbf{#2}                                     % What
+    \text{#3} \par                                  % Work
+    \noindent\hangindent=4cm\hangafter=0 \parbox{11cm}{\vspace{0.2em}\small #4}  % Description
+    \normalsize \par
+}
+
+\newcommand{\TimeEntryFocusDesc}[5]{
+    \noindent\hangindent=0.5cm\hangafter=0          % Indentation
+    \parbox{3cm}{                                   % Box to align text
+        \textit{#1}                                 % Time
+    }
+    \textbf{#2}                                     % What
+    \text{#3} \par                                  % School
+    \noindent\hangindent=3.7cm\hangafter=0
+    \textit{#4} \par                                  % Average, Focus, etc
+    \noindent\hangindent=4cm\hangafter=0 \parbox{12cm}{\vspace{0.2em}\small #5}  % Description
+    \normalsize \par
+}
+
+\newcommand{\TitleEntry}[2]{                     
+    \noindent\hangindent=0.5cm\hangafter=0            % Indentation
+    \parbox{3cm}{                                   % Box to align text
+        \textit{#1}
+    }                                               % Title
+    #2 \par                                         % Entry 
+}
+
+\newcommand{\TitleEntryLong}[2]{                     
+    \noindent\hangindent=0.5cm\hangafter=0            % Indentation
+    \parbox{14cm}{                                   % Box to align text
+        \textit{#1}
+    }                                               % Title
+    #2 \par                                         % Entry 
+}
+
+%%% Begin Document
+\begin{document}
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \vspace*{-0.5cm}
+    \hfill\includegraphics[width=0.22\textwidth]{example-image}
+    \vspace{-5cm}
+\end{wrapfigure}
+
+\MyName{Jane Doe}
+
+\sepspace
+
+%%% Personal details
+%\NewPart{Personal details}
+
+\SimpleEntry{01.01.1990, born in Sample, Sampleland}
+\SimpleEntry{Samplestreet 1}
+\SimpleEntry{1000 Samplecity}
+\SimpleEntry{012 345 67 89}
+\SimpleEntry{sample@sample.com}
+
+%%% Education
+\NewPart{Education}
+\TimeEntryFocus{2.2018 - dato}
+{Master of Sample Science}
+{at Sample Uni}
+{Focus on sample topics\\
+%Average to date: 5\\
+Expected graduation in March of 2020}
+{Master Thesis: Sample Title\\
+Further Projects:
+\begin{compactitem}[-]
+    \item Sample project
+    \item Sample project
+    \item Sample project
+    \item Sample project
+\end{compactitem}
+}
+
+\sepspace
+
+\TimeEntry{9.2013 - 9.2017}
+{Bachelor of Sample Science}{at Sample Uni}
+%{Average: 5}
+{Bachelor Thesis: Sample Title\\
+Further Projects:
+\begin{compactitem}[-]
+    \item Sample project
+    \item Sample project
+\end{compactitem}
+}
+
+\sepspace
+
+\TimeEntry{8.2009 - 6.2013}
+{Matura with focus on Sample}
+{at Sample School}
+%{Average: 5.}
+{\begin{compactitem}[-]
+    \item Sample Title
+\end{compactitem}
+}
+
+%%% Work experience
+\NewPart{Work experience}
+\TimeEntry{9.2017 - 2.2018}{Sample Internship}{at Sample AG}{
+\begin{compactitem}[-]
+    \item Sample task
+    \item Sample task
+    \item Sample task
+\end{compactitem}
+}
+
+%%% Skills and Qualifications
+\NewPart{Skills and Qualifications}
+\NewSubPart{Programming Languages}
+\TitleEntry{Advanced skills}{Samples}
+\TitleEntry{Basic skills}{Samples}
+
+\NewSubPart{Languages}
+\TitleEntry{Native tongue}{Sample language}
+\TitleEntry{Basics}{Sample language}
+
+%%% Interests
+\NewPart{Interests}
+\SimpleEntry{Sample Interests}
+
+\end{document}

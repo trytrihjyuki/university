@@ -1,0 +1,68 @@
+\documentclass[a4paper]{article}
+% Kodowanie latain 2
+%\usepackage[latin2]{inputenc}
+\usepackage[T1]{fontenc}
+% Można też użyć UTF-8
+\usepackage[utf8]{inputenc}
+
+% Język
+\usepackage[polish]{babel}
+% \usepackage[english]{babel}
+
+% Rózne przydatne paczki:
+% - znaczki matematyczne
+\usepackage{amsmath, amsfonts}
+% - wcięcie na początku pierwszego akapitu
+\usepackage{indentfirst}
+% - komenda \url 
+\usepackage{hyperref}
+% - dołączanie obrazków
+\usepackage{graphics}
+% - szersza strona
+\usepackage[nofoot,hdivide={2cm,*,2cm},vdivide={2cm,*,2cm}]{geometry}
+\frenchspacing
+% - brak numerów stron
+\pagestyle{empty}
+
+% dane autora
+\author{Maurycy Borkowski, 980640000}
+\title{Przykładowy plik w systemie \LaTeX}
+\date{\today}
+
+% początek dokumentu
+\begin{document}
+\maketitle
+Zadanie 2
+
+\section{Polecenie id}
+Polecenie id służy do wyświetlenia numerów identyfikacyjnych i nazw kolejno: obecnego użytkownika i grup do których on należy.
+
+
+\section{Czas uniksowy}
+Polega na mierzeniu ilości sekund (bez sekund przestępnych), które upłynęły od 1.01.1970.
+Problem roku 2038 polega na tym, że liczba sekund, którę upłynęły jest przechowywana jako liczba 32 bitowa. 32 bity przestaną wystarczać to zapisywania ile minęło czasu w dniu 19.01.2038 o godzinie 03:14:07 UTC.
+
+\section{Podwójna kompilacja}
+W zadaniu 1 gdy dwa razy kompilowałem plik sprawozdanie.tex wtedy w akapicie Wprowadzenie utworzyły się łącza do literatury zamiast znaków zapytania.
+
+\section{Rodzdział pusty}
+\dots
+
+\section{Zwierzątko}
+\begin{verbatim}
+           FISHKISSFISHKIS               
+       SFISHKISSFISHKISSFISH            F
+    ISHK   ISSFISHKISSFISHKISS         FI
+  SHKISS   FISHKISSFISHKISSFISS       FIS
+HKISSFISHKISSFISHKISSFISHKISSFISH    KISS
+  FISHKISSFISHKISSFISHKISSFISHKISS  FISHK
+      SSFISHKISSFISHKISSFISHKISSFISHKISSF
+  ISHKISSFISHKISSFISHKISSFISHKISSF  ISHKI
+SSFISHKISSFISHKISSFISHKISSFISHKIS    SFIS
+  HKISSFISHKISSFISHKISSFISHKISS       FIS
+    HKISSFISHKISSFISHKISSFISHK         IS
+       SFISHKISSFISHKISSFISH            K
+         ISSFISHKISSFISHK               
+\end{verbatim}
+
+\end{document}

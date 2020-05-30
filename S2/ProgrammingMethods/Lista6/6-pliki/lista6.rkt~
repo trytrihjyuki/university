@@ -1,0 +1,16 @@
+#lang racket
+(require "arith.rkt")
+( struct const ( val )  #:transparent )
+( struct binop ( op l r ) #:transparent )
+
+;1
+
+; (a) Składnia konkretna
+(+ (+ (/ (+ 2 3) 8) 10) 1)
+; Składnia abstrakcyjna
+
+
+; (b) Składnia konkretna
+(+ (+ (+ 1 2) (* 3 4)) 5)
+
+; Składnia abstrakcyjna

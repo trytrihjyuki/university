@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{19.03.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{3/14 (5 punktów)}
+Musimy policzyć:
+\eq{\lim_{n\to\infty} \sum_{k=0}^{n} {(-1)}^{k} \frac{1}{2k+1} {n\choose k} }
+Korzystając z jednostajnej zbieżności szeregu funkcyjnego oraz rozwinięcia dwumianu:
+\eq{\int_0^1 {(1-x^2)}^n dx = \sum_{k=0}^{n} {n\choose k} 1^{n-k} {(-1)}^k \int_0^1 x^{2k} dx = }
+$$=  \sum_{k=0}^{n} {(-1)}^k {n\choose k} \int_0^1 \left(\frac{1}{2k + 1} x^{2k+1}\right)^\prime = \sum_{k=0}^{n} {(-1)}^k {n\choose k} \frac{1}{2k + 1}$$
+Z $(1)$ i $(2)$ wystarczy policzyć $\int_0^1 {(1-x^2)}^n dx$ i przejść do granicy.
+\eq{\int_0^1 {(1-x^2)}^n dx = - \int_0^{\frac{\pi}{2}} {(1-\cos ^2 {\theta})}^n \sin{\theta} d\theta = -\int_0^{\frac{\pi}{2}} {(\sin ^2 \theta)}^{2n+1} d\theta}
+Zauważmy, że jest to element ciągu funkcyjnego z dowodu Twierdzenia Wallisa, korzystając z tego:
+\eq{-\int_0^{\frac{\pi}{2}} {(\sin ^2 \theta)}^{2n+1} d\theta = -\frac{4^n(n!)^2}{(2n + 1)!}}
+Zadanie sprowadza się do policzenia granicy (z Twierdzenia Wallisa):
+\eq{- \lim_{n\to\infty} \frac{4^n(n!)^2}{(2n + 1)!} = -\lim_{n\to\infty} \frac{4^n(n!)^2}{(2n)! \sqrt{n}} \frac{\sqrt{n}}{2n+1} = -\lim_{n\to\infty} \sqrt{\pi} \frac{\sqrt{n}}{2n+1} = 0}
+\\\\\\
+\section{3/11 (10 punktów)}
+\begin{proof}
+Korzystając z rozwinięcia $e^x$ w szereg:
+\eq{\int_0^1 x^{-x}dx = \int_0^1 e^{-x\log x}dx = \int_0^1 \sum_{n=1}^{\infty} \frac{{(-x\log x)}^n}{n!}dx =}
+Z jednostajnej zbieżności szeregu na przedziale $[0,1]$:
+\eq{\int_0^1 x^{-x}dx =\sum_{n=1}^{\infty} \int_0^1 \frac{{(-x\log x)}^n}{n!}dx = \sum_{n=1}^{\infty} \frac{(-1)^n}{n!} \int_0^1 {(x\log x)}^n dx}
+Obliczmy teraz $\int_0^1 {(x\log x)}^n dx$ całkując przez części $n$ razy:
+$$\int_0^1 {(x\log x)}^n dx = \frac{1}{n + 1}x^{n+1}(\log x)^n\Biggr|_{0}^{1} -\int_0^1 {\frac{1}{n+1} x^{n+1} {n(x\log x)}^{n-1}\frac{1}{x} dx} =$$
+$$= 0 - \frac{n}{n+1}\int_0^1 x^n (\log x)^{n-1}  = \frac{n}{n+1}\frac{1}{n + 1}x^{n+1}(\log x)^{n-1}\Biggr|_{0}^{1} + {(-1)}^2 \frac{n(n-1)}{{(n+1)^2}}\int_0^1 x^n (\log x)^{n-2}dx = $$ 
+$$\dots = {(-1)}^n \frac{n!}{(n+1)^n}\int_0^1 x^n (\log x)^{n-n} = {(-1)}^n \frac{n!}{(n+1)^n}\frac{1}{n+1}x^{n+1}\Biggr|_{0}^{1} = {(-1)}^n \frac{n!}{(n+1)^{n+1}}$$
+Wstawiając to do $(2)$ otrzymujemy:
+\eq{\int_0^1 x^{-x}dx = \sum_{n=1}^{\infty} \frac{(-1)^n}{n!} {(-1)}^n \frac{n!}{(n+1)^{n+1}} = \sum_{n=0}^{\infty} \frac{1}{n^n}\qedhere}
+
+\end{proof}
+\end{document}
+
+% Nieużywane Kursory

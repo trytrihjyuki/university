@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{xcolor}
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{26.05.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{z1}
+\subsection*{a}
+Oczywiście jak mamy do wyboru pole bezpieczne a z możliwością zajęcia go przez przeciwnika powinniśmy brać to bez ryzyka utracenia. Funkcja heurystyczna powinna więc premiować pola bezpieczne.
+\subsection*{b}
+Pole jest bezpieczne jeżeli (we wsystkich osiach poziomej, pionowej i ukośnych) idąc do conajmniej jednej (z dwóch) granicy planszy poruszamy się tylko po polach zajętych przez nasze piony.
+\subsection*{c}
+Możemy utrzymywać tablicę dwuwymiarową, w której będziemy trzymać informację o tym ile jest naszych pól idąc do granicy. Wtedy czas sprawdzenia pola czy jest bezpieczny jest stały, po każdym ruchu updatujemy naszą tablicę $O(n \times m)$
+\section{z2}
+\subsection*{a}
+Losowanie możliwego stanu to po prostu losowanie rąk przeciwników z puli: talia - nasze karty - karty na stole - karty co zeszły
+\subsection*{b}
+Gracze licytując często zdradzają siłę swojej ręki. Często jak gracz licytuje wysoko ma po prostu dobrą rękę, losowanie powinno uwzględniać losowanie lepszych układów ręki przeciwnika co właśnie wysoko zalicytował. Często oznacza, że nie zawsze tak jest i gracze mogą blefować co myli takiego agenta.
+\subsection*{c}
+Czynnik ludzki. Ludzie (zwłaszcza na niskim poziomie) podejmują czasami nierozsądne decyzje i podejmują nieopłacalne ryzyko co może ogłupić agenta. Komputer nie czyta też języka ciała i gesty wskazujące na stres czy pewność siebie nic dla niego nie będą znaczyły a czasami mogą dużo zdradzić (ale też zmylić).
+\section{z3}
+\subsection*{agent I}
+Agent sprawdza czy ktoś na 100\% kłamie, to znaczy czy jest możliwe zbudowaniie zawołanego układu z kart spoza stosu lub jego kart jeżeli nie ma pewności to nie sprawdza. \\Agent mówi prawdę, jeżeli nie może kłamie z jak najmniejszą szansą na zdemaskowanie tj. ze stosu zebranego patrzy kto miał jakie karty i buduje taki układ by jak najmniej (docelowo 0) graczy mogło mieć 100\% pewności, że on kłamie.
+\subsection*{II}
+Agent grając działa tak samo jak \textbf{I} tylko przy sprawdzaniu się różnią.\\
+Możemy mu określić p-stwo porażki przy sprawdzaniu, np. mamy 3 siódemki a gracz zawołał siódemkę na co szanse są dosyć małe. Dodatkowo przy zbieraniu stosu agent może patrzeć kto kłamał podczas gry i p-stwo porażki lekko podwyższać dla częstego kłamcy.
+\section{z4}
+\subsection*{a}
+\subsection*{b}
+\subsection*{c}
+\subsection*{d}
+\section{z5}
+\subsection*{a}
+\subsection*{b}
+\subsection*{c}
+\section{z8*}
+Nadracjonalność to zakładanie, że wszyscy gracze grają też nadracjonalnie (tak samo jak my) i szukamy wspólnej najlepszej strategii dla nas.
+\section{z9*}
+Równowaga Nasha dla gracza a i gracza b to są strategie A i B gdy a nie ma strategii na osiągnięcie lepszego rezultatu niż A gdy b zagra B oraz b nie ma strategii na osiągnięcie lepszego rezultatu niż B gdy a zagra A.\\\\
+W dylemacie więźnia punktem równowagi Nasha jest zdradzanie przez obu graczy (współpraca może popsuć wynik dla jednego z graczy).\\\\
+\textcolor{red}{NIE WIEM CZY O TO CHODZIŁO!}\\
+Możemy tworzyć profile graczy i przewidywać, że dadzą to co dawali w największej ilości spotkań.
+
+\end{document}
+

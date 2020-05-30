@@ -1,0 +1,6 @@
+usuniete:
+
+The whole process begin:
+At the beginning our input data is processed, and it sets each neuron from input layer a initial value.
+Let’s denote as L_p+1  currently processed layer. Then for all neurons N in L_p+1 we are setting them values in this way. Value of N is sum of products: edge_weight * connectedNeuron_value.
+Going further into a network with this algorithm we end in filled output layer. Now the neuron in output layer with the biggest value is our networks guess of the answer.

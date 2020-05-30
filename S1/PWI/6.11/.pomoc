@@ -1,0 +1,32 @@
+zad_1:
+
+wget -r -np -nH -R "index.html*" --cut-dirs=2  http://www.ii.uni.wroc.pl/~piotrek/pwi/
+
+	-nH no Host (bez domeny w sciezce)
+
+	-np no parent nie wchodzi nigdy wyżej przy fladze -r
+
+	-R rejcet
+
+	--cut-dirs=2 ucina foldery w sciezce
+
+find ./ -name 'shout*' | xargs file --mime
+
+bash convert_to_utf8.sh
+
+for f in *.txt; do (tac $f; echo) >> dane.txt; done
+
+
+zad_2:
+
+grep  '^\[.*] \S*:' dane.txt > zad_2.txt
+
+zad_3:
+
+grep -E --color  ' (\S)(\S)(\S ).*\1\2\3.*\1\2\3' zad_2.txt | wc -l
+
+zad_4:
+
+grep -E -o '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}' dane.txt | uniq
+
+

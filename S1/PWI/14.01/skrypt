@@ -1,0 +1,11 @@
+#kontury
+set style fill solid 1.00 border lt -1
+set style data histogram
+#usuniecie znacznikow na osi x
+set xtics border in scale 0,0
+set title "Logika dla Informatyków: prognoza ocen"
+#zakres y
+set yrange [ 0 : 12]
+set datafile separator ';'
+
+plot for [COL=2:7] 'dane.dat' using COL:xticlabels(1) title columnheader

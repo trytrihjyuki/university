@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{calrsfs}
+\usetikzlibrary{arrows}
+\graphicspath{ {.} }
+\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{Analiza (suma 10 punktów)}
+\date{14.05.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+\section{zad. 12* (10 punktów)}
+\subsection*{I}
+$$
+F(a,b) = \int_0^\infty e^{-ax^2}\cos {bx} dx
+$$
+Funkcja pod całką jest ciągła na całym przedziale całkowania:
+$$
+\frac{\partial F}{\partial b} (a,b) = \frac{\partial }{\partial b} \int_0^\infty e^{-ax^2}\cos {bx} dx = 
+\int_0^\infty \frac{d}{d b} e^{-ax^2}\cos {bx} dx = \int_0^\infty -e^{-ax^2}\sin {bx} \cdot x dx
+$$
+Skorzystamy z tożsamości:
+$$
+-2a \int_0^\infty x e^{-ax^2}\sin {bx} dx = e^{-ax^2}\sin{bx} {|}_0^\infty - \int_0^\infty e^{-ax^2}b\cos{bx}dx
+$$
+$e^{-ax^2}\sin{bx} {|}_0^\infty = 0 - 0 = 0$ dalej otrzymujemy:
+$$
+\int_0^\infty x e^{-ax^2}\sin {bx} dx =  \frac{b}{2a}\int_0^\infty e^{-ax^2}\cos{bx}dx
+$$
+Wobec powyższego:
+$$
+-\frac{b}{2a}\int_0^\infty e^{-ax^2}\cos{bx}dx = -\frac{b}{2a}F(a,b) = \frac{\partial F}{\partial b} (a,b)
+$$
+Korzystamy z faktu $y^\prime = cxy \implies y = y(0)exp(cx^2/2)$ traktując $F(a,b)$ jako funkcję jednej zmiennej $b$ z parametrem $a$:
+$$
+F(a,b) = F(a,0)\cdot exp(-\frac{b^2}{4a}) = \frac{\sqrt \pi}{2 \sqrt a}\cdot exp(-\frac{b^2}{4a})
+$$
+\\
+\subsection*{II}
+$$
+F(a,b) = \int_0^\infty xe^{-ax^2}\sin {bx} dx
+$$
+Zauważmy, że funkcja do policzenia w tym podpunkcie to pochodna cząstkowa (po b) z poprzedniego zadania więc wystarczy, że nałożymy pochodną na wynik:
+$$
+F(a,b) = \frac{\partial }{\partial b} F(a,0)\cdot exp(-\frac{b^2}{4a}) = -\frac{\sqrt \pi}{2 \sqrt a} \frac{1}{2}ab\cdot exp({-\frac{ab^2}{4}})
+$$
+
+\end{document}
+

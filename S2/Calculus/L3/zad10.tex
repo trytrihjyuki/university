@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{dsfont}
+
+
+\begin{document}
+
+\makeatletter
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\section{3/10 (5 punktów)}
+
+Wskazówka wynika z nierówności:
+$$
+(b-ac)^2 \geq 0
+$$
+korzystając z niej mamy:
+$$
+\lambda f(x)^2 + {\lambda}^{-1}g(x)^2 \geq 2|{f(x)g(x)}|
+$$
+dalej (zależności te były na wykładzie):
+$$
+\int_a^b \lambda f(x)^2 + \int_a^b {\lambda}^{-1}g(x)^2 \geq \int_a^b 2|{f(x)g(x)}|
+$$
+podnosząc nierówność do kwadratu otrzymujemy:
+$$
+\left(\int_a^b \lambda f(x)^2\right)^2 + 2 \left(\int_a^b \lambda f(x)^2 \int_a^b {\lambda}^{-1}g(x)^2\right) + \left(\int_a^b {\lambda}^{-1}g(x)^2\right)^2 \geq \left(\int_a^b 2|{f(x)g(x)}|\right)^2
+$$
+
+
+
+\end{document}
+
+% Nieużywane Kursory

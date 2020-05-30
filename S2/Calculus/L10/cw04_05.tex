@@ -1,0 +1,72 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{04.05.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{SUMA: 8 punktów}
+\section{L10z8 (5 punktów)}
+
+$$
+I(r) = \int_0^\pi \ln{(1 - 2r \cos x + r^2)}dx = \int_0^\pi f(r,x)dx
+$$
+$$
+I^\prime(r) = \frac{d}{dr} \left( \int_0^\pi f(r,x)dx \right) = \int_0^\pi \frac{\partial f}{\partial r} (r,x) dx
+$$
+Obliczmy pochodną cząstkową:
+$$
+\frac{\partial f}{\partial r} (r,x) = \frac{d}{dr} (\ln{(1 - 2r \cos x + r^2)}) = \frac{2(r-\cos x)}{r^2 -2r \cos x + 1}
+$$
+Z tego:
+$$
+I^\prime(r) = \int_0^\pi \frac{2(r-\cos x)}{r^2 -2r \cos x + 1} dx
+$$
+Łatwo zauważyć ($|r| < 1$), że funkcja pod całkowa po prawej jest zawsze dodatnia, dalek:
+$$
+\int_0^\pi \frac{2(r-\cos x)}{r^2 -2r \cos x + 1} dx < \int_0^\pi \frac{2(r-\cos x)}{r^2 -2r \cos x + {\cos x}^2} dx = \int_0^\pi \frac{2}{r-\cos x} dx = 0
+$$
+Ostatnia równość wynika z symetrii $\cos x$ na przedziale $[0,\pi]$\\
+Skoro $I(0) = 0$ a pochodna jest zerowa to funkcja jest stała zatem:
+$I(r) = 0$ dla $|r| < 1$.
+\section{L10z4 (3 punkty)}
+$$
+\sum_{n=1}^{\infty} \frac{(\ln n)^{2000}}{n^{1,00001}}
+$$
+Funkcja sumowana jest dodatnia i malejąca, zatem zbieżność szeregu jest równoważna zbieżności:
+$$
+\int_a^\infty \frac{(\ln x)^{2000}}{x^{1,00001}} dx
+$$
+Punkt osobliwy: $\infty$
+$$
+\int_a^b \frac{(\ln x)^{2000}}{x^{1,00001}} dx = 
+$$
+Korzystamy z:
+$$
+\int \frac{(\ln x)^n\,dx}{x^m} = -\frac{(\ln x)^n}{(m-1)x^{m-1}} + \frac{n}{m-1}\int\frac{(\ln x)^{n-1} dx}{x^m}
+$$
+Zbieżność całki jest równoważna zbieżności:
+$$
+\int_a^\infty \frac{\ln x}{x^{1,00001}} dx = \left [-\frac{\ln x}{0,00001x^{0,00001}}-\frac{1}{(0,00001)^2 x^{0,00001}} \right]_a^\infty \rightarrow 0
+$$
+Zatem szereg $
+\sum_{n=1}^{\infty} \frac{(\ln n)^{2000}}{n^{1,00001}}
+$ jest zbieżny.
+\end{document}
+
