@@ -21,7 +21,7 @@
 \begin{document}
 \maketitle
 
-\section{SUMA: 40 punktów}
+\section{SUMA: 41 punktów}
 \section{L5z9* (10 punktów)}
 $$
 \xi(x) = \int_0^x{f(t)dt}
@@ -54,13 +54,121 @@ f(x) = \frac{1}{x} = e^{-\log x} = e^{-\int_0^x{\frac{1}{t}dt}} = e^{-\xi(x)}
 $$\\\\\\\\\\\\\\\\\\\
 \section{L5z10* (10 punktów)}
 \begin{proof}
+Zastosujmy tw. o wartości średniej $N$ razy:
+\begin{align*}
+\int_a^b f(x)dx = f(c_0) = 0\\
+\int_a^b x f(x)dx = f(c_1)\int_a^b xdx = 0\\
+\int_a^b x^2 f(x)dx = f(c_2)\int_a^b x^2dx = 0\\
+   &\vdots\\
+\int_a^b x^N f(x)dx = f(c_N)\int_a^b x^Ndx = 0\\
+\end{align*}
+Wystarczy zatem uzasadnić, że: $c_i \neq c_j$ dla $i \neq j$.\\
+Załóżmy nie wprost, że $f$ ma tylko jedno miejsce zerowe, oznaczmy je jako $d$, wtedy $f(x) < 0$ dla $x < d$ i $f(x) > 0$ dla $x > d$:
 $$
-\int_a^b x^n f(x)dx = 0
+\int_a^d f(x)dx + \int_d^b f(x)dx = 0
 $$
+$$
+\int_a^d x f(x)dx + \int_d^b x f(x)dx = 0
+$$
+W obu powyższych sumach BSO lewy składnik jest ujemny, prawy dodatni.\\
+Widać, że dolna równość nie jest prawdziwa dla niezerowej funkcji (dla zerowej teza jest trywialna), funkcja liniowa jest rosnąca i skaluje oba czynniki (bardziej drugi) w tym przypadku suma będzie większa od zera. Można to rozumowanie przeciągnąć indukcyjnie po n przedziałach, w ten sposób udowadniamy, że są one parami różne.
 \end{proof}
 \section{L5z13* (10 punktów)}
-\section{L11z13* (10 punktów)}
-%Trzeba e^x oszacować ze szeregu taylora
-%https://math.stackexchange.com/questions/2569710/a-function-whose-partial-derivatives-exist-at-a-point-but-is-not-continuous
+$$
+\int_0^a e^{-x} \left (1 + \frac{x}{1!} + \frac{x^2}{2!} + \cdots + \frac{x^{100}}{100!} \right )dx = 50
+$$
+Rozpoznajemy rozwinięcie $e^x$ w szereg Taylora:
+$$
+\int_0^a e^{-x} \left (e^x - R_{100}(x,0) \right )dx = 50
+$$
+$$
+f(a) = a - \int_0^a \frac{R_{100}(x,0)}{e^{x}}dx
+$$
+Zauważmy, że dla $a = 50$ $f(a) < 50$ bo prawy czynnik jest niezerowy.\\Dalej:
+$$
+% R_{100}(x,0) = \int_0^x \frac{(x-t)^{100}}{100!} e^t dt
+R_{100}(x,0) % = \frac{x^{101}}{101!} e^{(\theta(x))}
+ = \int_0^x \frac{(x-t)^{100}}{100!} e^t dt
+$$
+$f(100) > 50$ ponieważ: (funkcja podcałkowa jest malejąca)
+
+$$
+\int_0^{100} \frac{R_{100}(x,0)}{e^{x}}dx < 100 \cdot \frac{R_{100}(x,1)}{e^{1}} \approx 10^{-3} \ll 50
+$$
+Z skoro $f(50) < 50$ i $f(100) > 50$ to z własności Darboux'a (funkcje ciągłe wszystkie) istnieje rozwiązanie równania z zadania.
+\section{L12z9 (3 punkty)}
+Korzystając z reguły łańcucha:
+$$
+\begin{cases}
+\frac{\partial z}{\partial r} = \frac{\partial z}{\partial x}\frac{\partial x}{\partial r} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial r}\\
+\frac{\partial z}{\partial \theta} = \frac{\partial z}{\partial x}\frac{\partial x}{\partial \theta} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial \theta}\\
+\end{cases}
+$$
+$$
+\begin{cases}
+\frac{\partial z}{\partial y} = \left(\frac{\partial y}{\partial r}\right)^{-1} \left( \frac{\partial z}{\partial r} - \frac{\partial z}{\partial x}\frac{\partial x}{\partial r} \right)\\
+\frac{\partial z}{\partial x} = \left(\frac{\partial x}{\partial \theta}\right)^{-1} \left( \frac{\partial z}{\partial \theta} - \frac{\partial z}{\partial y}\frac{\partial y}{\partial \theta} \right)\\
+\end{cases}
+$$
+$$
+\begin{cases}
+\frac{\partial z}{\partial y} = \left(\sin \theta\right)^{-1} \left( \frac{\partial z}{\partial r} - \frac{\partial z}{\partial x}\cos \theta\right)\\
+\frac{\partial z}{\partial x} = \left(-r\sin\theta\right)^{-1} \left( \frac{\partial z}{\partial \theta} - \frac{\partial z}{\partial y}r\cos\theta \right)\\
+\end{cases}
+$$
+$$
+\frac{\partial z}{\partial x} = \left(-r\sin\theta\right)^{-1} \left( \frac{\partial z}{\partial \theta} - \left(\sin \theta\right)^{-1} \left( \frac{\partial z}{\partial r} - \frac{\partial z}{\partial x}\cos \theta\right)r\cos\theta \right)\\
+$$
+Po uporządkowaniu mamy:
+$$
+\frac{\partial z}{\partial x} = \frac{\partial z}{\partial r}\cos \theta - \frac{\partial z}{\partial \theta}\frac{\sin \theta}{r}
+$$
+Analogicznie z powyższych równań otrzymujemy:
+$$
+\frac{\partial z}{\partial y} = \frac{\partial z}{\partial r}\sin\theta + \frac{\partial z}{\partial \theta}\frac{\cos \theta}{r}
+$$\\\\\\\\\\\
+\section{L12z12 (3 punkty)}
+Dane: $V_x = 30 [\frac{km}{h}],V_y = 160 [\frac{km}{h}]$ $x_0 = 1 [km]$ $y_0 = 2 [km]$\\\\Rozwiązanie:\\\\
+$$S(x,y) = \sqrt{x^2 + y^2}$$
+Korzystając z reguły łańcucha:
+$$\frac{dS}{dt} = \frac{\partial S}{\partial x} \frac{dx}{dt} + \frac{\partial S}{\partial y} \frac{dy}{dt}$$
+$$\frac{dS}{dt} = 30 \cdot 2x \cdot \frac{1}{2\sqrt{x^2 + y^2}} + 160 \cdot 2y \cdot \frac{1}{2\sqrt{x^2 + y^2}}$$
+$$\frac{dS}{dt} = \frac{1}{\sqrt{x^2 + y^2}} (30x + 160y)$$
+W szukanym punkcie:
+$$
+\frac{1}{\sqrt{5}} (350) = 70 \sqrt5
+$$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\section{L13z4* (5 punktów)}
+$$
+\left ( \frac{\partial y}{\partial x} \right )\left ( \frac{\partial z}{\partial y} \right )\left ( \frac{\partial x}{\partial z} \right ) = -1
+$$
+Powyższe równanie (prawdopodobnie) pochodzi od równania opisującej stan gazu doskonałego (Równanie Clapeyrona) $pV = RT$ w bardziej matematycznej formie $\frac{xy}{z} = const$.\\Możemy wtedy określić:
+$$
+x = f(y,z) = \frac{C\cdot z}{y}
+$$
+$$
+y = g(x,z) = \frac{C\cdot z}{x}
+$$
+$$
+z = h(x,y) = \frac{xy}{C}
+$$
+Wtedy:
+$$
+\frac{\partial y}{\partial x} = \frac{\partial g}{\partial x} = -\frac{C \cdot z}{x^2}
+$$
+$$
+\frac{\partial z}{\partial y} = \frac{\partial h}{\partial y} = \frac{x}{C}
+$$
+$$
+\frac{\partial x}{\partial z} = \frac{\partial f}{\partial z} = \frac{C}{y}
+$$
+mnożąc powyższe pochodne cząstkowe:
+$$
+\left ( \frac{\partial y}{\partial x} \right )\left ( \frac{\partial z}{\partial y} \right )\left ( \frac{\partial x}{\partial z} \right )  = \left ( -\frac{C \cdot z}{x^2} \right) \left( \frac{x}{C}\right) \left( \frac{C}{y}\right) = -C\frac{z}{xy}
+$$
+Ale zdefiniowaliśmy $C = \frac{xy}{z}$, zatem:
+$$
+\left ( \frac{\partial y}{\partial x} \right )\left ( \frac{\partial z}{\partial y} \right )\left ( \frac{\partial x}{\partial z} \right ) = -C\frac{z}{xy} = -C\frac{1}{C} = -1
+$$
 \end{document}
 

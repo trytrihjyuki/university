@@ -2,3 +2,8 @@ S1/PWI/17.12/lista11-cv-trytrihjyuki
 S1/PWI/17.12/quicksort17
 S1/PWI/27.11/2048-in-terminal
 S1/PWI/27.11/testy
+
+
+*.log
+*.aux
+*.out
