@@ -1,0 +1,135 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{12.06.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{SUMA: 11 punktów}
+\section{zad. 1 (1 punkt)}
+Posłuchajcie, bracia miła,\\
+rzecz wam może i banalna\\
+usłyszycie mój zamętek,\\
+macierz zwie się ortogonalna\\
+
+Pożałuj mię, stary, młody,\\
+boć mi przyszły krwawe gody.\\
+nazwa mogła być dość konwencjonalna\\
+po prostu logicznie \dots ortonormalna\\
+\section{zad. 4 (1 punkt)}
+\begin{proof}
+Dla dowolnego wektora $(x,y,z)$ z płaszczyzny i dowolnego $(x',y',z')$ z $Lin([a,b,c])$:
+$$
+<(x,y,z),(x',y',z')> = xx' + yy' + zz'
+$$
+Z def. przestrzenii liniowej i  założeń:
+$$
+<(x,y,z),(x',y',z')> = xx' + yy' + zz' = x\cdot k a + y\cdot k b + z\cdot k c = k\cdot (ax + by +cz) = k \cdot 0 = 0
+$$
+Z dowolności wyboru $(x,y,z)$ i $(x',y',z')$:\\
+$Lin([a,b,c]) = W^\perp$
+\end{proof}
+\section{zad. 5 (1 punkt)}
+\begin{proof}
+Z założeń:
+$$
+||x|| = ||y|| = x_1^2 + x_2^2 + x_3^2 = y_1^2 + y_2^2 +y_3^2
+$$
+$$
+<x+y,x-y> = x_1^2 - y_1^2 + x_2^2 - y_2^2 + x_3^2 - y_3^2
+$$
+Z pierwszego równania:
+$$
+||x|| - ||y|| = x_1^2 - y_1^2 + x_2^2 - y_2^2 + x_3^2 - y_3^2 = 0
+$$
+Zauważamy w powyżej sumie szukaną tożsamość:
+$$
+<x+y,x-y> = ||x|| - ||y|| = 0
+$$
+\end{proof}
+% \section{zad. 6 (1 punkt)}
+% $$
+% \begin{cases}
+% 2x_1 - 3x_2 + 4x_3 - 3x_4 = 0\\
+% 3x_1 - x_2 + 11x_3 - 13x_4 = 0\\
+% 4x_1 + x_2 + 18x_3 - 23x_4 = 0\\
+% \end{cases}
+% $$
+
+\section{\\\\\\\\zad. 7 (2 punkty)}
+$U,W < V$:
+\subsection*{II}
+Korzystamy z własności: $X \subset Y \implies Y^\perp \subset X^\perp$:
+$$(U + W)^\perp \subset U^\perp$$
+Analogicznie pokazujemy:
+$$(U + W)^\perp \subset W^\perp$$
+Z powyższych inkluzji
+$$
+(U + W)^\perp  \subset  U^\perp \cap W^\perp
+$$
+Inkluzja w drugą stronę jest w trywialna: wektory z przekroju są prostopadłymi do pewnego wektora z $U$ i $W$, ten wektor też znajduję się w $U+W$.
+\subsection*{I}
+Z \textbf{II}
+$$
+{U^\perp}^\perp \cap {W^\perp}^\perp = ({U}^\perp + {W}^\perp)^\perp
+$$
+Dalej:
+$$
+({U^\perp}^\perp \cap {W^\perp}^\perp)^\perp = (({U}^\perp + {W}^\perp)^\perp)^\perp 
+$$
+Korzystając z tw. ${V^\perp}^\perp = V$:
+$$
+(U \cap W)^\perp  =  U^\perp + W^\perp
+$$
+\section{zad. 8 (2 punkty)}
+\subsection*{I}
+Dla dowolnego $v$:
+$$P_w^2(v) = P_w((v|e_1)e_1 + \dots +(v|e_k)e_k)$$
+Z rodzielności iloczynu skalarnego względem dodawania:
+$$P_w^2(v) = P_w((v|e_1)e_1) + \dots + P_w((v|e_k)e_k))$$
+Baza jest ortonormalna więc:
+$$P_w^2(v) = (v|e_1)e_1 + \dots + (v|e_k)e_k$$
+Zgodnie z definicją:
+$$P_w^2(v) = (v|e_1)e_1 + \dots + (v|e_k)e_k = P_w(v)$$
+\subsection*{II}
+$P_w$ zgodnie z definicją to jest pewna kombinacja liniowa wektorów $e_j$ czyli wektory $x = P_w(y)$ są kombinacją liniową wektorów bazy $W$ czyli należą do przestrzeni liniowej rozpinanej przez tą bazę czyli do $W$.
+\section{zad. 8 (2 punkty)}
+\begin{proof}
+Oznaczmy jako $U$ przestrzeń dopełniającą $U \oplus W = V$.\\
+Niech $v = v_u + v_w$ z odpowiednich podprzestrzeni liniowych.\\
+Z definicji rzutu: $P_w(v) = v_w \neq w$:
+$$
+||v-w|| = ||v_u + v_w - w|| = ||v_u + X||
+$$
+Gdzie $X$ jest pewnym niezerowym wektorym. Dalej:
+$$
+||v-w|| = ||v_u + X|| > ||v_u|| = ||v_u + v_w - v_w|| = ||v_u + v_w - P_w(v)|| = ||v - P_w(v)||
+$$
+\end{proof}
+23
+\section{zad. 16 (2 punkty)}
+\begin{proof}
+Korzystamy z: macierz jest ortogonalna wtw. gdy $AA^T = I$.\\
+A,B dowolne macierze ortogonalne:
+$$
+(AB)(AB)^T = (AB)B^TA^T = ABB^TA^T = AIA^T = I
+$$
+\end{proof}
+\end{document}
+

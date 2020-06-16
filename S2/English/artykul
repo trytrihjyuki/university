@@ -1,0 +1,4 @@
+Combinatorial optimization problems are about finding the best solution from all of the possible options; this process often requires a lot of calculations.
+It turns out that processors based on the Ising model (magnetic states of atoms) handle these tasks well. Scientists at Tokyo Institute of Technology have improved this idea, by changing some things in the processor. New architecture (called STATICA) works more globally and allows parallel calculations on individual spins. It could be a revolutionary invention in this field because it  significantly increases efficiency (also decreases energy consumption).
+
+https://www.sciencedaily.com/releases/2020/02/200226212005.html

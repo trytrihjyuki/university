@@ -1,0 +1,406 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{03.06.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{SUMA: 14 punktów}
+
+\section{zad. 3 (1 punkt)}
+Możliwe krotności: (4,1,1), (3,2,1), (2,2,2). Razy 3! (jakie wartości własne).\\
+Ostatecznie możliwych postaci jest: $3*6 = 18$.
+\section{zad. 4 (1 punkt)}
+\subsection*{I}
+$$
+\begin{cases}
+a^2 + bc = 4\\
+ab + bd = 1\\
+ac + cd = 0\\
+cb + d^2 = 4\\
+\end{cases}
+$$
+Rozwiązanie:
+$$
+\begin{pmatrix}
+2 & \frac{1}{4}\\
+0 & 2\\
+\end{pmatrix}
+$$
+\subsection*{II}
+$$
+\begin{pmatrix}
+3 & 1\\
+-1 & 5\\
+\end{pmatrix}
+$$
+Ma jedną wartość własną 4, krotność 2. Jedna klatka:
+$$
+J =
+\begin{pmatrix}
+4 & 1\\
+0 & 4\\
+\end{pmatrix}
+$$
+Szukamy bazy jordanowskiej:\\
+Znajdujemy wektor własny 
+$\begin{pmatrix}
+1\\
+1\\
+\end{pmatrix}$ więc dalej:
+$$
+X =
+\begin{pmatrix}
+1 & 0\\
+1 & 1\\
+\end{pmatrix}
+$$
+Szukana macierz:
+$$
+M = X
+\begin{pmatrix}
+2 & \frac{1}{4}\\
+0 & 2\\
+\end{pmatrix}
+X^{-1}
+$$
+\section{zad. 5 (1 punkt)}
+\subsection*{I}
+$$A =
+\begin{pmatrix}
+1 & -3 & 4\\
+4 & -7 & 8\\
+6 & -7 & 7\\
+\end{pmatrix}
+$$
+Wartości własne: 3, -1 (krotność 2).\\
+$rank A = 2$ więc będzie jedna klatka rozmiaru 2 odpowiadająca -1. Zatem:
+$$J =
+\begin{pmatrix}
+3 & 0 & 0\\
+0 & -1 & 1\\
+0 & 0 & -1\\
+\end{pmatrix}
+$$
+\subsection*{II}
+$$B =
+\begin{pmatrix}
+4 & -5 & 7\\
+1 & -4 & 9\\
+-4 & 0 & 5\\
+\end{pmatrix}
+$$
+Wartości własne:1, 2+i, 2-i.\\
+Ta macierz diagonalizuję się nad $\mathbb{C}$
+$$J =
+\begin{pmatrix}
+1 & 0 & 0\\
+0 & 2-i & 1\\
+0 & 0 & 2+i\\
+\end{pmatrix}
+$$
+\section{zad. 6 (1 punkt)}
+$$
+A=
+\begin{pmatrix}
+4 & -5\\
+1 & 2\\
+\end{pmatrix}
+$$
+Wartości własne: 3+2i, 3-2i.\\
+Szukamy wektorów własnych:
+$$
+\begin{pmatrix}
+1 \pm 2i\\
+1\\
+\end{pmatrix}
+$$
+Zatem:
+$$
+A =
+\begin{pmatrix}
+1 + 2i & 1 - 2i\\
+1 & 1\\
+\end{pmatrix}
+\begin{pmatrix}
+3 + 2i & 0\\
+0 & 3 - 2i\\
+\end{pmatrix}
+\begin{pmatrix}
+1 + 2i & 1 - 2i\\
+1 & 1\\
+\end{pmatrix}^{-1}
+$$
+% \section{zad. 7 (2 punkty)}
+% Zauważmy, że niezależnie od turnieju macierz ma same zera na diagonali (gracze nie wygrywają z samymi sobą bo nie ma takich meczy). Zatem oznacza to, że dla
+% Po przemnożeniu dwóch macierzy turniejowych
+\section{zad. 8 (2 punkty)}
+\subsection*{I}
+$$A=
+\begin{pmatrix}
+2 & -1 & 2\\
+5 & -3 & 3\\
+-1 & 0 & -2\\
+\end{pmatrix}
+$$
+Jest jedna wartość własna: -1\\
+Przestrzeń liniowa:
+$$
+\begin{cases}
+2x - y + 2z = -x\\
+5x - 3y + 3z = -y\\
+-x - 2z = -z\\
+\end{cases}
+$$
+$$
+V^{-1} = lin(\left \{\begin{pmatrix}
+ 1\\
+ 1\\
+-1\\
+\end{pmatrix}\right\})
+$$
+Przestrzenie pierwiastkowe:
+$$
+ker(A+1)^2 = lin(\left \{\begin{pmatrix}
+ 1\\
+ 1\\
+-1\\
+\end{pmatrix}
+\begin{pmatrix}
+ 0\\
+ 1\\
+ 1\\
+\end{pmatrix}\right\})
+$$
+$$
+ker(A+1)^3 = \mathbb{R}^3
+$$
+Baza jordanowska (losowy, przemnożony przez A+E, $(A+E)^2$:
+$$
+\begin{pmatrix}
+ 1\\
+ 0\\
+ 0\\
+\end{pmatrix}
+\begin{pmatrix}
+ 2\\
+ 5\\
+ -1\\
+\end{pmatrix}
+\begin{pmatrix}
+ 2\\
+ 2\\
+ -2\\
+\end{pmatrix}
+$$
+Klatka będzie jedna rozmiaru 3:
+Ostatecznie:
+$$
+A =
+\begin{pmatrix}
+ 1 & 2 & 2\\
+ 0 & 5 & 2\\
+ 0 & -1 &-2\\
+\end{pmatrix}
+\begin{pmatrix}
+ -1 & 1 & 0\\
+ 0 & -1 & 1\\
+ 0 & 0 &-1\\
+\end{pmatrix}
+\begin{pmatrix}
+ 1 & 2 & 2\\
+ 0 & 5 & 2\\
+ 0 & -1 &-2\\
+\end{pmatrix}^{-1}
+$$
+\subsection*{II}
+$$
+B=
+\begin{pmatrix}
+0 & -2 & 3 & 2\\
+1 & 1 & -1 & -1\\
+0 & 0 & 2 & 0\\
+1 & -1 & 0 & 1\\
+\end{pmatrix}
+$$
+wartości własne: 0 i 2 z krotnościami 2
+\\Przestrzenie liniowe:
+$$
+\begin{cases}
+-2y + 3z + 2h = 2x\\
+x + y - z - h = 2y\\
+2z = 2z\\
+x - y + h = 2h\\
+\end{cases}
+$$
+$$
+V^2 = lin(\left \{\begin{pmatrix}
+ 1\\
+ 0\\
+0\\
+1\\
+\end{pmatrix}\right\})
+$$
+$$
+\begin{cases}
+-2y + 3z + 2h = 0\\
+x + y - z - h = 0\\
+2z = 0\\
+x - y + h = 0\\
+\end{cases}
+$$
+$$
+V^0 = lin(\left \{\begin{pmatrix}
+ 0\\
+ 1\\
+0\\
+1\\
+\end{pmatrix}
+\right\})
+$$
+Przestrzenie pierwiastkowe dla 2:
+$$
+ker(B-2)^2 = lin \{\begin{pmatrix}
+ 2\\
+ 0\\
+ 1\\
+ 1\\
+\end{pmatrix}
+\begin{pmatrix}
+ 0\\
+ 0\\
+ -1\\
+ 1\\
+\end{pmatrix}\})
+$$
+Przestrzenie pierwiastkowe dla 0:
+$$
+ker(B)^3 = ker(B)^2 = lin \{\begin{pmatrix}
+ 1\\
+ 0\\
+ 0\\
+ 0\\
+\end{pmatrix}
+\begin{pmatrix}
+ 0\\
+ 1\\
+ 0\\
+ 1\\
+\end{pmatrix}\})
+$$
+Baza jordanowska (losowy, przemnożony przez B, losowy , przemnożony B):
+$$
+\begin{pmatrix}
+ 1\\
+ 0\\
+ 0\\
+ 0\\
+\end{pmatrix}
+\begin{pmatrix}
+ 0\\
+ 1\\
+ 0\\
+ 1\\
+\end{pmatrix}
+\begin{pmatrix}
+ 2\\
+ 0\\
+ 1\\
+ 1\\
+\end{pmatrix}
+\begin{pmatrix}
+ 1\\
+ 0\\
+ 0\\
+ 1\\
+\end{pmatrix}
+$$
+Klatki  dwie rozmiaru 2:
+Ostatecznie:
+$$
+B =
+\begin{pmatrix}
+ 0 & 1 & 1 & 2\\
+ 1 & 0 & 0 & 0\\
+ 0 & 0 & 0 & 1\\
+ 1 & 0 & 0 & 1\\
+\end{pmatrix}
+\begin{pmatrix}
+ 0 & 1 & 0 & 0\\
+ 0 & 0 & 0 & 0\\
+ 0 & 0 & 2 & 1\\
+ 0 & 0 & 0 & 2\\
+\end{pmatrix}
+\begin{pmatrix}
+ 0 & 1 & 1 & 2\\
+ 1 & 0 & 0 & 0\\
+ 0 & 0 & 0 & 1\\
+ 1 & 0 & 0 & 1\\
+\end{pmatrix}^{-1}
+$$\\\\\\\\\\\\\\\\
+\section{zad.9 (2 punkty)}
+$$
+\begin{pmatrix}
+ 2 & 1\\
+ 3 & 0\\
+\end{pmatrix}
+\begin{pmatrix}
+ 6 & 1\\
+ 0 & 6\\
+\end{pmatrix}
+\begin{pmatrix}
+ 2 & 1\\
+ 3 & 0\\
+\end{pmatrix}^{-1}
+=
+\begin{pmatrix}
+ 8 & \frac{-4}{3}\\
+ 3 & 4\\
+\end{pmatrix}
+$$
+\section{zad. 11 (2 punkty)}
+\subsection*{I}
+$$
+A^2 = I
+$$
+A jest pierwiastkiem wielomianu $t^2 - 1 = (t-1)(t+1)$ który jest podzielny przez wielomian minimalny. Więc wielomian minimalny składa się tylko z czynników liniowych, zatem jest diagonalizowalna.
+\subsection*{II}
+$$
+A^2 = A
+$$
+Jest to warunek rzutu. Skoro to jest rzut to macierz jest diagonalizowalna, więc postać Jordana to będzie macierz diagonalna.
+\section{zad. 13 (2 punkty)}
+Jeżeli $n \geq 10000$ teza jest oczywista.\\\\
+Pokażemy, że stopień nimpotentności $(= 10000)$ jest $\leq n$.\\
+Jeżeli A jest macierzą nipotntną to jej wielomianem minimalnym jest $x^k$ dla pewnego $k$. Dalej, wielomian minimalny jest dzielnikiem wielomianu charakterystycznego, którego stopień jest równy $n$. Z tego $k < n$ czyli $10000 < n$.
+\section{zad. 14 (2 punkty)}
+\begin{proof}
+Załóżmy niewprost, że istnieją takie $a$ ($BSO \quad a_0 \neq 0$) \\(notacja $v_k = N^kv$):
+$$
+a_0v_0 + \dots a_k v_k = 0
+$$
+Mnożąc obustronnie przez  $N^{k}$ korzystamy z $N^j = 0$ dla $j > k$:
+$$
+a_0 N^{k} v_0 = a_0v_k = 0
+$$
+Z założeń $v_k = n^kv \neq 0$ otrzymujemy sprzeczność $a_0 = 0$
+\end{proof}
+
+\end{document}
+
