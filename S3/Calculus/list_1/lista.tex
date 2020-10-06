@@ -1,0 +1,31 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{6.10.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{L1Z2}
+Weźmy dowolny $x \in U = \{ x \in \mathbb{R}^n : x_i > 0, i = 1,\dots,n\} $. Ustalmy $r = \min_{x_1\dots x_n}$. (Oczywiście $r > 0$ z definicji $U$). \\\\Weźmy dowolny $y \in B_r(x)$ okazuje się,  $y \in U$. \\\\Gdyby tak nie było to: $y_j \leq 0$ dla pewnego $j$ \\ $r = x_{min} \leq x_k \leq x_k - y_j < ||x_k - y_j|| \leq ||x - y|| $
+\\Otrzymaliśmy sprzeczność def. $B_r(x)$.
+
+$\mathbb{R}^n \backslash U$ nie jest owtarty, ponieważ dla np. $(0,\dots,0)$ nie znajdziemy $r$ (zawsze będzie np. $(\frac{\sqrt r}{\sqrt {2n}}, \dots, \frac{\sqrt r}{\sqrt {2n}})$). Więc $U$ nie jest domknięty.
+
+\end{document}
+
