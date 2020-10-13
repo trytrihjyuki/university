@@ -1,0 +1,153 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{zad. 24* i zad. 28}
+\date{12.10.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{L1Z24*}
+\subsection*{Koło}
+Powierzchnia wpisanego prostokątu to:
+$$S(x) = 2x \cdot 2y = 2x \cdot (2\sqrt{r^2-x^2}) = 4x\sqrt{r^2-x^2}$$
+Liczymy pochodną:
+$$\frac{dS}{dx} = 4\sqrt{r^2-x^2} + \frac{4x(-2x)}{2\sqrt{r^2-x^2}}$$
+Przekształcając mamy:
+$$\frac{dS}{dx} = \frac{4r^2-8x^2}{\sqrt{r^2-x^2}}$$
+Szukamy maksimum:
+$$
+\frac{4r^2-8x^2}{\sqrt{r^2-x^2}} = 0
+$$
+$$
+4r^2-8x^2 = 0
+$$
+$$
+x^2 = \frac{r^2}{2}
+$$
+Z warunków zadania:
+$$
+x = \frac{r}{\sqrt{2}}
+$$
+Dalej liczymy $y$:
+$$
+y = \sqrt{r^2 - x^2} = \sqrt{r^2 - \frac{r^2}{2}} = \frac{r}{\sqrt{2}}
+$$\\\\\\
+\subsection*{Kula}
+Możemy wyznaczyć jedną współrzędną z dwóch pozostałych (i $r$):
+$$
+z = \sqrt{4r^2 - x^2 - y^2}
+$$
+Funkcja,w której szukamy maximum:
+$$
+V(x,y) = xyz = xy\sqrt{4r^2 - x^2 - y^2}
+$$
+
+Chcemy znaleźć punkty, gdzie $\nabla V(x,y) = (0,0)$:
+$$
+\frac{\partial V}{\partial x} = y\sqrt{4r^2 - x^2 - y^2} - \frac{x^2y}{\sqrt{4r^2 - x^2 - y^2}} = \frac{4r^2y - 2x^2y - y^3}{\sqrt{4r^2 - x^2 - y^2}}
+$$
+$$
+\frac{\partial V}{\partial y} = x\sqrt{4r^2 - x^2 - y^2} - \frac{xy^2}{\sqrt{4r^2 - x^2 - y^2}} = \frac{4r^2x - 2xy^2 - x^3}{\sqrt{4r^2 - x^2 - y^2}}
+$$
+Przyrównując do $0$ (wyciągamy z mianownika zmienną):
+$$
+4r^2 - 2x^2 - y^2 = 0
+$$
+$$
+4r^2 - 2y^2 - x^2 = 0
+$$
+Podstawiając pierwsze do drugiego:
+$$
+4r^2 - 2(4r^2 -2x^2) - x^2 = 0
+$$
+$$
+- 4r^2 + 3x^2 = 0
+$$
+$$
+x = \frac{2r}{\sqrt{3}}
+$$
+Wyznaczamy pozostałe współrzędne:
+$$
+y = 4r^2 - 2(\frac{2r}{\sqrt{3}})^2 =\frac{2r}{\sqrt{3}}
+$$
+$$
+z = \sqrt{4r^2 - 2(\frac{2r}{\sqrt{3}})^2} = \frac{2r}{\sqrt{3}}
+$$\\\\\\\\\\\\\\\\\\\\\\
+\section{L1Z28}
+Oznaczmy:
+$g_1(x,y,z) = x^2 + y^2 + z^2, g_2(x,y,z) = x+y+z$, warunki zadania: $g_1(X) = 1, g_2(X) = 0$
+Korzystając z twierdzenia (mnożniki Lagrange'a):
+$$
+\nabla f = \lambda_1 \nabla g_1 + \lambda_2 \nabla g_2
+$$
+Daje nam to równania:
+$$
+\begin{cases}
+yz = 2x\lambda_1 + \lambda_2 \\
+xz = 2y\lambda_1 + \lambda_2\\
+xy = 2z\lambda_1 + \lambda_2 \\
+\end{cases}
+$$
+Zauważmy, że $\lambda_1 \neq 0$ inaczej nie byłyby spełnione warunki.\\
+Podstawiając 1. do 2. i 3.:
+$$
+\begin{cases}
+\frac{yz - \lambda_2}{2\lambda_1}z = 2y\lambda_1 + \lambda_2\\
+\frac{yz - \lambda_2}{2\lambda_1}y = 2z\lambda_1 + \lambda_2 \\
+\end{cases}
+$$
+$$
+\begin{cases}
+yz^2 -\lambda_2z = 4y\lambda_1^2 + 2\lambda_1\lambda_2\\
+y^2z -\lambda_2y = 4z\lambda_1^2 + 2\lambda_1\lambda_2\\
+\end{cases}
+$$
+$$
+\begin{cases}
+yz^2 -4y\lambda_1^2 = \lambda_2z + 2\lambda_1\lambda_2\\
+y^2z -4z\lambda_1^2 = \lambda_2y + 2\lambda_1\lambda_2\\
+\end{cases}
+$$
+$$
+\begin{cases}
+y(z^2 -4\lambda_1^2) = \lambda_2(z + 2\lambda_1)\\
+z(y^2 -4\lambda_1^2) = \lambda_2(y + 2\lambda_1)\\
+\end{cases}
+$$
+$$
+\begin{cases}
+(z + 2\lambda_1) \left(y(z-2\lambda_1) - \lambda_2 \right) = 0 \\
+(y + 2\lambda_1) \left(z(y-2\lambda_1) - \lambda_2 \right) = 0 \\
+\end{cases}
+$$
+$$
+\begin{cases}
+(z + 2\lambda_1) \left(yz - 2y\lambda_1 - \lambda_2 \right) = 0 \\
+(y + 2\lambda_1) \left(yz - 2z\lambda_1 - \lambda_2 \right) = 0 \\
+\end{cases}
+$$
+Uwzględniając powyższy układ równań i warunki z zadania mamy:\\
+dla max:
+$y = z = -\frac{1}{\sqrt{6}}$
+$x = \frac{2}{\sqrt{6}}$
+dla min:
+$y = z = \frac{1}{\sqrt{6}}$
+$x = -\frac{2}{\sqrt{6}}$
+
+\end{document}
+
