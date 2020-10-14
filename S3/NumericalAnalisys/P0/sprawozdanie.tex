@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{zad. 24* i zad. 28}
+\date{12.10.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\section{witam}
+\subsection{dzień dobry}
+\section{żegnam}
+
+\begin{center}
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ 1 & 2 & 3 \\ 
+ 4 & 5 & 6 \\ 
+ 7 & 8 & 9 \\ 
+ \hline
+\end{tabular}
+\end{center}
+
+== Twierdzenie Taylora ==
+Niech $Y$ będzie przestrzenią unormowaną oraz $f\colon [a,b]\to Y$ będzie funkcją $(n+1)$-razy różniczkowalną na przedziale $[a,b]$ w sposób ciągły (na końcach przedziału zakłada się różniczkowalność z lewej, bądź odpowiednio, z prawej strony). Wówczas dla każdego punktu $x$ z przedziału $(a,b)$ spełniony jest wzór zwany wzorem Taylora
+:
+$$
+f(x) = f(a) + \frac{x-a}{1!} f^{(1)}(a) + \frac{(x-a)^2}{2!} f^{(2)}(a) + \ldots + \frac{(x-a)^n}{n!} f^{(n)}(a) + R_n(x,a) = $$$$
+= \sum\limits_{k=0}^n \left( \frac{(x-a)^k}{k!} f^{(k)}(a) \right) + R_n(x,a),
+$$
+
+gdzie $f^{(k)}(a)$ jest [[Pochodna funkcji|pochodną]] k-tego rzędu funkcji $f,$ obliczoną w punkcie $a;$ $R_n(x,a)$ spełnia warunek
+: $\lim_{x\to a}\frac{R_n(x,a)}{(x-a)^n}=0.$
+
+Funkcja $R_n(x,a)$ nazywana jest resztą Peana we wzorze Taylora. W przypadku $a=0,$ wzór Taylora nazywany jest wzorem [[Colin Maclaurin|Maclaurina]].
+
+Przybliżanie funkcji za pomocą wzoru Taylora ma charakter lokalny, tzn. odnosi się jedynie do otoczenia wybranego punktu $a.$ Jeżeli w zastosowaniach pojawia się potrzeba mówienia o innych wartościach, to zakłada się o nich najczęściej, że są dostatecznie bliskie punktu $a.$ Sensowne wydaje się jednak pytanie o to, kiedy wielomian ze wzoru Taylora przybliża funkcję ze z góry zadaną dokładnością – w tym celu potrzebne jest dokładniejsze oszacowanie reszty lub po prostu wyrażenie jej w sposób jawny.
+
+\input wykres
+
+\end{document}
+
