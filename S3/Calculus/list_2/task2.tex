@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{20.10.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{L2Z15}
+$$
+f(x,y) = ((x^2 - y^2)/(x^2+y^2), xy/(x^2+y^2))
+$$
+Obliczamy jakobian:
+$$
+\Delta = 
+\begin{vmatrix}
+\frac{4xy^2}{(x^2+y^2)^2} & \frac{4x^2y}{(x^2+y^2)^2}\\
+\frac{y(y^2-x^2)}{(x^2+y^2)^2} & \frac{x(x^2-y^2)}{(x^2+y^2)^2} \\
+\end{vmatrix}
+= \frac{8x^2y^2(x^2-y^2)}{(x^2+y^2)^2}
+$$
+$$
+\Delta = \frac{8x^2y^2(x^2-y^2)}{(x^2+y^2)^2} = \frac{0}{1} = 0
+$$
+f nie jest lokalnie odwracalne w pobliżu $(x,y) = (0,1)$ z twierdzenia o funkcji odwrotnej (jakobian niezerowy)
+\section{L2Z18*}
+$x(r,\theta) = r\cos{\theta} \tab y(r,\theta) = r\sin{\theta}$\\
+Liczymy jakobian:
+$$
+\Delta = 
+\begin{vmatrix}
+\cos{\varphi_0} & -r_0\sin{\varphi_0}\\
+\sin{\varphi_0} & r_0\cos{\varphi_0}\\
+\end{vmatrix} =
+r(\cos{\varphi_0}^2 + \sin{\varphi_0}^2) = r_0
+$$
+Ostatnia równość z jedynki trygonometrycznej.\\\\
+Z twierdzenia o funkcji odwrotnej: $\Delta = r_0 \neq 0$ aby można było utworzyć funkcje odwrotne: $\varphi(x,y), r(x,y)$.\\\\
+Bezpośrednio: $r \neq 0$ ponieważ wtedy $\varphi$ byłaby wyznaczana niejednoznacznie ($r = 0 \implies x = y = 0$ a $\varphi$ może być dowolne)
+
+\end{document}
+
