@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{21.10.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{L2Z7}
+\subsection*{a)}
+$$
+f(x) = \frac{1}{x^2 + c}
+$$
+$$
+\frac{df}{dx} = - \frac{2}{(c+x^2)^2}
+$$
+Liczymy ze wzoru współczynnik uwarunkowania:
+$$
+C_f(x) = \left| \frac{2x^2}{(c+x^2)^2}\right| \cdot |x^2 +c| =  \left |\frac{2x^2}{c+x^2} \right|
+$$
+Zauważamy, gdy:
+$$
+x^2 \rightarrow -c
+$$
+to:
+$$
+C_f(x) \rightarrow \infty
+$$
+\newline
+\subsection*{b)}
+$$
+f(x) = \frac{1 - \cos{x}}{x^2}
+$$
+$$
+\frac{df}{dx} = \frac{x\sin{x}+2\cos{x}-2}{x^3}
+$$
+Liczymy ze wzoru współczynnik uwarunkowania:
+$$
+C_f(x) = \left| \frac{x\sin{x}+2\cos{x}-2}{x^2}\right| \cdot \left| \frac{x^2}{1 - \cos{x}} \right| =  \left |\frac{x\sin{x}}{1-\cos{x}} - 2 \right|
+$$
+Zauważamy, gdy:
+$$
+x \rightarrow k \cdot 2\pi
+$$
+to:
+$$
+C_f(x) \rightarrow \infty
+$$
+\\ale:
+$$
+x \rightarrow 0
+$$
+to
+$$
+C_f(x) \not\to \infty
+$$
+ponieważ:\\\\
+$\lim_{x \to 2\pi} \frac{\sin{x}}{1-\cos{x}} = \infty$ \\
+\\\\\
+$$
+\lim_{x \to 0}\frac{x\sin{x}}{1-\cos{x}} = \lim_{x \to 0} \frac{x 2\sin{\frac{x}{2}}\cos{\frac{x}{2}}}{2{\sin{\frac{x}{2}}^2}} = \left(\lim_{x \to 0} \frac{x}{\sin{\frac{x}{2}}}\right) \cdot \left(\lim_{x \to 0} \cos{\frac{x}{2}}\right) = 2 \cdot 1 \cdot 1 = 2
+$$
+
+
+\end{document}
+

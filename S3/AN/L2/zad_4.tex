@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{21.10.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{L2Z4}
+$L(x) := a_0 +a_1x +a_2x^2 + \dots + a_nx^n$\\\\
+Rozpisując zgodnie z definicją:
+$$
+L(x) = w_0 = (\dots  \underbrace{((\overbrace{((a_n \times x)(1 + \varepsilon_n) + a_{n-1})(1+\phi_n)}^{w_{n-1}} \times x)(1 + \varepsilon_{n-1}) + a_{n-2})(1+\phi_{n-1})}_{w_{n-2}}\dots) =
+$$
+$$
+= a_nx^n\underbrace{\Pi_{i=0}^{n}(1+\varepsilon_{i})\Pi_{i=1}^{n}(1+\phi_{i})}_{1+E_n} + a_{n-1}x^{n-1}\underbrace{\Pi_{i=0}^{{n-1}}(1+\varepsilon_{i})\Pi_{i=1}^{n-1}(1+\phi_{i})}_{1+E_{n-1}} + \dots + a_0(1+\varepsilon_0) =$$
+$$
+= a_nx^n(1+E_n) + a_{n-1}x^{n-1}(1+E_{n-1}) + \dots + a_0(1+E_0)
+$$ 
+Obliczmy:
+$$
+E_k = \Pi_{i=0}^{k}(1+\varepsilon_{i})\Pi_{i=1}^{k}(1+\phi_{i}) \leq \frac{(2k + 1)u}{1-(2k+1)u}
+$$
+gdzie $u$ jest precyzją liczb.\\
+Dla mało zaburzonych danych błąd jest mały. Algorytm jest numerycznie poprawny.
+\end{document}
+
