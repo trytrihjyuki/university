@@ -1,0 +1,57 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{27.10.2020}
+
+\begin{document}
+\subsection*{zad. 4a}
+Założenia: $ord(g) = n$, $k\in \mathbb{Z}$
+\begin{proof}
+Bez straty ogólności, zakładamy $k < n$ ponieważ w przeciwnym\\ przypadku:
+$$
+ord(g^k) = ord(g^{pn + k^\prime}) = ord(g^{pn}g^{k^\prime}) = ord(g^{k^\prime})
+$$
+Dla $p,k \in \mathbb{N}$ oraz $k^\prime < k$.\\\\
+Zgodnie z definicją rzędu musimy pokazać, że $\frac{n}{NWD(n,k)}$ spelnia dwa warunki:\\
+\subsection*{Warunek 1}
+$(g^k)^{\frac{n}{NWD(n,k)}} = e$
+\begin{proof}
+$$
+(g^k)^{\frac{n}{NWD(n,k)}} = (g^n)^{\frac{k}{NWD(n,k)}} = e^{\frac{k}{NWD(n,k)}} = e
+$$
+\end{proof}
+\subsection*{Warunek 2}
+$\frac{n}{NWD(n,k)}$ jest dolnym ograniczeniem dla liczb $m$ takich, że $(g^k)^m = e$.
+\begin{proof}
+Weźmy dowolne $m \in \mathbb{Z}$ takie, że $(g^k)^m = e$.\\
+Skoro $g^n = g^{km} = e$ oraz $n = ord(g)$ to:
+$$n \mid km$$
+$$
+\frac{n}{NWD(n,k)} \mid \frac{k}{NWD(n,k)}m
+$$
+$$
+\frac{n}{NWD(n,k)} \mid m
+$$
+$$
+\frac{n}{NWD(n,k)} \leq m
+$$
+\end{proof}
+Wobec powyższego: $ord(g^k) = \frac{n}{NWD(n,k)}$
+\end{proof}
+% ta podzielność wynika z prostego dowodu korzystającego z minimalności liczby będącej rzędem -- jeżeli gx=eg^x = egx=e i ord(g)=nord(g) = nord(g)=n, to jeżeli x nie jest podzielne przez n, to g do reszty z dzielenia x przez n też jest równe e, a ta reszta jest dodatnia i mniejsza od n, więc masz sprzeczność z tym, że n (zgodnie z def rzędu) jest najmniejszą liczbą dodatnią taką, że gn=eg^n = egn=e
+\end{document}

@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{27.10.2020}
+
+\begin{document}
+\subsection*{Metoda mnożników Lagrange'a}
+Twierdzenie o mnożnikach Lagrange'a. U jest otwartym podzbiorem $\mathbb{R}^n$,
+g jest funkcją, a
+$$
+S = \{x \in U : g(x) = c\}
+$$
+Jeśli funkcja $f \mid_S$ przyjmuje minimum lokalne w punkcie $x_0$ oraz $\nabla g(x_0) \neq 0$ to:
+$\nabla f(x_0) = \lambda \nabla g(x_0)$ dla pewnej $\lambda$\\\\\
+W sytuacji, gdy mamy zbiór zwarty o niepustym wnętrzu i brzegu za-
+danym jako poziomica (1.19) , procedura znajdowania wartości największej
+i najmniejszej funkcji jest następująca:\\\\
+1. Znale1ć punkty krytyczne funkcji wewnątrz zbioru, tzn. punkty stacjonarne
+oraz punkty, w których nie można obliczyć pochodnych cząstkowych.\\
+2. Znale1ć punkty krytyczne funkcji obciętej do brzegu zbioru, np. metodą
+mnożników Lagrange'a.\\
+3. Obliczyć wartości funkcji w znalezionych punktach.\\
+4. Wybrać wartość największą i najmniejszą.\\\\\
+Dla wiecej zmiennych:
+Załóżmy, że wektory $\nabla g 1 (x 0 ), \nabla g 2 (x 0 ), . . . , \nabla g k (x 0 )$ są liniowo
+niezależne. Jeśli funkcja f S posiada ekstremum w punkcie $x_0  \in  S$, to
+$$\nabla f (x 0 ) =  \lambda_1 \nabla g_1 (x_0 ) +  \lambda_2 \nabla g_2 (x_0 ) + . . . +  \lambda_k \nabla g_k (x_0 )$$
+dla pewnych stałych
+$\lambda_1 ,  \lambda_2 , . . . ,  \lambda_k .$
+\\\\Tw. o funkcji uwikłanej\\
+Uwaga. Aby znale1ć punkt $x_0$ trzeba rozwiązać n + k równań przy n + k niewiadomych: n współrzędnych i k lambd.\\\\
+Załóżmy, że funkcja $F: \mathbb{R}^n \rightarrow \mathbb{R}$ jest klasy $C^1$.\\\\ Oraz $F(x_0,z_0) = 0$ oraz $\frac{\partial F}{\partial z} (x_0,z_0) \neq 0$ Wtedy równanie $F(x,z) = 0$ ma jednoznacznie rozwiązanie w pobliżu $(x_0,z_0)$
+\\\\Tw. o funkcji odwrotnej\\
+Niech $U \subset $ będzie otwartym podzbiorem przestrzeni $\mathbb{R}^n$. Funkcje $f_1,f_2,\dots f_n$ są klasy $C^1$ na U. Załóżmy, że układ * ma rozwiązanie $x = a, y = b$ dla $a \in U$. Jeśli:
+$$
+\Delta = det \left[\frac{\partial f_i}{\partial x_j}(a) \right] \neq 0
+$$
+To układ ma jednoznacznie rozwiązanie dla y w pobliżu b i x w pobliżu a.
+\end{document}
