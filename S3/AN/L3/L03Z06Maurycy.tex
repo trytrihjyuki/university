@@ -1,0 +1,45 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{28.10.2020}
+
+\begin{document}
+Zapiszmy problem szukania miejsca zerowego $f(x)$ jako szukanie punktu stałego:
+\begin{equation}
+\Phi(\alpha) = \alpha \iff f(\alpha) = 0
+\end{equation}
+\begin{equation}
+x_{n+1} = \Phi(x_n) = x_n - rf(x_n)
+\end{equation}
+Sprawdzamy warunki zbieżności liniowej:
+\subsection*{Warunek 1}
+Sprawdzamy czy $\Phi(\alpha) = \alpha$
+\begin{equation}
+\Phi(\alpha) = \alpha - rf(\alpha) = \alpha - 0 = \alpha
+\end{equation}
+\subsection*{Warunek 2}
+Chcemy pokazać, że (jest zwężenie w otoczeniu $\alpha$), $0 < |\Phi^\prime(\alpha)| < 1$:
+\begin{equation}
+|\Phi^\prime(\alpha)| = 1 - rf^\prime(\alpha)
+\end{equation}
+więc musi być spełnione
+\begin{equation}
+0 < rf^\prime(\alpha) < 1
+\end{equation}
+
+\end{document}
