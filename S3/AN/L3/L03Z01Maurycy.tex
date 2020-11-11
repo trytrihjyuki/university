@@ -37,4 +37,5 @@ $$
 Ponadto zbieżność w pierwszym przypadku, jest kwadratowa.\\
 Z powyższych rachunków wynika, że metoda ta jest zbieżna tylko gdy:
 $$\varepsilon_0 = \left| x_{0} - \frac{1}{c} \right| < \frac{1}{c} \implies x_0 \in \left(0,\frac{2}{c}\right)$$
+$$ \begin{align} p(y=y^{(i)}|x^{(i)};\Theta) &= \cases{p(y=1|x;\Theta) &if $y^{(i)}=1$ \\ 1-p(y=1|x^{(i)};\Theta) &if $y^{(i)}=0$} \\ &= p(y=1|x^{(i)};\Theta)^{y^{(i)}}(1-p(y=1|x^{(i)};\Theta))^{(1-y^{(i)})} \\ &= \sigma(x^{(i)}\Theta)^{y^{(i)}}(1-\sigma(x^{(i)}\Theta))^{(1-y^{(i)})} \end{align} $$
 \end{document}
