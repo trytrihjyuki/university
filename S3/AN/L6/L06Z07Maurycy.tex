@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{18.11.2020}
+\author{}
+\begin{document}
+\maketitle
+
+\section{L6Z7}
+$s$ - naturalna funkcja sklejana trzeciego stopnia\\\\
+$f(x_i) = s(x_i)$ dla $a = x_0 < x_1 < \ldots < x_n = b$
+\begin{proof}
+Całkując przez części
+\begin{align*}
+&\int_a^b[s^{\prime\prime}(x)]^2 dx = \int_a^b s^{\prime\prime}(x)\cdot s^{\prime\prime}(x) dx = s^{\prime\prime} (x) \cdot s^{\prime}(x) \mid_{[a,b]} - \int_a^b s^{\prime}(x)\cdot s^{\prime\prime\prime}(x) dx  \\
+ \intertext{Dzielimy przedział całkowania: $[a,b] = \bigcup_{i=0}^{n-1} [x_i,x_{i+1}]$} 
+&= \sum_{i=0}^{n-1} \left ( s^{\prime\prime} (x) \cdot s^{\prime}(x) \mid_{[x_i,x_{i+1}]} - \int_{x_i}^{x_{i+1}} s^{\prime}(x_k)\cdot s^{\prime\prime\prime}(x) dx\right) \\
+&= \sum_{i=0}^{n-1} \left ( s^{\prime\prime} (a) \cdot s^{\prime}(a) - s^{\prime\prime} (b) \cdot s^{\prime}(b)  - \int_{x_i}^{x_{i+1}} s^{\prime}(x_k)\cdot s^{\prime\prime\prime}(x) dx\right)\\
+ \intertext{Z naturalności $s$ oraz z tego, że $s^{\prime\prime\prime}(x) = \frac{M_{i+1} - M_i}{x_{i+1} -x_i}$ dla $x \in {x_i, x_{i+1}}$ (wzór ten można uzyskać różniczkując wzór (16) z wykładu:}
+&= \sum_{i=0}^{n-1} \left (- \int_{x_i}^{x_{i+1}} s^{\prime}(x_k)\cdot s^{\prime\prime\prime}(x) dx\right)\\
+&= \sum_{i=0}^{n-1}\frac{M_{i+1} - M_i}{x_{i+1} - x_i} \left(- \int_{x_i}^{x_{i+1}} s^{\prime}(x_k)\cdot dx\right)\\
+&= \sum_{i=0}^{n-1} -\frac{M_{i+1} - M_i}{x_{i+1} - x_i}(s(x_{i+1}) - s(x_i))\\
+ \intertext{$s$ interpoluje f w punktach $x_i$:}
+&= \sum_{i=0}^{n-1} \frac{M_{i+1} - M_i}{x_{i+1} - x_i}(f(x_i) - f(x_{i+1}))\\
+&= \sum_{i=0}^{n-1}  M_{i+1}\frac{f(x_i) - f(x_{i+1})}{{x_{i+1} - x_i}} - M_i\frac{f(x_i) - f(x_{i+1})}{{x_{i+1} - x_i}}\\
+&= \sum_{i=1}^{n}  M_i\frac{f(x_{i-1}) - f(x_{i})}{{x_{i} - x_{i-1}}} - \sum_{i=0}^{n-1}  M_i\frac{f(x_{i}) - f(x_{i+1})}{{x_{i+1} - x_{i}}}\\
+ \intertext{Z naturalności, oraz upraszczając wyrażenie mamy:}
+&= \sum_{i=1}^{n-1}  M_i\frac{f(x_{i-1}) - f(x_{i})}{{x_{i} - x_{i-1}}} - M_i\frac{f(x_{i}) - f(x_{i+1})}{{x_{i+1} - x_{i}}}\\
+\intertext{Przekształcamy (rozwijamy i wyciągamy minusa z mianownika):}
+&= \sum_{i=1}^{n-1}\left(\frac{f(x_i)}{(x_i - x_{i+1})} + \frac{f(x_{i+1})}{(x_{i+1} - x_i)} - \frac{f(x_i)}{(x_i - x_{i-1})} - \frac{f(x_{i-1})}{(x_{i-1} - x_i)}\right)M_i
+ \intertext{Zuważamy iloraz różnicowy, otrzymujemy ostatecznie:}
+ &= \sum_{i=1}^{n-1}(f[x_i,x_{i+1}] - f[x_{i-1},x_i])M_i
+\end{align*}
+\end{proof}
+
+\end{document}
+
