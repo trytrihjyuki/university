@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{22.11.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{L5Z27a}
+$z = x^2 + y^2$\\
+Dla każdego $z$ pole zamknięte w naszej figurze na płaszczyźnie jest równe:
+$$
+z = x^2 + y^2 = r^2\\
+$$
+$$
+S = \pi r^2 = \pi z
+$$
+\\Z zasady Cavalieriego:
+$$
+V = \int Sdz = \int \pi z dz = \frac{\pi z^2}{2} + C
+$$
+
+\end{document}
+
