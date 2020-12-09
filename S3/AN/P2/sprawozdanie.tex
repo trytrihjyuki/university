@@ -1,0 +1,117 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref, enumitem, graphicx, subfig,algorithmic,algorithm}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+\graphicspath{ {../../wykresy/} }
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{Sprawozdanie do zadania \textbf{P2.03}}
+\date{4.12.2020}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+\section{Przedstawienie problemu}
+W zadaniu mamy przedstawić algorytm konstrukcji wielomianu $w$ możliwie najniższego stopnia, który dla $\varepsilon > 0$ spełnia nierówność:
+\begin{equation}
+\int_0^1 x[f(x) - w(x)]^2 dx < \varepsilon
+\end{equation}
+Szukamy więc wielomianu optymalnego $w^*$ w sensie aproksymacji średnio kwadratowej dla funkcji wagowej $p(x) = x$.\\Najniższego stopnia żeby spełniony był warunek (1).\\\\
+Mamy zdefiniowany iloczyn skalarny:
+\begin{equation}
+\langle f,g\rangle = \int_0^1 p(x)f(x)g(x) dx = \int_0^1 xf(x)g(x) dx
+\end{equation}
+Szukany $w^*$ ma spełniać:
+\begin{equation}
+\Vert f - w^*\Vert^2 = \langle f-w^*,f-w^*\rangle = \int_0^1 x[f(x) - w^*(x)]^2 dx < \varepsilon
+\end{equation}
+\section{Szukanie wielomianu optymalengo}
+Przypomnijmy potrzebne twierdzenia z wykładu:\\\\
+Dla dowolnego ciągu wielomianów ortogonalnych $\{P_k\} \subset C_p[0,1]$, wielomian optymalny $n$-tego stopnia istnieje i wyraża się jednoznacznie wzorem:
+\begin{equation}
+w_n^*(x) = \sum_{i=0}^n \frac{\langle f,P_i\rangle}{\langle P_i,P_i\rangle}P_i(x)
+\end{equation}
+a $n$-ty błąd ma postać:
+\begin{equation}
+\Vert f - w^*\Vert = \sqrt{\Vert f \ \Vert^2 - \sum_{i=0}^n \frac{\langle f,P_i\rangle^2}{\langle P_i,P_i\rangle}}
+\end{equation}
+Zwiększanie stopnia wielomianu $w_n^*$ zwiększa dokładność tj. zmniejsza $\Vert f - w_n^*\Vert$.\\\\
+Z powyższych obserwacji, można zaproponować wstępny algorytm szukania $w^*$
+\begin{algorithm}
+\begin{algorithmic}
+\STATE \textbf{input:} $\varepsilon, f$
+\STATE $n \leftarrow 0$
+\STATE $w^* \leftarrow 0$
+\STATE $error \leftarrow \infty$
+
+\WHILE{$error > \varepsilon$}
+\STATE $w^* \leftarrow update\_w(w^*)$
+\STATE $error \leftarrow get\_error(f,w^*)$
+\ENDWHILE
+\RETURN $w^*$
+\end{algorithmic}
+\end{algorithm}
+\\Zauważmy, że jeżeli $w_n^*$ spełnia (3) to dla dowolnego $k > n$ $w_k^*$ również spełnia warunek (3).\\
+Dostępna jest więc optymalizacja powyższego algorytmu polegająca na używania wyszukiwania binarnego do wyznaczenia  najmniejszego $n$ zamiast iteracji.\\
+My jednak użyjemy zwykłej iteracji z dwóch powodów: stać nas na to obliczeniowo, iteracyjnie łatwiejsze jest wyznaczanie kolejnych wielomianów $w_n^*$.\\\\
+Używając wzoru (4) wyznaczanie $w^*$ kolejnego stopnia (funkcja $udpate\_w(w^*)$) sprowadza się do:
+\begin{align*}
+w_{n+1}^*(x) = \sum_{i=0}^{n+1} \frac{\langle f,P_i\rangle}{\langle P_i,P_i\rangle}P_i(x) =\sum_{i=0}^{n} \frac{\langle f,P_i\rangle}{\langle P_i,P_i\rangle}P_i(x) + \frac{\langle f,P_{n+1}\rangle}{\langle P_{n+1},P_{n+1}\rangle}P_{n+1}(x) &= \\ = w_n^*(x) + \frac{\langle f,P_{n+1}\rangle}{\langle P_{n+1},P_{n+1}\rangle}P_{n+1}(x) 
+\end{align*}
+Obliczanie nowego błędu (funkcja $get\_error(f,w^*)$) to aplikacja wzoru (5) do nowego wielomianu $w_n^*$.\\\\
+Mamy już więc szkic rozwiązania, pozostało jeszcze kilka podproblemów.
+\subsection*{Wybór $\{P_k\}$}
+Z twiedzenia Farvarda wiemy, że dowolny ciąg wielomianów spełniający poniższą zależność rekurencyjną jest ciągiem wielomianów ortogonalnych:
+\begin{equation}
+P_k(x) = (\alpha_kx - \beta_k)P_{k-1}(x) - \gamma_kP_{k-2}
+\end{equation}
+Zatem wybór $\{P_k\}$ sprowadza się do wyznaczenia współczynników: $\alpha_k,\beta_k, \gamma_k$.\\
+Patrząc na wzór (4), interesuje nas wyliczanie pewnej kombinacji liniowej wielomianów $P_k$.\\\\Ten problem tj. obliczanie $s_n(x) = a_0P_0(x) + a_1P_1(x) + \ldots + a_nP_n(x)$ możemy rozwiązać stosując algorytm Clenshaw'a, polega on na:\\\\
+Obliczamy pomocnicze wartości $V_k$:
+\begin{equation}
+V_k = 
+\begin{cases}
+a_k + (\alpha_{k+1}x - \beta_{k+1})V_{k+1} - \gamma_{k+2}V_{k+2} & \text{gdy } k \leq  n\\
+0 & \text{gdy } k > n\\
+\end{cases}
+\end{equation}
+wtedy:
+\begin{equation}
+s_n(x) = \alpha_0V_0
+\end{equation}
+Algorytm Clenshew'a jest mocnym ułatwieniem obliczeniowym dla skomplikowanych funkcji $P_k$, ale za to dla łatwych do wyznaczenia \\ współczynników $\alpha_k,\beta_k, \gamma_k$.\\\\
+Dla ułatwienia obliczeń użyjemy ciągu wielomianów Czebyszewa z rekurencyjną definicją:
+\begin{equation}
+T_k = 
+\begin{cases}
+2xT_{k-1}(x) - T_{k-2}(x) & \text{gdy } k >  1\\
+x & \text{gdy } k =  1\\
+1 & \text{gdy } k = 0\\
+\end{cases}
+\end{equation}
+Czyli współczynników:
+\begin{equation}
+\alpha_k = 2, \beta_k = 0, \gamma_k = 1
+\end{equation}
+
+\subsection*{Obliczanie $\langle f, g\rangle$}
+
+\section{Implementacja}
+\section{Wyniki i interpretacja}
+\section{Podsumowanie}
+
+% PYTANIA
+% Czy musimy profesjonalnie cytować? chcemy?
+% Pseudokod na sprawozdaniu?
+
+\end{document}
+
