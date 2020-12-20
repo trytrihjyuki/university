@@ -16,7 +16,7 @@
 \makeatother
 
 \title{Sprawozdanie do zadania \textbf{P2.03}}
-\date{4.12.2020}
+\date{13.12.2020}
 \author{Maurycy Borkowski}
 \begin{document}
 \maketitle
@@ -25,7 +25,7 @@ W zadaniu mamy przedstawić algorytm konstrukcji wielomianu $w$ możliwie najni�
 \begin{equation}
 \int_0^1 x[f(x) - w(x)]^2 dx < \varepsilon
 \end{equation}
-Szukamy więc wielomianu optymalnego $w^*$ w sensie aproksymacji średnio kwadratowej dla funkcji wagowej $p(x) = x$.\\Najniższego stopnia żeby spełniony był warunek (1).\\\\
+Szukamy więc wielomianu optymalnego $w^*$ w sensie aproksymacji średnio kwadratowej dla funkcji wagowej $p(x) = x$. Najniższego stopnia żeby spełniony był warunek (1).\\\\
 Mamy zdefiniowany iloczyn skalarny:
 \begin{equation}
 \langle f,g\rangle = \int_0^1 p(x)f(x)g(x) dx = \int_0^1 xf(x)g(x) dx
@@ -35,83 +35,118 @@ Szukany $w^*$ ma spełniać:
 \Vert f - w^*\Vert^2 = \langle f-w^*,f-w^*\rangle = \int_0^1 x[f(x) - w^*(x)]^2 dx < \varepsilon
 \end{equation}
 \section{Szukanie wielomianu optymalengo}
-Przypomnijmy potrzebne twierdzenia z wykładu:\\\\
-Dla dowolnego ciągu wielomianów ortogonalnych $\{P_k\} \subset C_p[0,1]$, wielomian optymalny $n$-tego stopnia istnieje i wyraża się jednoznacznie wzorem:
+Korzystamy z faktu (\textbf{M7.5}):
 \begin{equation}
-w_n^*(x) = \sum_{i=0}^n \frac{\langle f,P_i\rangle}{\langle P_i,P_i\rangle}P_i(x)
+w^*_n \text{ jest optymalny} \iff \langle f-w_n^*,w_i\rangle = 0 \iff \langle f,w_i\rangle = \langle w_n^*,w_i\rangle
 \end{equation}
-a $n$-ty błąd ma postać:
+$w^*_n \in \Pi_n$ więc możemy go rozpisać jednoznacznie w bazie: $\{1,x,x^2,\ldots,x^n\}$:
 \begin{equation}
-\Vert f - w^*\Vert = \sqrt{\Vert f \ \Vert^2 - \sum_{i=0}^n \frac{\langle f,P_i\rangle^2}{\langle P_i,P_i\rangle}}
+w^*_n = \sum_{i=0}^n \alpha_i \cdot x^i
 \end{equation}
-Zwiększanie stopnia wielomianu $w_n^*$ zwiększa dokładność tj. zmniejsza $\Vert f - w_n^*\Vert$.\\\\
-Z powyższych obserwacji, można zaproponować wstępny algorytm szukania $w^*$
+Z (4) i (5):
+\begin{equation}
+\langle f,w_i\rangle = \langle w_n^*,w_i\rangle = \langle\sum_{i=0}^n \alpha_i \cdot x^i,w_i\rangle
+\end{equation}
+teraz z liniowości iloczynu skalarnego:
+\begin{equation}
+\langle f,w_i\rangle = \langle w_n^*,w_i\rangle = \sum_{i=0}^n \alpha_i \cdot \langle x^i,w_i\rangle
+\end{equation}
+Z powyższych rozważań wynika, że aby wyznaczyć wielomian optymalny $w^*_n$ wystarczy, że wyznaczymy $\alpha_0, \ldots, \alpha_n$ spełniające (7), rozpiszmy to w bardziej intuicyjnej postaci macierzowej:
+\begin{equation}
+\begin{bmatrix}
+\langle 1,1 \rangle & \langle 1,x \rangle & \ldots & \langle 1,x^n \rangle\\
+\langle x,1 \rangle & \langle x,x \rangle & \ldots & \langle x,x^n \rangle\\
+\vdots & \vdots & & \vdots\\
+\langle x^n,1 \rangle & \langle x^n,x \rangle & \ldots & \langle x^n,x^n \rangle\\
+\end{bmatrix} \cdot
+\begin{bmatrix}
+\alpha_0 \\
+\alpha_1 \\
+\vdots\\
+\alpha_n \\
+\end{bmatrix} =
+\begin{bmatrix}
+\langle f,1 \rangle \\
+\langle f,x \rangle \\
+\vdots \\
+\langle f,x^n \rangle \\
+\end{bmatrix}
+\end{equation}
+Pozostaje jeszcze kwestia uzupełnienia macierzy iloczynów skalarnych $n \times n$.
+Dobór bazy $\Pi_n$ był nieprzypadkowy, $i,j-ty$ wyraz tej macierzy możemy obliczać w czasie stałym:
+\begin{equation}
+\langle x^i,x^j \rangle = \int_0^1 x\cdot x^i \cdot x^j dx = \int_0^1 x^{i+j+1} dx = \frac{x^{i+j+2}}{i+j+2} \Big|_0^1 = \frac{1}{i+j+2}
+\end{equation}
+Podsumowując, aby znaleźć wielomian optymalny $w^*_n$ wystarczy rozwiązać układ równań zadany (8). Będziemy go rozwiązywać za pomocą macierzy odwrotnej znalezionej za pomocą gotowych funkcji wbudowanych (nie poznawaliśmy jeszcze metod do rozwiązywania tego typu problemów).\\\\
+Musimy rozwiązać jeszcze dwa podproblemy:
+\begin{itemize}
+    \item Liczenie nietrywialnych iloczynów skalarnych, $\langle f,x^i\rangle$ z (8)
+    \item Wybór optymalnego $n$
+\end{itemize}
+\subsection*{Obliczanie $\langle f, g\rangle$}
+Aby móc obliczać wyrazy wektora (prawa strona) z (8) typu $\langle f,x^i \rangle$ oraz żeby liczyć błąd (1) musimy być w stanie liczyć wartości całek.\\\\
+Do tego skorzystamy z Metody Romberga.\\\\
+Polega ona na wyznaczeniu tablicy przybliżeń wartości całek, $R_{i,j}$ w następujący sposób:\\\\\\\\\\\\\\
+$R_{0,i}$ jest wzorem z metody trapezów (z podziałem odcinka na $2^i$ części), po obliczeniu pierwszej kolumny tzw. tablicy Romberga, kolejne kolumny obliczane są rekurencyjnie, otrzymując coraz lepsze przybliżenie funkcji:\\\\
+\begin{equation}
+\begin{cases}
+\displaystyle R_{0,i} &: R_{2^i}=h_i\cdot \displaystyle \sum_{k=0}^{2^i-1}\left(\frac{f(x_k)+f(x_{k+1})}{2}\right) \\
+\displaystyle R_{m,i} &: \displaystyle \frac{4^m\cdot R_{m-1,i+1}-R_{m-1,i}}{4^m-1}
+\end{cases}
+\end{equation}
+\\Można wykazać że:
+$$
+R_{m,i} = I - c^*_mh_i^{2m+2}- \ldots \quad (i\geq0 ; m\geq 1)
+$$
+Widzimy zatem, że błąd metody Romberga dla wyrazu $R_{n,m}$ jest rzędu $\mathcal{O}(h_n^{2m+2})$ gdzie $h = \frac{1}{2^n}(b-a)$.\\\\
+Algorytm obliczający przybliżenia wartości całki za pomocą Metody Romberga:
+\begin{algorithm}
+\begin{algorithmic}
+\STATE \textbf{input:} $a,b,M,f$
+\STATE $h \leftarrow a-b$
+\STATE $R_{0,0} \leftarrow \frac{1}{2}(b-a)|f(a)-f(b)|$
+\FOR{$n \gets 1$ to $M$}
+    \STATE $h \leftarrow \frac{h}{2}$
+    \STATE $R_{n,0} \leftarrow \frac{1}{2} R_{n-1,0} + h\sum_{i=1}{2^{n-1}}f(a+(2i-1)h)$
+    \FOR{$m \gets 1$ to $n$}
+        \STATE $R_{n,m} \leftarrow R_{n,m-1} + (R_{n,m-1} - R_{n-1,m-1}) / (4^m-1)$
+        \PRINT $n,m,R_{n,m}$
+    \ENDFOR
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+\\
+Jest to algorytm pokazujący ideę tej metody, we właściwej implementacji usprawnimy go trochę. Zauważmy, że nie musimy trzymać w pamięci całej dwuwymiarowe tablicy $R[]$ wystarczy ostatni wiersz, obliczenia możemy przerwać przy zadowalającej nas dokładności (nie musimy liczyć aż do $R_{M,0}$).
+\subsection*{Wybór $n$}
+Dla danego $n$ możemy policzyć wielomian optymalny, $w_n^*$ z rozwiązania (8) następnie stosując Metodę Romberga policzyć błąd (1). To już jesteśmy w stanie zrobić z powyższych wniosków i pomysłów. Teraz pytanie jak dobrać optymalne $n$ to znaczy, najmniejsze spełniające (1)?\\
+Oczywiście zwiększanie $n$ (stopnia wielomianu $w_n^*$) nie zmniejsza dokładność tj. może zmniejszać $\Vert f - w_n^*\Vert$.\\\\\\
+Zauważmy jeszcze, że jeżeli $w_n^*$ spełnia (3) to dla dowolnego $k > n$ $w_k^*$ również spełnia warunek (3). Zakres poszukiwań jest więc \textit{uporządkowany} możemy wyszukać binarnie optymalnego $n$ ($\mathcal{O}(\log_2{n})$). W przypadku naszego problemu zakres $n$ nie jest duży, będziemy się po prostu iterować od $n = 0$ aż, $w_n^*$ będzie spełniał (3), rozważmy więc algorytm:
 \begin{algorithm}
 \begin{algorithmic}
 \STATE \textbf{input:} $\varepsilon, f$
 \STATE $n \leftarrow 0$
-\STATE $w^* \leftarrow 0$
-\STATE $error \leftarrow \infty$
-
-\WHILE{$error > \varepsilon$}
-\STATE $w^* \leftarrow update\_w(w^*)$
-\STATE $error \leftarrow get\_error(f,w^*)$
+\STATE {$error \leftarrow get\_error(n,f)$}
+\WHILE {$error \geq \varepsilon$}
+    \STATE {$error \leftarrow get\_error(n,f)$}
+    \STATE {$n \leftarrow n+1$}
 \ENDWHILE
-\RETURN $w^*$
+\RETURN $r$
 \end{algorithmic}
 \end{algorithm}
-\\Zauważmy, że jeżeli $w_n^*$ spełnia (3) to dla dowolnego $k > n$ $w_k^*$ również spełnia warunek (3).\\
-Dostępna jest więc optymalizacja powyższego algorytmu polegająca na używania wyszukiwania binarnego do wyznaczenia  najmniejszego $n$ zamiast iteracji.\\
-My jednak użyjemy zwykłej iteracji z dwóch powodów: stać nas na to obliczeniowo, iteracyjnie łatwiejsze jest wyznaczanie kolejnych wielomianów $w_n^*$.\\\\
-Używając wzoru (4) wyznaczanie $w^*$ kolejnego stopnia (funkcja $udpate\_w(w^*)$) sprowadza się do:
-\begin{align*}
-w_{n+1}^*(x) = \sum_{i=0}^{n+1} \frac{\langle f,P_i\rangle}{\langle P_i,P_i\rangle}P_i(x) =\sum_{i=0}^{n} \frac{\langle f,P_i\rangle}{\langle P_i,P_i\rangle}P_i(x) + \frac{\langle f,P_{n+1}\rangle}{\langle P_{n+1},P_{n+1}\rangle}P_{n+1}(x) &= \\ = w_n^*(x) + \frac{\langle f,P_{n+1}\rangle}{\langle P_{n+1},P_{n+1}\rangle}P_{n+1}(x) 
-\end{align*}
-Obliczanie nowego błędu (funkcja $get\_error(f,w^*)$) to aplikacja wzoru (5) do nowego wielomianu $w_n^*$.\\\\
-Mamy już więc szkic rozwiązania, pozostało jeszcze kilka podproblemów.
-\subsection*{Wybór $\{P_k\}$}
-Z twiedzenia Farvarda wiemy, że dowolny ciąg wielomianów spełniający poniższą zależność rekurencyjną jest ciągiem wielomianów ortogonalnych:
-\begin{equation}
-P_k(x) = (\alpha_kx - \beta_k)P_{k-1}(x) - \gamma_kP_{k-2}
-\end{equation}
-Zatem wybór $\{P_k\}$ sprowadza się do wyznaczenia współczynników: $\alpha_k,\beta_k, \gamma_k$.\\
-Patrząc na wzór (4), interesuje nas wyliczanie pewnej kombinacji liniowej wielomianów $P_k$.\\\\Ten problem tj. obliczanie $s_n(x) = a_0P_0(x) + a_1P_1(x) + \ldots + a_nP_n(x)$ możemy rozwiązać stosując algorytm Clenshaw'a, polega on na:\\\\
-Obliczamy pomocnicze wartości $V_k$:
-\begin{equation}
-V_k = 
-\begin{cases}
-a_k + (\alpha_{k+1}x - \beta_{k+1})V_{k+1} - \gamma_{k+2}V_{k+2} & \text{gdy } k \leq  n\\
-0 & \text{gdy } k > n\\
-\end{cases}
-\end{equation}
-wtedy:
-\begin{equation}
-s_n(x) = \alpha_0V_0
-\end{equation}
-Algorytm Clenshew'a jest mocnym ułatwieniem obliczeniowym dla skomplikowanych funkcji $P_k$, ale za to dla łatwych do wyznaczenia \\ współczynników $\alpha_k,\beta_k, \gamma_k$.\\\\
-Dla ułatwienia obliczeń użyjemy ciągu wielomianów Czebyszewa z rekurencyjną definicją:
-\begin{equation}
-T_k = 
-\begin{cases}
-2xT_{k-1}(x) - T_{k-2}(x) & \text{gdy } k >  1\\
-x & \text{gdy } k =  1\\
-1 & \text{gdy } k = 0\\
-\end{cases}
-\end{equation}
-Czyli współczynników:
-\begin{equation}
-\alpha_k = 2, \beta_k = 0, \gamma_k = 1
-\end{equation}
-
-\subsection*{Obliczanie $\langle f, g\rangle$}
-
+\\Obliczanie błędu (funkcja $get\_error(n,f)$) to po prostu obliczenie $\Vert f - w_n^*\Vert^2$ ($\mathcal{O}({n})$).
 \section{Implementacja}
+Cały algorytm będziemy implementowali w języku Julia, używając podwójnej
+precyzji, Float64.\\
+Do rozwiązywania (8) skorzystamy z
+$$
+A \cdot B = C \iff B = A^{-1}\cdot C
+$$
+Dla odwracalnej $A$.\\\\
+Macierz odwrotną macierzy iloczynów skalarnych $n \times n$ policzymy z funkcji wbudowanej języka Julia: 
+\href{https://docs.julialang.org/en/v1/base/math/#Base.inv-Tuple{Number}}{\textbf{inv()}}
 \section{Wyniki i interpretacja}
 \section{Podsumowanie}
 
-% PYTANIA
-% Czy musimy profesjonalnie cytować? chcemy?
-% Pseudokod na sprawozdaniu?
 
 \end{document}
 
