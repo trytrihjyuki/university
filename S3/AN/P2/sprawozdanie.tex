@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{polski}
 
-
+\usepackage{movie15}
 \usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref, enumitem, graphicx, subfig,algorithmic,algorithm}
 \newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
 \graphicspath{ {../../wykresy/} }
@@ -145,8 +145,32 @@ Dla odwracalnej $A$.\\\\
 Macierz odwrotną macierzy iloczynów skalarnych $n \times n$ policzymy z funkcji wbudowanej języka Julia: 
 \href{https://docs.julialang.org/en/v1/base/math/#Base.inv-Tuple{Number}}{\textbf{inv()}}
 \section{Wyniki i interpretacja}
+Nasz pomysł sprawdziliśmy na następujących funkcjach: $\sin{x}$, $e^x$, $x^{-1}$, $\sqrt{x}$, $\sin{\frac{1}{x}}$ i funkcjach wielomianowych.\\\\
+Zgodnie z intuicją wielomiany nie stanowiły problemu (zwłaszcza niskiego stopnia), bardzo szybko udawało się je przybliżyć wielomianem optymalnym.\\\\
+Funkcje trygonometryczne w pobliżu $0$ (badamy na przedziale $[0,1]$) zachowują się jak funkcja liniowa, stąd je też szybko udało się przybliżyć.\\\\
+Największym wyzwaniem okazały się funkcje nieciągłe lub nieokreślone na zadanym przedziale. Oczywiście $x^{-1}$ nie jest określony dla $x = 0$ dlatego patologiczne przypadki zastępowaliśmy podobnymi $(x+\varepsilon)^{-1}$.\\\\
+Dla niektórych funkcji, algorytm nie był w stanie znaleźć dostatecznie dobrego $w_n^*$. W kolejnych iteracjach wynik wcale się nie poprawiał, wynika to z ograniczeń precyzji obliczeń. Mały błąd dla wielomianów dużego stopnia, znacząco zmieniał wynik (\href{https://en.wikipedia.org/wiki/Overfitting}{\textbf{overfitting}})\\\\
+Działanie algorytmu najlepiej, zobaczyć na animacji, której tu niestety nie można umieścić, ale są one załączone w rozwiązaniu.\\\\
+Dla każdej z funkcji określałem eksperymentalnie najmniejszy błąd, dla którego byliśmy w stanie znaleźć wielomian spełniający (1), oto wyniki działania dla testowanych funkcji:\\\\
+\begin{tabular}{ |p{5cm}|p{3cm}|p{3cm}| }
+ \hline
+ \multicolumn{3}{|c|}{Wyniki} \\
+ \hline
+ funkcja   & maksymalny błąd $\varepsilon$ & liczba iteracji\\
+ \hline
+ $\sin{x}$&$10^{-9}$&5\\
+ $tg{x}$&$10^{-9}$&8\\
+ $e^x$&$10^{-9}$&5\\
+ $x^{-1}$&$1$&8\\
+ $\sqrt{x}$&$10^{-6}$&5\\
+ $ 0.5-2\cdot x + 0.01\cdot x^2 + 100\cdot x^3$&$10^{-9}$&4\\
+ $ 3 + 3.5\cdot x + x^2 - 1000\cdot x^4$&$10^{-9}$&5\\
+ $ \sin{\frac{1}{x}}$&$2\cdot 10^{-2}$&5\\
+ \hline
+\end{tabular}
 \section{Podsumowanie}
-
-
+Przybliżanie funkcji za pomocą wielomianu z iloczynem skalarnym (2) najlepiej wychodzi dla funkcji, które gwałtownie się nie zmieniają, nie wymaga to wielomianów wysokiego stopnia. W przeciwnym przypadku, ograniczona precyzja wynikająca z obliczeń na komputerze nie pozwala nam dobrze posługiwać się wielomianami wysokich stopnii.\\
+Wyniki gwałtownie się zmieniają z powodu małych błędów, dobrze to ilustruje animacja
+\textbf{patology.gif} gdzie po ósmej iteracji, zwiększanie $n$ wcale nie poprawia wyniku, dokładność $w_n^*$ względem funkcji $\sin{\frac{1}{x}}$ drastycznie spada.
 \end{document}
 
