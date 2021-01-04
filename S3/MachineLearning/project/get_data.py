@@ -2,6 +2,7 @@
 
 import requests
 import time
+import random
 import csv
 
 summoner_names = ['maksimus86', 'siarka071200', 'StaryAdama', 'SynStaregoAdama', 'Siur3k', 'Onnax', 'latarniakonto']
@@ -41,22 +42,24 @@ class RiotApi():
 
         first = self.token_id
         self.token_id = (self.token_id + 1) % len(self.tokens)
+        flag = False
         while 'Retry-After' in r.headers: # Rate limi exceeded
+            flag = True
             if self.token_id == first: # we tried all tokens
                 wait_time = int(r.headers['Retry-After'])
                 print('[-] Rate limit exceeded on all tokens, time.sleep for {} seconds...'.format(wait_time))
                 time.sleep(wait_time)
-
-            print('[-] Rate limit exceeded, changing token.\n')
-            self.token_id = (self.token_id + 1) % len(self.tokens)
-            HEADERS['X-Riot-Token'] = self.tokens[self.token_id]
+            else:
+                print('[-] Rate limit exceeded, changing token.\n')
+                self.token_id = (self.token_id + 1) % len(self.tokens)
+                HEADERS['X-Riot-Token'] = self.tokens[self.token_id]
             try:
                 r = requests.get(url = URL, headers = HEADERS)
             except Exception as err:
                 print('[-] Error occurred: {err}')
                 return None
-
-        print('[+] Successfuly request.\n')
+        if flag:
+            print('[+] Successfuly resent request.\n')
         return r
 
     def summ_to_acc_id(self, summoner_id):
@@ -188,7 +191,6 @@ class RiotApi():
 
                 if len(self.solo_ids[tier]) >= max_matches:
                     print('[+] We have all {} needed match ID\'s. Stop!'.format(max_matches))
-                    self.solo_ids[tier] = self.solo_ids[tier][:max_matches]
                     break
 
     def get_match_data(self, match_id):
@@ -201,20 +203,33 @@ class RiotApi():
         match_data = {}
         try:
             if response['gameDuration'] < 600: # Remakes, not rankeds etc.
-                print('[-] Remake!')
+                print('[-] Remake! Skip.\n')
                 return None
             if response['queueId'] != 420: 
-                print('[-] Not soloQ!')
+                print('[-] Not soloQ! Skip.\n')
                 return None
         except KeyError:
-            print('ID: {}'.format(match_id))
+            print('BAD ID: {}'.format(match_id))
+            return None
 
-        participants_list = response['participants']
+        try:
+            participants_list = response['participants']
+        except  KeyError:
+            print('BAD ID: {}'.format(match_id))
+            return None
 
         match_data['match_id'] = match_id
-        match_data['1_result'] = response['teams'][0]['win'] if response['teams'][0]['teamId'] == 100 else response['teams'][1]['win']
+
+        try:
+            match_data['1_result'] = response['teams'][0]['win'] if response['teams'][0]['teamId'] == 100 else response['teams'][1]['win']
+        except  KeyError:
+            print('BAD ID: {}'.format(match_id))
+            return None
+
         for participant in participants_list:
             participant_data = self.get_player_stats(participant)
+            if participant_data is None:
+                return None
             prefix = participant_data['team'] + participant_data['role'] + '_'
             participant_data.pop('team')
             participant_data.pop('role')
@@ -227,8 +242,13 @@ class RiotApi():
         player_data = {}
         player_data['team'] = str(response_data['teamId']/100) # 1 or 2
         player_data['role'] = response_data['timeline']['lane']
-        if player_data['role'] == 'BOTTOM':
+        if player_data['role'] == 'NONE': # remake/dodge
+            return None
+        if player_data['role'] == 'BOTTOM' or player_data['role'] == 'BOT':
             player_data['role'] = 'ADC' if response_data['timeline']['role'] == 'DUO_CARRY' else 'SUPPORT'
+        if player_data['role'] == 'MIDDLE':
+            player_data['role'] == 'MID'
+
         player_data['championId'] = response_data['championId']
         player_data['xp_per_min'] = response_data['timeline']['xpPerMinDeltas']['0-10']
         player_data['creeps_per_min'] = response_data['timeline']['creepsPerMinDeltas']['0-10']
@@ -251,13 +271,17 @@ class RiotApi():
         with open(file_name, 'w', newline='') as file:
             writer = csv.writer(file)
             columns_names = None
+            cnt = 0
             for ID in match_ids:
+                if cnt % 200 == 0:
+                    print('[+] Got {}/{}!\n'.format(cnt, len(match_ids)))
+                cnt+=1
                 print(ID)
                 match_data = self.get_match_data(ID)
-                if columns_names is None:
+                if columns_names is None and match_data is not None:
                     columns_names = [k  for  k in  match_data.keys()]
                     writer.writerow(columns_names)
                 if match_data is not None: # remakes
                     writer.writerow(list(match_data.values()))
                 else:
-                    print('[-] Bad match: {}\n'.format(ID))
+                    print('[-] Remake/bad match! Skip: {}\n'.format(ID))
