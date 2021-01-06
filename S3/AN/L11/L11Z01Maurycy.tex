@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{Zadanie 1}
+\date{6.01.2021}
+\begin{document}
+\begin{proof}
+Z własności wielomianów Czebyszewa punkty ekstremalne $u_k$ są dane wzorem: 
+
+\begin{equation}
+u_k = \cos{\frac{k\pi}{n}} \quad k \in [0,\ldots,n]
+\end{equation}
+
+Korzystamy z postaci trygonometrycznej $T_n(x)$:
+
+\begin{equation}
+T_n = \cos{(n \cos{x}^{-1})}
+\end{equation}
+
+W punktach $u_k$ mamy więc:
+
+\begin{equation}
+T_{n+j}(u_k) =  \cos{((n+j) \cos{\cos^{-1}{\frac{k\pi}{n}}})} = \cos{(n+j)\frac{k\pi}{n}}
+\end{equation}
+
+Korzystając ze wzoru na $\cos$ sumy:
+$$
+T_{n+j}(u_k) = \cos{\frac{nk\pi}{n}}\cos{\frac{jk\pi}{n}} -  \sin{\frac{nk\pi}{n}}\sin{\frac{jk\pi}{n}} 
+$$
+Zauważamy $\sin{\frac{nk\pi}{n}} = 0$ oraz rozpisujemy argumenty $\cos$:
+$$
+T_{n+j}(u_k) = \cos{\frac{nk\pi}{n}}\cos{\frac{jk\pi}{n}} = \cos{n \cos^{-1}{\frac{k\pi}{n}}} \cdot  \cos{j \cos^{-1}{\frac{k\pi}{n}}} = 
+$$
+$$
+= T_n(u_k) \cdot T_j(u_k)
+$$
+\end{proof}
+\end{document}

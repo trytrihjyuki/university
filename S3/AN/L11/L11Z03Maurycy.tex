@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{}
+\date{6.01.2021}
+
+\begin{document}
+\subsection*{a)}
+Korzystamy ze wzoru na błąd w metodzie Simpsona:
+\begin{equation}
+E_S = \frac{h^4}{180}(b-a)f^{(4)}(\xi_S)
+\end{equation}
+W naszym przypadku:
+$$
+\frac{\pi^5}{180N^4} \leq 2\cdot 10^{-5}
+$$
+Znajdujemy komputerowo rozwiązanie nierówności $N = 18$\\
+Korzystamy ze wzoru Simpsona:
+$$
+\int\limits_{0}^{\pi}\sin{x}dx \approx 
+\sum_{j=1}^{n/2}\bigg[\sin(x_{2j-2})+4\sin(x_{2j-1})+\sin(x_{2j})\bigg]\\
+{} =
+$$
+$$= \frac{\pi}{3\cdot18} 
+\bigg[2\sum_{j=1}^{n/2-1}\sin(x_{2j}) + 4\sum_{j=1}^{n/2}\sin(x_{2j-1})\bigg] =
+$$
+$$
+= \frac{\pi}{3\cdot18} 
+\bigg[2\sum_{j=1}^{8}\sin(2j \cdot \frac{\pi}{18}) + 4\sum_{j=1}^{9}\sin((2j-1) \cdot \frac{\pi}{18})\bigg] \approx 2.00001
+$$
+\subsection*{b)}
+Korzystamy ze wzoru na błąd w metodzie trapezów :
+\begin{equation}
+E_T = \frac{(b-a)^3}{12N^3}f^{(2)}(\xi_T)
+\end{equation}
+W naszym przypadku:
+$$
+\frac{\pi^3}{12N^2} \leq 2\cdot 10^{-5}
+$$
+Znajdujemy komputerowo rozwiązanie nierówności $N = 360$ 
+\end{document}
