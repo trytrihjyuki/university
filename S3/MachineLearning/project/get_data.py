@@ -116,7 +116,10 @@ class RiotApi():
         if r is None:
             return None
 
-        match_list = r.json()['matches']
+        try:
+            match_list = r.json()['matches'] # key error
+        except KeyError:
+            return None, None
 
         solo_match_ids = [d['gameId'] for d in match_list if d['season'] == self.season and d['queue'] == 420]
         flex_match_ids = [d['gameId'] for d in match_list if d['season'] == self.season and d['queue'] == 440]
@@ -172,7 +175,7 @@ class RiotApi():
         print('[+] Adding new match ID\'s.\nTier: {}\nDivison:{}\n'.format(tier, division))
 
         if tier in low_elo:
-            summ_ids = self.get_summoner_ids_by_tier(tier, division, max_matches//10)
+            summ_ids = self.get_summoner_ids_by_tier(tier, division, max_matches//5)
             print('[+] Starting getting summoner\'s ID\'s from account ID\'s.\n')
             acc_ids = [self.summ_to_acc_id(Id) for Id in summ_ids]
             for acc_id in acc_ids:
