@@ -1,0 +1,42 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{Zadanie 9}
+\date{13.01.2021}
+\begin{document}
+\maketitle
+Rozważamy problem z zadania \textbf{M12.7}:
+\begin{equation}
+    y^\prime(t) = \lambda y(t) \quad y(0) = 1
+\end{equation}
+Korzystamy ze wzoru:
+\begin{equation}
+    y_{n+1} = y_n + \frac h 2 [f_n + f(t_{n+1}, y_n + hf_n)]
+\end{equation}
+Z $y^\prime = f(t,y)$ mamy $f_n = f(t_n,y_n) = \lambda y(t_n) = \lambda y_n$ mamy więc:
+\begin{equation}
+    y_{n+1} = y_n + \frac h 2 [\lambda y_n + f(t_{n+1}, y_n + h\lambda y_n)]
+\end{equation}
+Dalej $f(t_{n+1}, y_n + h\lambda y_n) \approx \lambda (y_n + h \lambda y_n)$ zatem:
+\begin{equation}
+    y_{n+1} = y_n + \frac h 2 [\lambda y_n + f(t_{n+1}, y_n + h\lambda y_n)] \approx y_n + \frac h 2 [\lambda y_n + \lambda (y_n + h \lambda y_n)]
+\end{equation}
+Uproszczając otrzymujemy ostatecznie:
+\begin{equation}
+    y_{n+1} = y_n + h\lambda y_n + \frac{h^2\lambda^2}{2} y_n = y_n\left(1 + h\lambda + \frac{h^2\lambda^2}{2} \right)
+\end{equation}
+\end{document}
