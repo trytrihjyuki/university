@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} 
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{Zadanie 3}
+\date{20.01.2021}
+\begin{document}
+\maketitle
+Niech $x \in \mathbb{R}^n$ wtedy:
+\subsection*{a)}
+Oznaczmy $x_k = \max_{1\leq i \leq n}{x_i}$
+$$
+\norm{x}_\infty = x_k \leq x_k + \sum\limits_{\substack{i = 1 \\ i\neq k}}^n |x_i| = \sum_{i=1}^{n} |x_i| = \norm{x}_1 \leq  \sum_{i=1}^{n} |x_k| = n\norm{x}_\infty
+$$
+\subsection*{b)}
+$$
+\norm{x}_\infty = x_k = \sqrt{|x_k|^2} \leq \sqrt{|x_k|^2} = \sqrt{\sum_{i=1}^{n} |x_i|^2} = \norm{x}_2 \leq \sqrt{\sum_{i=1}^{n} |x_k|^2} = \sqrt{n\cdot|x_k|^2} =\sqrt{n}|x_k| = \sqrt{n}\norm{x}_\infty
+$$
+\subsection*{c)}
+Z nierówności Cauchy'ego-Schwarz'a:
+$$
+\Vert x\Vert_1=
+\sum\limits_{i=1}^n|x_i|=
+\sum\limits_{i=1}^n|x_i|\cdot 1\leq
+\sqrt{\sum\limits_{i=1}^n|x_i|^2}\sqrt{\sum\limits_{i=1}^n 1^2}=
+\sqrt{n}\Vert x\Vert_2
+$$
+Zauważmy, że:
+$$
+\norm{x}_2^2 = \sum_{i=1}^{n} |x_k|^2 \leq \sum_{i=1}^{n} |x_k|^2 + 2 \cdot \sum\limits_{\substack{i,j= 1 \\ i\neq j}}^n |x_i| = \norm{x}_1^2
+$$
+to implikuje: $\norm{x}_2 \leq \norm{x}_1$.\\\\
+Wobec powyższego:
+$$
+\frac{1}{\sqrt{n}} \norm{x}_1  \leq\norm{x}_2 \leq \norm{x}_1
+$$
+\end{document}

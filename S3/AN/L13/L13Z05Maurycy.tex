@@ -1,0 +1,55 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert} 
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{Zadanie 5}
+\date{20.01.2021}
+\begin{document}
+\maketitle
+W zadaniu musimy pokazać, że $\norm{A}_E = \sqrt{\sum_{1\leq i,j \leq n} a_{ij}^2}$ definiuję submultiplikatywną normę w $\mathbb{R}^{n \times n}$ zgodną z normą wektorową $\norm{\cdot}_2$, musimy \\więc pokazać, że:
+\begin{enumerate}
+   \item $\norm{Ax}_2 \leq \norm{A}_E \cdot \norm{x}_2$
+   \item $\norm{A}_E \geq 0 \quad \norm{A}_E = 0 \iff A = 0$
+   \item $\norm{\lambda A}_E = |\lambda| \cdot \norm{A}_E$
+   \item $\norm{A+B}_E \leq \norm{A}_E + \norm{B}_E$
+   \item $\norm{A\cdot B}_E \leq \norm{A}_E \cdot \norm{B}_E$
+\end{enumerate}
+\section{1}
+$$
+\norm{Ax}_2^2 = \sum_{i=1}^n \left(\sum_{j=1}^n a_{ij} x_j \right)^2 \leq \sum_{1 \leq i,j \leq n} a_{ij}^2 \cdot \sum_{k=1}^n x^2_k  = \norm{A}_E^2 \cdot \norm{x}_2^2
+$$
+wynika to z nierówności Cauchy'ego-Schwarz'a dla każdego $i$:
+$$
+\left ( \sum_{j=1}^n a_{ij} x_j \right)^2 \leq  \cdot \sum_{j=1}^n a_{ij}^2 \cdot \sum_{k=1}^n x^2_k
+$$
+\section{2}
+Wynika to z podstawowych własności liczb rzeczywistych. Suma kwadratów jest nieujemna, a więc suma kwadratów jest równa zero wtw. gdy każdy z nich jest zerem.
+\section{3}
+$$
+\norm{\lambda A}_2 = \sqrt{\sum_{1\leq i,j \leq n} (\lambda a_{ij})^2} = \sqrt{\lambda^2 \cdot \sum_{1\leq i,j \leq n} a_{ij}^2} = |\lambda|\cdot \norm{A}_2
+$$
+\section{4}
+\begin{align*}
+\norm{A+B}_E^2 = \sum_{1\leq i,j \leq n} (a_{ij}+b_{ij})^2 = \sum_{1\leq i,j \leq n} a_{ij}^2+ 2a_{ij}b_{ij} + b_{ij}^2
+=  \sum_{1\leq i,j \leq n} a_{ij}^2 +  2\sum_{1\leq i,j \leq n} a_{ij}b_{ij} +  \sum_{1\leq i,j \leq n} b_{ij}^2 \\\leq \sum_{1\leq i,j \leq n} a_{ij}^2 +  2\sqrt{\sum_{1\leq i,j \leq n} a_{ij}^2  \sum_{1\leq i,j \leq n} b_{ij}^2} +  \sum_{1\leq i,j \leq n} b_{ij}^2 = (\norm{A}_E + \norm{B}_E)^2
+\end{align*}
+Ostatnia nierówność wynika z nierówności Cauchy'ego-Schwarz'a.
+\section{5}
+Z nierówności Cauchy'ego-Schwarz'a:
+\begin{align*}
+\norm{A\cdot B}_E^2 = \sum_{i=1}^n\sum_{j=1}^n \left | \sum_{k=1}^n a_{ik} b_{kj}\right|^2 \leq \sum_{i=1}^n\sum_{j=1}^n  \left( \sum_{k=1}^n |a_{ik}|^2 \sum_{k=1}^n |b_{ik}|^2\right)= \\ =\sum_{i=1}^n\sum_{k=1}^n |a_{ik}|^2 \sum_{k=1}^n\sum_{j=1}^n |b_{kj}|^2 = \norm{A}_E^2 \cdot \norm{B}_E^2
+\end{align*}
+\end{document}
