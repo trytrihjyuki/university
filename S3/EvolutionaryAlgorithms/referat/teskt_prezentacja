@@ -1,0 +1,82 @@
+############# 1 #############
+
+ Może być rozumiana jako średnia dokładność oszacowania, jaką daje obserwacja danych – tj. wartość oczekiwana brzegowej wiarygodności estymatora parametru θ względem obserwacji danych X . 
+
+Jest to więc druga pochodna, czyli pochodna gradientu funkcji prawdopodobieństwa, pozwalająca wyrazić szybkość jego zmian przy jej maksimum. 
+Innymi słowy, informacja Fishera opisuje jak bardzo rozkład wiarygodności estymatora parametru względem obserwacji zmiennej losowej jest skupiony blisko maksimum, czyli jaką wariancją się cechuje.
+
+############# 2 #############
+
+Czasem F można dokładnym wzorem policzyć.
+widać podobieństwo do zwykłych ES
+
+############# 3 #############
+
+Można szukać nowych parametrów theta i badać czy są lepsze różnymi testami statystycznymi. Autor Paperu propnował  Mann-Whitney U-test. Hill-Climbing
+
+Virtual adaptation gdy powyższa metoda jest zbyt kosztowna obliczeniowo, dla pewnego zbioru próbek
+
+głównie do learning rate jak to widać na obrazku
+
+############# 4 #############
+
+p - ułamek czasu
+p*(1-p)^(i-1)
+dla i tego powtorzenia
+
+zmiana jak to tak male ze krotsze niz 
+
+############# 5 #############
+Techniki na wielowymiarowy rozkład normalny.
+
+Algorytm bardzo podobny do CMA-ES. Największą różnicą jest brak scieżek ewolucji.
+
+Updaty bardzo podobne, co ciekawe dobór meta parametrów, learning ratow do mu, sigma, B, wielkosc populacji 
+
+mu, sigma, B
+
+
+Osobny wykład można o tym zrobić. Chciałem idee pokazać
+############# 6 #############
+Pełna macierz kowarancji czasem nie można bo:
+1. obliczenia za dużo, macierzowo O(d^3)
+autor podał przykład  evolutionary treining of recurcant neutal networks (neuroevolution)
+liczba wag - d jest kwadratowa od neuronów O(n^6)
+
+2.
+macierz ma d*(d+1)/2 stopni swobody co może być niemożliwe do dobrego wyestymowania w dużych wymiarach
+
+SNES - diagonalna macierz kowarancji, d - jednowymiarowych 
+
+tu już mamy update O(d)
+
+
+JESZCZE WARIANTY BYŁY Z ROZKŁADEM CAUCHYEGO
+
+############# 7 #############
+Importance mixing is designed to recycle samples so as to reduce the
+number of required fitness evaluations.
+
+Mediana ze 100 prób na osiągnięcie acc 1e-7 UNIMODAL benchmarki (log-log jest zeby ladniej widać)
+
+markery gdzi przedwczesna zbieżność
+
+widać, że czerwony stale ze stałym współczynnikiem wszystko rozwiązuje
+
+im-as pomaga najabrdziej w sferycznej
+
+############# 8 #############
+Multi-model - czyli zależne zmienne, xNES kosi jak chce oprocz
+f21 - kombinacja 101 guasian peakow
+f22 - kombinacja 21
+im-as jeszcze wzmacnia
+
+############# 9 #############
+Cauchy mało szkodzi bo ma rzadko outliersów którzy nie wpływaja na rangi
+xNES bije CMA-ES na morde znowu
+
+############# 10 #############
+3 ostatnie są powiązane 4 pierwsze osobne
+czerwony XNES
+niebieski SNES
+odwrócone trójkąty gdzie SNES zbiegał do optimum w mniej niż 90%
