@@ -19,4 +19,4 @@ More info about our results and some plots [here](https://github.com/trytrihjyuk
 #### Results
 We got ~72% accuracy but more of our interesting conclusions and results can be found [here](https://github.com/trytrihjyuki/university/tree/master/S3/MachineLearning/project/notebooks)
 
-![image](https://github.com/trytrihjyuki/university/tree/master/S3/MachineLearning/project/notebooks/wykresik.png)
+![alt test](notebooks/wykresik.png)
