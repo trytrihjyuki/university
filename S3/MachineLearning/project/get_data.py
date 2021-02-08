@@ -121,7 +121,7 @@ class RiotApi():
         except KeyError:
             return None, None
 
-        solo_match_ids = [d['gameId'] for d in match_list if d['season'] == self.season and d['queue'] == 420]
+        solo_match_ids = [d['gameId'] for d in match_list if d['queue'] == 420]
         flex_match_ids = [d['gameId'] for d in match_list if d['season'] == self.season and d['queue'] == 440]
 
         return solo_match_ids, flex_match_ids
@@ -175,22 +175,23 @@ class RiotApi():
         print('[+] Adding new match ID\'s.\nTier: {}\nDivison:{}\n'.format(tier, division))
 
         if tier in low_elo:
-            summ_ids = self.get_summoner_ids_by_tier(tier, division, max_matches//5)
+            summ_ids = self.get_summoner_ids_by_tier(tier, division, max_matches//4)
             print('[+] Starting getting summoner\'s ID\'s from account ID\'s.\n')
             acc_ids = [self.summ_to_acc_id(Id) for Id in summ_ids]
             for acc_id in acc_ids:
                 solo_ids, flex_ids = self.get_match_ids(acc_id)
                 old = len(self.solo_ids[tier])
                 print('{}/{}    {}%\completed'.format(old, max_matches, 100*old/max_matches))
-                self.solo_ids[tier].extend(solo_ids)
-                self.solo_ids[tier] = list(set(self.solo_ids[tier]))
-                if len(self.solo_ids[tier]) == old:
+                if solo_ids is None or len(solo_ids) == 0:
                     if division == 'IV':
                         print('[-] Cannot add any new matches! Terminating with {} out of {} needed match ID\'s\n'.format(old, max_matches))
                         break
                     else:
                         print('[-] Cannot add any new matches! Changing division from {} to {}.\n'.format(division,next_division(division)))
                         division = next_division(division)
+                else:
+                    self.solo_ids[tier].extend(solo_ids)
+                    self.solo_ids[tier] = list(set(self.solo_ids[tier]))
 
                 if len(self.solo_ids[tier]) >= max_matches:
                     print('[+] We have all {} needed match ID\'s. Stop!'.format(max_matches))
@@ -225,6 +226,12 @@ class RiotApi():
 
         try:
             match_data['1_result'] = response['teams'][0]['win'] if response['teams'][0]['teamId'] == 100 else response['teams'][1]['win']
+        except  KeyError:
+            print('BAD ID: {}'.format(match_id))
+            return None
+
+        try:
+            match_data['1_firstDragon'] = response['teams'][0]['firstDragon'] if response['teams'][0]['teamId'] == 100 else response['teams'][1]['firstDragon']
         except  KeyError:
             print('BAD ID: {}'.format(match_id))
             return None
