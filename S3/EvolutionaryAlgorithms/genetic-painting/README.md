@@ -1,5 +1,7 @@
 # Evolutionary Painting
 
+![Alt Text](results/animation.gif)
+
 ### The following repository shows the results of my  work on the Evolutionary Algorithms Course Final Project
 
 A program that uses a simple genetic algorithm to create similar images using triangles.
