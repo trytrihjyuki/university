@@ -24,8 +24,11 @@ python3 main.py input_image.jpg output_image
 |-c --number-children | Number of children of each individual *Default* 50 |
 
 ## Pictures
-About 30 hours of painting:
+About 30 hours of painting (500 triangles):
+
 ![alt test](results/150k1_100.png)
-About 7 hours of painting:
+
+About 7 hours of painting (200 triangles):
+
 ![alt test](results/Lempicka70k.png)
 ![alt test](results/Matejko100k.png)
