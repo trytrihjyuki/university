@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{Bazy Danych L1}
+\date{7.03.2021}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{zad. 1}
+Zauważamy, że tylko operator $\sigma$ zmniejsza liczbę rekordów. Więc jeżeli dałoby się zapisać $\setminus$ to musimy użyć $\sigma$. Załóżmy, że istniałaby formuła na operator różnicy i używa ona porównań do $n$ elementów, wtedy dla zbiorów $A, B$ tż. $|A \setminus B| = n+1$ jednego elementu nie porównamy.
+\section{zad. 2}
+Nie jest to poprawne zapytanie, w przypadku $X=Z \neq \emptyset$ oraz $Z =\emptyset$ zapytanie zwróci pustą relację a powinno zwrócić $X = Z$, nie można go poprawić nie używając symbolu $\cup$
+\section{zad. 3}
+\subsection*{a)}
+Bary, w których ktoś bywa i podają conajmniej jeden sok.
+\subsection*{b)}
+$$\pi_{osoba, bar} \left (\sigma_{n \geq 5} G_{count_{sok}(osoba,bar)}(\Pi_{osoba,sok,bar}(P \bowtie L))\right)$$
+\subsection*{c)}
+$$
+G_{min_{cena}(osoba,sok)}(\pi_{osoba,sok,cena}B \bowtie P)
+$$
+\subsection*{d)}
+$$
+\pi_{osoba,sok,bar} \left(P \bowtie G_{min_{cena}(osoba,sok)}(\pi_{osoba,sok,cena} B \bowtie P) \right)
+$$
+\section{zad. 4}
+W innym pliku.
+\end{document}
+

@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{polski}
+
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\title{Bazy Danych L2}
+\date{16.03.2021}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+
+\section{zad. 2}
+$$
+\{z | (\exists x) S(z,x) \land (\forall b,c) \neg R(z,b,c)\}
+$$
+
+\section{zad. 3}
+\subsection*{a}
+Formuła zwraca największe elementy w kolumnie $B$ w relacji $R$
+$$\Pi_{a}(R) \setminus \Pi_{a}(\sigma_{a < a'}(R \times \rho_{a = a', b = b'}R))$$
+
+\subsection*{b}
+Formuła zwraca pary, które są w stanie pokryć całą kolumnę $C$ relacji $T$.\\\\
+\textbf{ŹLE}
+$$\Pi_{b,b'} (\rho_{b=b'} (T) \times (\Pi_{b}(T) \setminus \Pi_{b}(\sigma_{b \neq b' \land b \neq b'' \land b' \neq b''}(T \times \rho_{a = a', b = b'}T \times \rho_{a = a'', b = b''}T))))$$
+\textbf{DOBRZE}\\\\\
+W przypadku gdy $T = \emptyset$, ostatnia alternatywa jest prawdziwa i formuła zwróci różne pary \underline{zależne} od dziedziny. Nie uda się zapisać jej w algebrze relacji bo nie jest bezpieczna.
+
+\section{zad.4}
+\begin{enumerate}
+  \item Tak
+  \item Nie, nie istnieje bar \textit{perfekcyjny}, ale nie oznacza tego co chcemy.
+  \item Tak
+  \item Nie, nie musi bywać w każdym barze a sie zepsuje.
+\end{enumerate}
+\section{zad.5}
+\begin{enumerate}
+  \item Nie, nie ma warunku $b \neq b^\prime$, $\emptyset$
+  \item Nie, może w kilku bywać
+  \item Tak
+  \item Tak
+\end{enumerate}
+\section{zad.6}
+  \begin{align*}\left \{a| a \in A \land (\exists r)(r \in R \land r.pseudo = a.psuedo)  \land (\exists f)(f \in F \land f.idf = r.idf) \land \\
+  (\forall r^\prime)(r^\prime \in R r^\prime.pseudo = r.pseudo \land (\exists f^\prime)(f^\prime \in F \land f^\prime.idf = r^\prime.idf \implies f^\prime.rokProd = f.rokProd) \right \}
+  \end{align*}
+  \begin{align*}
+  \{f|f\in F \land \lnot(\exists f^\prime)(f^\prime \in F \land f.idf \neq f^\prime \land f.rezyser = f^\prime.rezyser \land f.rokProd < f^\prime.rokProd) \}
+  \end{align*}
+  \begin{align*}
+  \{{Z^{[pseudo, idf, gaza]}| (\exists r)(r \in R \wedge r.pseudo=Z.pseudo \wedge r.idf = Z.idf \wedge r.gaza = Z.gaza)}$
+${\wedge \\ \neg(\exists r')(r' \in R \wedge r.pseudo \neq r'.pseudo \wedge r.idf = r'.idf \wedge r.gaza<r'.gaza)}\}
+  \end{align*}
+  \begin{align*}
+\{{a|a \in A \wedge (\forall m_{1},m_{2})(m_{1},m_{2} \in M \land m_{1}.pseudo = a.pseudo \land m_{1}.pseudo = m_{2}.pseudo \land \\ (m_{1}.minGaza < m_{2}.minGaza \implies m_{1}.rok < m_{2}.rok))}\}
+  \end{align*}
+\end{document}
+

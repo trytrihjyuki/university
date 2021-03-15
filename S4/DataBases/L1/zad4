@@ -1,0 +1,17 @@
+(π name, year,last_name, movie_id  (σ year<1960 (ρ movie_id ←id movies ⨝ (movies_directors ⨝ ρ director_id←id (directors))))) ⨝  movies_genres
+
+
+π first_name, last_name (actors ⨝ (π id (actors) - π actor_id (σ last_name = 'Tarantino' (roles ⨝ movies_directors ⨝ ρ director_id ← id (directors)))))
+
+
+π first_name, last_name (actors ⨝  (π id (actors) - π actor_id σ actor_id = actor_id2 and movie_id ≠ movie_id2 (ρ actor_id2 ← actor_id, movie_id2 ← movie_id, role2 <- role (roles) ⨯ roles)))
+
+π name ((π movie_id (σ genre ≠ genre2 and movie_id = movie_id2  ((ρ movie_id2 <- movie_id, genre2 <- genre (σ genre = 'Drama' or genre = 'Sci-Fi' (movies_genres))) ⨯ (σ genre = 'Drama' or genre = 'Sci-Fi' (movies_genres))))) ⨝ (ρ movie_id <- id movies))
+
+movies - (π id, name, year, rank (σ rank < rank2 (movies ⨯ (ρ id2 <- id, rank2 <- rank (π id, rank (movies))))))
+
+π last_name ((ρ actor_id <- id actors) ⨝ (π actor_id (σ role = role2 and actor_id = actor_id2 and movie_id ≠ movie_id2 (roles ⨯ (ρ actor_id2 <- actor_id, movie_id2 <- movie_id, role2 <- role (roles))))))
+
+π last_name (directors - ((π director_id (σ genre = 'Horror' (movies_directors ⨝ movies_genres))) ⨝ (ρ id → director_id (directors))))
+
+π last_name ((ρ id → director_id (directors)) ⨝ (π director_id ((ρ movie_id → id (movies_directors)) ⨝ (π id (movies) - (π movie_id (σ gender = 'F' ((movies_directors ⨝ roles) ⨝ (ρ id → actor_id actors))))))))
