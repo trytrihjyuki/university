@@ -15,6 +15,7 @@
   \fi}
 \makeatother
 
+\newtheorem{lemma}{Lemat}
 \title{AiSD L2}
 \date{17.03.2021}
 \author{Maurycy Borkowski}
@@ -38,6 +39,7 @@ Sortujemy odcinki rosnąco po ich końcach.\\\\
 Bierzemy zachłannie odcinki jeżeli możemy tzn. nie nachodzą na siebie. Możemy go wziąć jeżeli początek jest większy niż koniec ostanio wziętego (ostatnio wzięty ma największy koniec w $S$, na początku je sortowaliśmy).\\\\
 Oznaczmy jako $I_0$ odcinek o najmniejszym końcu. ze wszystkich odcinków i $I_k$ odcinek o najmniejszym końcu w dowolnym rozwiązaniu optymalnym $B$. Zauważmy, że rozwiązanie $A = B \setminus \{I_k\} \cup \{I_0\}$ też jest optymalne bo dodany odcinek nie nachodzi się na żaden inny ($B$ było poprawnym rozwiązaniem i $k_0 < k_k$) oraz $|A| = |B|$.\\\\
 Argumentacje możemy indukcyjnie powtórzyć dla podproblemu ze zbiorem odcinków $I^\prime = \{j \in I: p_j \geq k_1\}$, tam ponownie pokazujemy, że zachłanne wzięcie najmniejszego (względem końca) odcinka nie zepsuje nam optymalności rozwiązania.
+\clearpage
 \section{Zadanie 3}
 \begin{python}
 M = a*b + 1
@@ -45,7 +47,94 @@ while aPb > 0:
     k = min([i if 1/i <= a/b for i in range(1,M)])
     aPb = aPb - 1/k
 \end{python}
-
-
+Nie prowadzi to do rozwiązania optymalnego, kontrprzykład $\frac{5}{121}$:\\
+Zachłannie weźmiemy:
+$$
+\frac{5}{121} = \frac{1}{25} + \frac{1}{757} + \frac{1}{763309} + \frac{1}{873\,960\,180\,913}+\frac{1}{1\,527\,612\,795\,642\,093\,418\,846\,225}
+$$
+Natomiast optymalne rozwiązanie wynosi:
+$$
+\frac{5}{121}=\frac{1}{33}+\frac{1}{121}+\frac{1}{363}
+$$
+\\\\Musimy pokazać dwie rzeczy do znajdowania rozwiązania:
+\begin{itemize}
+    \item suma ułamków wybranych przez algorytm będzie się sumowała do $\frac{a}{b}$
+    \item ułamki wybrane przez algorytm będą unikalne
+\end{itemize}
+\begin{proof}
+\subsection*{\\Sumowanie}
+Pokażemy, że licznik $\frac a b$ będzie zbiegał do $1$.\\
+Oznaczmy, przez $\frac 1 u$ ułamek zachłannie brany przez algorytm tj: 
+\begin{equation}
+\frac{1}{u-1} < \frac{a}{b} \leq \frac 1 u
+\end{equation}
+Po odjęciu go zostanie nam reszta: 
+\begin{equation}
+\frac a b - \frac 1 u = \frac{au - b}{bu},
+\end{equation}
+dalej z (1):
+\begin{equation}
+\frac 1 {u-1} < \frac a b \implies a > au - b
+\end{equation}
+Wiemy, że $a,u,b \in \mathbb{N}$ stąd wiemy, że liczniki będą zbiegały do $1$.
+\clearpage
+\setcounter{equation}{0}
+\subsection*{\\Unikalność}
+Zakładamy niewprost, że dwa razy weźmiemy jakiś ułamek $\frac 1 u$, ale
+\begin{align*}
+1 \geq \frac 1 {u-1} \iff 2 \geq 1 + \frac 1 {u-1} \iff 2 \geq  \frac{u - 1 + 1}{u-1} \\
+\iff 2 \geq \frac u {u-1} \iff \frac 2 u = \frac 1 u + \frac 1 u \geq \frac 1 {u-1} 
+\end{align*}
+otrzymujemy sprzeczność bo to oznacza, że mogliśmy odjąć $\frac 1 {u-1}$ czyli większy ułamek niż $\frac 1 u$ gdy odejmowaliśmy $\frac 1 u$ po raz pierwszy.
+\end{proof}
+\clearpage
+\section{Zadanie 4}
+\begin{lemma}
+Dowolne optymalne kolorwanie możemy sprowadzić do optymalnego kolorwania, z pokolorwanymy liściami.
+\end{lemma}
+\begin{proof}
+$K$ - dowolne optymalne kolorwanie, tż. liść $u$ nie jest pokolorwany. Niech $w$ oznacza najbliższy pokolorwany wierzchołek $u$. Zamieniamy je kolorowaniem pokażemy, że nowe kolorwanie $K^\prime$ dalej jest optymalne. Wystarczy, więc pokazać, że jest poprawne. Załóżmy niewprost, że nie jest:\\
+Istenieje ścieżka $S$ z $u$ tż. ma ponad $k$ kolorowych wierzchołków. Oznaczmy jeszcze przez $P$ ścieżkę z $u$ do $w$, tam jest tylko jeden pokolorwany wierzchołek ($w$ najbliższy kolorowy $u$). Rozważmy ścieżkę $L = S + P - (S \cap P)$. Ta ścieżka ma dokładnie tyle samo kolorowych wierzchołków z kolorwaniem $K$ jak i z $K^\prime$ (zarówno, $u$ i $w$ są w tej ścieżce). Zatem istnieje, ścieżka $L$ po kolorwaniu $K$, tż. ma ponad $k$ kolorowych wierzchołków. Sprzeczność.
+\end{proof}
+\begin{lemma}
+Dodanie dowolnych pokolorwanych liści do $G$ nie psuje optymalności w $G^\prime = G + liscie$ ($G$ z dodanymi liśćmi) z $k^\prime = k+2$.
+\end{lemma}
+\begin{proof}
+Oznaczmy przez $K$ kolorwanie optymalne w $G$, pokażemy, że \\$K^\prime = K + liscie$ jest optymalne w $G^\prime = G + liscie$ z $k^\prime = k+2$.
+\\Z Lematu 2. BSO można założyć, że optymalne kolorwanie $K^\prime$, będzie miało pokolorwane wszystkie liście).\\
+Dodanie pokolorowanych liści może zwiększyć liczbę pokolorowanych wierzchołków
+w dowolnej ścieżce o co najwyżej $2$. Jedyne nowo powstałe ścieżki to takie z conajmniej jednym \underline{nowym} wierzchołkiem na końcu. Więc każda będzie miała co najwyżej $k+2 = k^\prime$ (nowe wierzchołki są kolorowane).\\\\
+Nie możemy zwiększyć $K^\prime$ kolorując \underline{nowe} wierzchołki (kolorujemy już wszystkie), więc jeżeli $K^\prime$ nie jest optymalne, oznacza to, że możemy jeszcze pokolorwać wierzchołek w $G^\prime - liscie = G$, ale to przeczy optymalności kolorwania $K$ w $G$ z $k$.
+\end{proof}
+Czyli chcemy wziąć takie poddrzewo $\widetilde{G} \subset G$, że dodając $k \div 2$ razy (tyle możemy dodać startując od $k=0$ lub $k=1$) synów (w $G$) liści obecnego poddrzewa, otrzymamy $G$ i kolorwać za każdym razem liście obecnego poddrzewa.\\\\
+Zauważmy, że możemy to robić od końca (i tak pokolorujemy wszystkie potrzebne wierzchołki), czyli z $G$ usunąć liście, pokolorwać je itd. Na końcu jeszcze jak zostaje nam $k = 1$ kolorujemy dowolny wierzchołek z pozostałego $\widetilde{G}$ po \textit{strzyżeniu topologicznym} $G$.
+\begin{python}
+while k > 1 and G:
+    koloruj_liscie(G)
+    usun_liscie(G)
+    k-=2
+if k == 1 and G:
+    koloruj_dowolny(G)
+\end{python}
+$\mathcal{O}(n)$
+\clearpage
+\section{Zadanie 5}
+Dowód podzielimy da dwie części:
+\begin{enumerate}
+    \item W każdym momencie działania algorytmu nie będzie cyklu
+    \item Dla każdej składowej będzie MST
+\end{enumerate}
+\begin{proof}
+\section*{\\Brak cyklu}
+Załóżmy niewprost, że podczas działania  algorytmu, w jakiejś  spójnej składowej,  powstał cykl $C$. Oznacza to, że powstał on na skutek połączenia $n$ (super) wierzchołków $v_0, v_1, \dots v_n$ będącymi kolejnymi wierzchołkami w $C$. Niech $e_0, e_1, \dots  e_n$ będą kolejnymi krawędziami takimi, że $e_k$ łączy $v_k$ i $v_{k+1\ mod\ n+1}$. Z tego jak działa algorytm wynika, że 
+$$Cost(e_0) < Cost(e_1) < \ldots < Cost(e_n) < Cost(e_0)$$ sprzeczność
+\section*{Minimalność}
+Załóżmy, nie wprost, że w algorytmie dodajemy krawędź $e$ łącząc super wierzchołki $V, W$ i $e$ psuje minimalność.\\
+Wtedy jeżeli do rozwiązania optymalnego dodamy $e$ otrzymamy cykl $C$. Na tym cyklu leży conajmniej jedna krawędź $e^\prime$ (różna od $e$) łącząca pewne wierzchołki z $V$ i $W$ (inaczej $OPT$ nie byłby spójny). Rozpatrzmy przypadki:
+\begin{itemize}
+    \item $Cost(e) < Cost(e^\prime)$ \\ Sprzecznosć. $OPT$ nie jest $OPT$-em.
+    \item $Cost(e) > Cost(e^\prime)$ \\ Sprzeczność. Zgodnie z działaniem algorytmu powinniśmy wziąć krawędź $e^\prime$ jako minimalną między $V$ i $W$,
+\end{itemize}
+\end{proof}
 \end{document}
 
