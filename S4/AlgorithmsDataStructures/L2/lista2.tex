@@ -16,6 +16,8 @@
 \makeatother
 
 \newtheorem{lemma}{Lemat}
+\newtheorem{theorem}{Twierdzenie}
+
 \title{AiSD L2}
 \date{17.03.2021}
 \author{Maurycy Borkowski}
@@ -129,12 +131,213 @@ Dowód podzielimy da dwie części:
 Załóżmy niewprost, że podczas działania  algorytmu, w jakiejś  spójnej składowej,  powstał cykl $C$. Oznacza to, że powstał on na skutek połączenia $n$ (super) wierzchołków $v_0, v_1, \dots v_n$ będącymi kolejnymi wierzchołkami w $C$. Niech $e_0, e_1, \dots  e_n$ będą kolejnymi krawędziami takimi, że $e_k$ łączy $v_k$ i $v_{k+1\ mod\ n+1}$. Z tego jak działa algorytm wynika, że 
 $$Cost(e_0) < Cost(e_1) < \ldots < Cost(e_n) < Cost(e_0)$$ sprzeczność
 \section*{Minimalność}
-Załóżmy, nie wprost, że w algorytmie dodajemy krawędź $e$ łącząc super wierzchołki $V, W$ i $e$ psuje minimalność.\\
+Załóżmy, nie wprost, że w algorytmie dodajemy krawędź $e$ łącząc super wierzchołki $V, W$ i $e$ psuje minimalność (już w wynikowym MST).\\
 Wtedy jeżeli do rozwiązania optymalnego dodamy $e$ otrzymamy cykl $C$. Na tym cyklu leży conajmniej jedna krawędź $e^\prime$ (różna od $e$) łącząca pewne wierzchołki z $V$ i $W$ (inaczej $OPT$ nie byłby spójny). Rozpatrzmy przypadki:
 \begin{itemize}
     \item $Cost(e) < Cost(e^\prime)$ \\ Sprzecznosć. $OPT$ nie jest $OPT$-em.
     \item $Cost(e) > Cost(e^\prime)$ \\ Sprzeczność. Zgodnie z działaniem algorytmu powinniśmy wziąć krawędź $e^\prime$ jako minimalną między $V$ i $W$,
 \end{itemize}
+\end{proof}
+\clearpage
+\setcounter{lemma}{0}
+\section{Zadanie 6}
+\begin{lemma}
+$C$ - dowolny cykl, $e$ - dowolna krawędź w $C$. Jeżeli $c(e) = \max_{\bar{e} \in C} c(\bar{e})$ to $e$ nie należy do żadnego MST.
+\end{lemma}
+\begin{proof}
+Załóżmy, że tak nie jest. Usuńmy $e$ z MST, nasze drzewo spinające zostało podzielone na dwie składowe $T_1$ i $T_2$. Skoro $e$ leży na cyklu $C$ to istnieje takie $e^\prime$, że łączy ono $T_1, T_2$. Sprzeczność z minimalnością MST. Możemy zbudować \textit{lepsze} drzewo spinające używając $e^\prime$ zamiast $e$ \\bo $c(e) = \max_{\bar{e} \in C} c(\bar{e}) > c(e^\prime)$
+\end{proof}
+Z lematu wystarczy, że sprawdzimy czy zadana krawędź jest krawędzią o maxymalnym koszcie w pewnym cyklu.\\\\
+Możemy to zrobić w czasie $\mathcal{O}(n + m)$ idąc algorytmem BFS po grafie $G \setminus \{e\}$ od $u$ ($e = \{u,v\}$) przy czym wchodzimy do jakiegoś wierzchołka tylko wtedy gdy krawędź do niego ma mniejszy koszt niż $e$. Jeżeli będziemy w stanie dojść do $v$ to znaczy, że istniała ścieżka pomiędzy tymi wierzchołkami nie używająca $e$ więc z $e$ powstanie cykl. Dodatkowo, rozpatrywaliśmy tylko krawędzie o mniejszym koszcie więc $e$ ma maksymalny koszt na tym cyklu, więc na pewno nie ma jej w żadnym MST.\\
+Jeżeli nie znajdziemy ścieżki łączącej $u$ z $v$ idąc tym zmodyfikowanym BFS'em to znaczy, że nie ma cyklu, gdzie $e$ byłaby maksymalną krawędzią.\\\\
+Usuwając z grafu krawędzię będące maksymalnymi w swoich cyklach otrzymamy w końcu MST.
+\begin{python}
+q = [u]
+visited = [False] * n
+while q:
+    w = q.pop()
+    if w == v:
+        return False
+    visited[w] = True
+    for (wp,c) in G[w]:
+        if !visited[wp] and c < e.c:
+            visited[wp] = True
+            q.add(wp)
+return True
+\end{python}
+\clearpage
+\section{Zadanie 7}
+Podzielmy zbiór zadań na: $S_1 = \{i: A_i < B_i\}$ i $S_2 = \{i: A_i \geq B_i\}$.\\ Posortujmy $S_1$ rosnąco po $A_i$ a $S_2$ malejąco o $B_i$. Odpowiedź $S_1 \cup S_2$.
+\begin{proof}
+Weźmy dowolne rozwiązanie optymalne $S$ jeżeli $S$ nie jest \textit{powyższej} postaci to musi być spełniony jeden z przypadków dla dwóch kolejnych zadań $i,j$ w $S$:
+\begin{enumerate}
+    \item $j \in S_2 \land i \in S_1$
+    \item $i,j \in S_1 \land A_j > A_i$
+    \item $i,j \in S_2 \land B_j < B_i$
+\end{enumerate}
+Pokażemy, że w każdym z tych przypadków zmiana zadań $i,j$ da nam rozwiązanie niegorsze niż $S$. Oznaczenia:\\
+\includegraphics[scale=0.5]{zad7}
+$S^\prime$ - $S$ z zamienionymi zadaniami $i,j$\\
+$b_{1}$ - zakończenie poprzedniego (przed $i$) zadania w $S$\\
+$b_{1}^\prime$ - zakończenie poprzedniego (przed $j$) zadania w $S^\prime$\\
+$b_{2}$ - zakończenie obu zadań w $S$\\
+$b_{2}^\prime$ - zakończenie obu zadań w $S^\prime$\\\\
+$\alpha = \max(b_1, (A_j + a_1))$ rozpoczęcie pierwszego zadania $b$ w $S$\\
+$\beta = \max(a_2, (B_j + \alpha))$ rozpoczęcie drugiego zadania $b$ w $S$\\
+$b_2 = B_i + \beta = \max(a_1+A_j+A_i+B_i, B_j + B_i +b_1, B_j+B_i +A_j+a_1)$\\
+$\gamma = \max(b_1,(A_i+a_1))$ rozpoczęcie pierwszego zadania $b$ w $S^\prime$\\
+$\delta = \max(a_2,(B_i+\gamma))$ rozpoczęcie drugiego zadania $b$ w $S^\prime$\\
+$b_2^\prime = B_j + \delta = \max(a_1+A_j+A_i+B_j, B_j + B_i +b_1, B_j+B_i +A_i+a_1)$\\
+\clearpage
+\begin{enumerate}
+    \item $j \in S_2 \land i \in S_1 \implies A_j \geq B_j \land A_i < B_i$:
+    $$
+    \overbrace{a_1 + A_j + A_i + B_i}^{1. \quad w \quad b_2} \geq \underbrace{B_i + B_j + A_i + a_1}_{3. \quad w \quad b_2^\prime}
+    $$
+    $$
+    \overbrace{B_j + B_i + A_j + a_1}^{3. \quad w \quad b_2} \geq \underbrace{a_1 + A_j + A_i + B_j}_{1. \quad w \quad b_2^\prime}
+    $$
+    \item $i,j \in S_1 \land A_j > A_i \implies A_j > A_i \land A_i < B_i$
+    $$
+    \overbrace{B_j + B_i + A_j + a_1}^{3. \quad w \quad b_2} > \underbrace{B_i + B_j + A_i + a_1}_{3. \quad w \quad b_2^\prime}
+    $$
+    $$
+    \overbrace{B_j + B_i + A_j + a_1}^{3. \quad w \quad b_2} > \underbrace{a_1 + A_j + A_i + B_j}_{1. \quad w \quad b_2^\prime}
+    $$
+    \item $i,j \in S_2 \land B_j < B_i \implies A_j \geq B_j \land B_j < B_i$
+    $$
+    \overbrace{a_1 + A_j + A_i + B_i}^{1. \quad w \quad b_2} \geq \underbrace{B_i + B_j + A_i + a_1}_{3. \quad w \quad b_2^\prime}
+    $$
+    $$
+    \overbrace{a_1 + A_j + A_i + B_i}^{1. \quad w \quad b_2} > \underbrace{a_1 + A_j + A_i + B_j}_{1. \quad w \quad b_2^\prime}
+    $$
+\end{enumerate}
+W każdym przypadku mamy: $b_2 \geq b_2^\prime$. Zmiana nie pogarsza rozwiązania.
+\end{proof}
+\href{https://personal.utdallas.edu/~chandra/documents/6363/lec7.pdf}{źródło}
+\clearpage
+\setcounter{lemma}{0}
+\section{Zadanie 8}
+\begin{lemma}
+Jeżeli strategi zachłanna nie zwraca OPT'a to najmniejszy kontrprzykład $x$ jest w przedziale:
+$$
+b + 1 < x < a + b
+$$
+\end{lemma}
+\begin{proof}
+\subsection*{\\$b+1 < x$}
+Rozważmy przypadki:
+\begin{enumerate}
+    \item $x < b$ \quad\quad\quad\quad dobieramy jak OPT, same $a$ z $1$ lub same $1$.
+    \item $x = b \quad(+ 1)\quad $ dobieramy jak OPT, tylko $b$ (z $1$)
+\end{enumerate}
+\subsection*{\\$x < a + b$}
+Weźmy dowolny $x \geq a + b$ i załóżmy, że $\forall_{y < x}OPT(y) = GRD(y)$:
+\begin{enumerate}
+    \item $b$ jest w OPT \quad $OPT(x) = OPT(x-b) + 1 = GRD(x-b) + 1 = GRD(x)$
+    \item $a$ jest w OPT \quad \begin{align*}GRD(x) = GRD(x-b)+1 =  OPT(x-b) + 1 \leq OPT(x-b-a) + 2 &=\\ GRD(x-b-a) +2  = GRD(x-a) + 1  = GRD(x)\end{align*}
+    \item $1$ jest w OPT \quad \begin{align*}GRD(x) = GRD(x-b) +1 =OPT(x-b) + 1 \leq OPT(x-b-1) + 2 &=\\ GRD(x-b-1) +2  = GRD(x-1) + 1  = OPT(x-1) + 1 = OPT(x) \leq GRD(x)\end{align*}
+\end{enumerate}
+Z dowolności wyboru $x$ pokazaliśmy, że jeżeli istnieje kontrprzykład to musi też istnieć kontrprzykład $< a+b$
+\end{proof}
+\clearpage
+\begin{theorem}
+Strategia zachłanna z nominałami $\{1,a,b\}$ nie zwraca OPT'a wtedy i tylko wtedy gdy:
+$$
+0 < r < a - q
+$$
+gdzie: $b = qa + r$ oraz $r \in [0,a-1]$
+\end{theorem}
+\begin{proof}
+\subsection*{\\$(\implies)$}
+Niech $x$ będzie najmniejszym kontrprzykładem (zakładamy, że zachłan nie zwraca OPT'a). Z lematu 1. wiemy, że $x \in [b+2, a+b-1]$. BSO (z dokładnością do jedynek, gdzie różnią się rozwiązania) GRD = $(e,0,1)$ OPT = $(0,k,0)$ \\oczywiście $e \in [2, a-1]$, dalej przyrównujemy rozkłady $x$:
+$$
+x = b + e = k\cdot a
+$$
+$$
+b = k\cdot a - e = \underbrace{(k-1)}_q\cdot a + \underbrace{(a-e)}_r
+$$
+z powyższych rozważan:
+$$
+r = a - e \geq a - (a-1) =1 > 0
+$$
+założyliśmy, że zachłan zwraca gorszy wynik więc $\underbrace{e + 1}_{GRD} > \overbrace{k}_{OPT} \implies e > k-1$:
+$$
+a - q = a - (k-1) > a - e = r
+$$
+
+
+\subsection*{\\$(\impliedby)$}
+Rozważmy $x=a+b-1$, zachłan zwróci $(a-1,0,1)$, ale $$x = a + \underbrace{qa + r}_b - 1 =(q+1)\cdot a + (r-1)$$ czyli $x = (r-1,q+1,0)$, stąd OPT $\leq r-1 + q+1 = r+q$\\Z założenia:
+$$
+0 < r < a - q \implies r + q < a
+$$
+wobec powyższego, zachłan zwróci rozwiązanie gorsze od OPT'a:
+$$
+OPT \leq r + q < a = a - 1 + 1 = GRD
+$$
+\end{proof}
+\begin{python}
+r = b%a
+q = (b-r)/a
+return not (0 < r and r < a-q)
+\end{python}
+\clearpage
+\setcounter{lemma}{0}
+\section{Zadanie 9}
+\begin{python}
+q = priority_queue() # minimow
+for w in W:
+    q.push(Node(w,(NULL,NULL)))
+while q.size() >= 2:
+    u = q.pop()
+    v = q.pop()
+    q.push(Node(u.w+v.w,(u,v))) # (waga,(dzieci))
+return q.pop() # root
+\end{python}
+\begin{lemma}
+Niech $w,w^\prime$ najmniejsze wagi z $\{w_1,\ldots,w_n\}$. Istnieje optymalne drzewo $T$ tż. liście o wagach $w,w^\prime$, mają wspólnego rodzica.
+\end{lemma}
+\begin{proof}
+Oczywiście wierzchołek o maksymalnej głębokości ma \textit{brata} w OPT $T$, w przeciwnym przypadku możemy go \textit{przechnąć} w górę i tym zmniejszymy zewnętrzną długość drzewa.\\
+Rozważmy drzewo $T^\prime$, z zamienionymi maksymalnie głębokimi $u,v$ liśćmi z minimalnymi wagami $V_{w}, V_{w^\prime}$.\\
+\begin{align*}
+EL(T) - EL(T^\prime) \geq c(V_w)d_T(V_w) + c(u)d_T(u) - c(V_w)d_T(u) - c(u)d_T(V_w) =\\
+ c(V_{w})\cdot (d_T(V_w) - d_T(u)) + c(u)\cdot (d_T(u) - d_T(V_w)) = \\ \underbrace{(c(u) - c(V_w))}_{\geq 0} \cdot \underbrace{(d_T(u) - d_T(V_w))}_{\geq 0} \geq 0
+\end{align*}
+Analogicznie dla drugiej pary zmienianych ze sobą wierzchołków $v,V_{w^\prime}$
+\end{proof}
+\begin{proof}
+\clearpage
+\subsection*{Poprawność}
+\subsection*{Baza}
+Dla $n \in \{1,2\}$ OK
+\subsection*{Krok}
+Załóżmy, że dla $n$ algorytm zwraca optymalne drzewo $T$. Dla $n+1$:\\
+$w,w^\prime$, najmniejsze wagi z $W$, $|W| = n+1$, $W^\prime = W \setminus\{w,w^\prime\} \cup \{w+w^\prime\}$\\\\
+$P$ - drzewo zwrócone przez algorytm dla danych wejściowych $W$\\
+$P^\prime$ - drzewo zwrócone przez algorytm dla danych wejściowych $W^\prime$ (z założenia indukcyjnego, $P^\prime$ = OPT)\\
+Pokażemy, że $P$ też jest optymalne:\\\\
+Oznaczmy $T$ jako drzewo optymalne dla wejścia $W$, z lematu 1. BSO zakładamy, że $V_w,V_{w^\prime}$ są najniższymi liśćmi i \textit{braćmi}. Usuńmy zatem $V_w,V_{w^\prime}$ z $T$ i za wagę ich ojca ustawmy $w+w^\prime$. Otrzymamy drzewo $T^\prime$ z wagami liści równymi zbiorowi $W^\prime$. Oczywiście $EL(T^\prime) \geq EL(P^\prime)$ ($P^\prime$ to OPT).\\
+Pamiętamy jeszcze $d(V_w) = d(V_{w^\prime})$ bo to \textit{bracia}, zatem:
+$$
+EL(T) = EL(T^\prime) - (d(V_w)-1)(c(V_w) + c(V_{w^\prime})) + d(V_w)(c(V_w) + c(V_{w^\prime}))
+$$
+$$
+EL(P) = EL(P^\prime) - (d(V_w)-1)(c(V_w) + c(V_{w^\prime})) + d(V_w)(c(V_w) + c(V_{w^\prime}))
+$$
+Dalej:
+$$
+EL(T^\prime) - EL(T) = EL(P^\prime) - EL(P)
+$$
+$$
+EL(T^\prime) -EL(P^\prime) = EL(T) - EL(P)
+$$
+wnioskujemy:
+$$
+EL(T) \geq EL(P)
+$$
+Stąd $P$ - OPT bo $T$ było OPT'em.
 \end{proof}
 \end{document}
 
