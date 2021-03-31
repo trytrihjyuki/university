@@ -3,7 +3,7 @@
 \usepackage{polski}
 \usepackage{pythonhighlight}
 
-\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref,soul}
 \newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
 
 
@@ -169,7 +169,7 @@ return True
 \section{Zadanie 7}
 Podzielmy zbiór zadań na: $S_1 = \{i: A_i < B_i\}$ i $S_2 = \{i: A_i \geq B_i\}$.\\ Posortujmy $S_1$ rosnąco po $A_i$ a $S_2$ malejąco o $B_i$. Odpowiedź $S_1 \cup S_2$.
 \begin{proof}
-Weźmy dowolne rozwiązanie optymalne $S$ jeżeli $S$ nie jest \textit{powyższej} postaci to musi być spełniony jeden z przypadków dla dwóch kolejnych zadań $i,j$ w $S$:
+Weźmy dowolne rozwiązanie optymalne $S$ jeżeli $S$ nie jest \textit{powyższej} postaci to musi być spełniony jeden z przypadków dla dwóch kolejnych zadań $i,j$ w $S$.\\\textbf{Możemy iterować się po kolei od $1$ do $n-1$ i sprawdzać czy para kolejnych zadań spełnia warunek konieczny bycia w $S$. Taka para nie znajdzie się w $S$ tylko wtedy gdy spełniony jeden z poniższych warunków. Jeżeli nie znajdziemy, żadnej takiej pary dla kolejnych zadań to $S$ jest powyższej postaci.}:
 \begin{enumerate}
     \item $j \in S_2 \land i \in S_1$
     \item $i,j \in S_1 \land A_j > A_i$
@@ -296,7 +296,7 @@ while q.size() >= 2:
 return q.pop() # root
 \end{python}
 \begin{lemma}
-Niech $w,w^\prime$ najmniejsze wagi z $\{w_1,\ldots,w_n\}$. Istnieje optymalne drzewo $T$ tż. liście o wagach $w,w^\prime$, mają wspólnego rodzica.
+Niech $w,w^\prime$ najmniejsze wagi z $\{w_1,\ldots,w_n\}$. Istnieje optymalne drzewo $T$ tż. liście o wagach $w,w^\prime$, mają wspólnego rodzica i są najgłębiej.
 \end{lemma}
 \begin{proof}
 Oczywiście wierzchołek o maksymalnej głębokości ma \textit{brata} w OPT $T$, w przeciwnym przypadku możemy go \textit{przechnąć} w górę i tym zmniejszymy zewnętrzną długość drzewa.\\

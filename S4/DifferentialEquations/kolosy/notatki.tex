@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{polski}
+\usepackage{pythonhighlight}
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref,soul}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\newtheorem{lemma}{Lemat}
+\newtheorem{theorem}{Twierdzenie}
+
+\begin{document}
+\subsection*{Rozdzielone zmienne}
+$$
+y^\prime(t) = f(t)g(y)
+$$
+dzielimy przez $g$ i całkujemy (rozdzielamy $y,t$):
+$$
+\int_{y(t_0)}^{y(t)}\frac{1}{g(z)}dz = \int_{t_0}^t f(s)ds
+$$
+\subsection*{Liniowe I-szego rzędu}
+$$
+y^\prime(t) + p(t)y(t) = q(t)
+$$
+$q(t) = 0$ to jednorodne\\
+mnożymy przez czynnik całkujący $e^{P(t)}$ i zwija się do pochodnej:
+$$
+\left( y(t)e^{P(t)}\right)^\prime = q(t)e^{P(t)} \quad \text{(lub zero)}
+$$
+$$
+y(t) = e^{-P(t)} \left (\int_{t_0}^t q(s)e^{P(s)}ds + y_0e^{P(t_0)}\right)
+$$
+\subsection*{Równanie zupełne}
+$$
+M(t,y) + N(t,y)y^\prime = 0
+$$
+tż. $\frac{\partial}{\partial y}M(t,y) = \frac{\partial}{\partial t} N(t,y)$ można zapisać alternatywnie z $y^\prime = \frac{dy}{dt}$\\
+Szukamy różniczki zupełnej $\varphi$:
+$$M(t,y) = \frac{\partial}{\partial t} \varphi(t,y)$$
+$$N(t,y) = \frac{\partial}{\partial y} \varphi(t,y)$$
+Z jednego całkujemy ($\varphi(t,y) = \int M(t,y)\textbf{dt}$) zamiast stałej ($h(y)$) i liczymy $\varphi$ do drugiego podstawiamy, różniczkujemy i mamy stałą  ($h(y)$) z $N$
+$$\frac{\frac{\partial M}{\partial y} - \frac{\partial N}{\partial t}}{N} = \phi(t)$$
+Jeżeli powyższe gówno jest zależne tylko od $t$ to $e^{\int \phi(t)}$ jest czynnikiem całkującym (uzupełnia do zupełnego). Jak poniższe gówno od tylko $y$ to $e^{\int \psi(y)}$:
+$$\frac{\frac{\partial N}{\partial t} - \frac{\partial M}{\partial y}}{M} = \psi(y)$$
+Inne dziwne gówna:
+\begin{enumerate}
+\item Bernoulliego $\frac{dy}{dt} + p(t)y(t) = q(t)+y^m(t)$. 
+Mnożymy przez $(1-m)y^{-m}$ podstawiamy $z(t) = y^{1-m}(t)$ i mamy liniowe niejednorodne
+\item Riccatiego $\frac{dy}{dt} + p(t)y(t) + q(t)y^2(t) = f(t)$
+\end{enumerate}
+\clearpage
+\begin{enumerate}
+    \item Malthus: $P^\prime(t) = aP(t) \rightarrow P(t)=P_0e^{a(t-t_0)}$ w chuj 
+    \item Von Foerstera: $P^\prime(t) = aP^2(t) \rightarrow P(t)=P_0\frac{a}{1-aP_0t}$ w chuj ale w $T_{ks}$
+    \item Benjamina Gompertza $P^\prime(t) = \lambda e^{\alpha t}P(t) \rightarrow P(t)=P_0e^{-\frac{\lambda}{\alpha}(1-e^{\alpha(t-t_0)})}$
+    \item Verhalust $P(t)^\prime = bP(t)\left(\frac{a}{b} - P(t)\right)$ pochodna zmienia znak jak duzo $P$
+    \item Ciało: $T^\prime(t) = k(T(t) - T_o) \land T(0) = T_0 \rightarrow T(t) = T_o + (T_0-T_o)e^{-kt}$ liniowe niejednordone, $o \neq 0$
+\end{enumerate}
+\subsection*{Peano - istnienie}
+$y^\prime = f(t,y)$ ciągła na prostokącie: $R = \{(t,y); t_0 \leq t \leq t_0 +a, |y-y_0| \leq b\}$\\
+$M = \max_{(t,y) \in R}|f(t,y)| \quad \alpha = \min \left\{a,\frac{b}{M}\right\}$ \\
+istnieje \textbf{conajmniej} jedno rozwiąznie na $[t_0,t_0+\alpha]$
+\subsection*{Picard-Lindelof - jedyność}
+$y^\prime = f(t,y)$ i $\frac{\partial}{\partial y} f(t,y)$ ciągła na prostokącie:\\
+$R = \{(t,y); t_0 \leq t \leq t_0 +a, |y-y_0| \leq b\}$ tak samo $M,\alpha$\\
+istnieje \textbf{dokładnie} jedno rozwiąznie na $[t_0,t_0+\alpha]$ chcemy mieć, że $\alpha$ to dowolna zmienna, wtedy mamy $[t_0,\infty]$
+\subsection*{Iteracja Picarda}
+\begin{align*}
+y_0(t) = y_0\\
+y_1(t) = y_0 + \int_{t_0}^t f(s,y_0(s))ds\\
+\vdots\\
+y_{n+1}(t) = y_0 + \int_{t_0}^t f(s,y_n(s))ds\\
+\end{align*}
+$y_n$ w granicy to rozwiązanie
+\subsection*{Lemat Gronwalla}
+$U(t)$ nieujemna funkcja:
+$$
+u(t) \leq a+ b\int_{t_0}^t u(s)ds
+$$
+dla $a,b \geq 0$, wtedy:
+$$
+u(t) \leq ae^{b(t-t_0)}
+$$
+\end{document}
