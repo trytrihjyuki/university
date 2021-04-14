@@ -3,7 +3,7 @@
 \usepackage{polski}
 \usepackage{pythonhighlight}
 
-\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref}
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref,pdfpages}
 \newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
 
 
@@ -105,6 +105,162 @@ def solve(G):
         ans += getAns(red[i],red[j])
 
 dodaj_czarne(G)
+\end{python}
+\includepdf[page={1}]{L3Z05}
+\clearpage
+\subsection*{Zadanie 7.}
+\subsection*{a)}
+Zauważmy, że tak zadana macierz ma tylko $2n-1$ różnych elementów i wszystkie zanjdują się w pierwszej kolumnie i pierwszym wierszu (tam zaczyna się każda przekątna). Możemy więc macierz reprezentować jako wektor o rozmiarze \\$2n-1$ dodawanie dwóch macierzy możemy realizować przez dodawanie wektorów (przekątnę sie dodają). Stąd możemy je dodawać w $\mathcal{O}(n)$.
+\subsection*{b)}
+\textbf{Kluczowa obserwacja!}
+Jeżeli $2 \mid n$ to macierz Teoplitz'a $A$ możemy zapiać:
+\begin{align*}
+A =
+\begin{pmatrix}
+\textbf{M} & N\\
+P & \textbf{M}\\
+\end{pmatrix}
+\end{align*}
+Gdzie każda z macierzy $M,N,P$ jest rozmiaru $\frac n 2 \times \frac n 2$.\\
+Teraz gdy chcemy ją pomnożyć przez wektor
+$v =
+\begin{bmatrix}
+u\\
+w\\
+\end{bmatrix}
+$ gdzie $u,w$ to  odpowowiednio pierwsze i drugie $\frac n 2$ elementów wektora $v$. Dalej:
+\begin{align*}
+Av =
+\begin{pmatrix}
+\textbf{M} & N\\
+P & \textbf{M}\\
+\end{pmatrix} \cdot
+\begin{bmatrix}
+u\\
+w\\
+\end{bmatrix}
+=
+\begin{pmatrix}
+Mu + Nw\\
+Pu + Mw\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+Mu + Nw + Mw - Mw\\
+Pu + Mw + Mu - Mu\\
+\end{pmatrix}\\
+=
+\begin{pmatrix}
+\textbf{M(u+w)} + (N - M)w\\
+\textbf{M(w+u)} + (P-M)u\\
+\end{pmatrix}
+\end{align*}
+Widzimy więc, że możemy uzyskać wynik wykonując 3 mnożenia (macierz$\cdot$wektor) i 4 dodawania wektorów ($N,P,M$ możemy reprezentować jako wektor z \textbf{a})\\\\
+W przypadku gdy $2 \nmid n$ musimy trochę pokombinować, żeby znaleźć \textit{te same} fragmenty macierzy $A$.\\
+Okazuje się, że wystarczy podzielić macierz na środkową kolumną i środkowym wierszem:
+\begin{align*}
+A =
+\begin{pmatrix}
+\textbf{M} & d_1 & N\\
+& d_2^T &\\
+P & d_3 & \textbf{M}\\
+\end{pmatrix}
+\end{align*}
+Wtedy mnożenie ma postać:
+\begin{align*}
+Av =
+\begin{pmatrix}
+\textbf{M} & d_1 & N\\
+& d_2^T &\\
+P & d_3 & \textbf{M}\\
+\end{pmatrix} \cdot
+\begin{bmatrix}
+u\\
+x\\
+w\\
+\end{bmatrix} =
+\begin{pmatrix}
+Mu + d_1x + Nw\\
+d_2^T(u+x+w)\\
+Pu + d_3x + Mw\\
+\end{pmatrix}
+=\\
+\begin{pmatrix}
+Mu + d_1x + Nw + Mw - Mu\\
+d_2^Tv\\
+Pu + d_3x + Mw + Mu - Mu\\
+\end{pmatrix}=
+\begin{pmatrix}
+\textbf{M(u+w)} + d_1x + (N-M)w\\
+d_2^Tv\\
+u(P-M) + d_3x + \textbf{M(w+u)}\\
+\end{pmatrix}
+\end{align*}
+W tym przypadku wykonujemy 3 mnożenia (macierz$\cdot$wektor), 3 dodawania wektorów i jeden iloczyn skalarny.\\
+\clearpage
+Stąd:
+$$
+T(n)=
+\begin{cases}
+1 & \text{gdy $n=1$}\\
+\frac{n}{2} + 2\cdot(2\cdot\frac{n}{2}-1) + 2\cdot\frac{n}{2} + 3T(\frac n 2) = O(n) + 3T(\frac n 2)& \text{gdy $2\mid n$}\\
+\frac{n-1}{2} + 2\cdot(2\cdot\frac{n-1}{2}-1) + 4\cdot(\frac{n-1}{2})+ 3T(\frac {n-1} 2) = O(n) + 3T(\frac {n-1} 2)& \text{gdy $2\nmid n$}\\
+\end{cases}
+$$
+Stąd:
+$$
+T(n) = \Theta(n^{\log_2{3}}) \approx \Theta(n^{1.58})
+$$
+\clearpage
+\subsection*{Zadanie. 8}
+Możemy założyć, że w $A$ wszytskie liczby są różne. Możemy patrzeć tak przy porównywaniu: $T_{i,j}, T_{m,n}$:
+$$
+T_{i,j} < T_{m,n} \rightarrow i < m \rightarrow j < n
+$$
+\textbf{*} Zauważmy, że warunkiem wystarczającym na bycie medianą, jest bycię liczbą, która jest większa od $k\cdot\frac{n}{2}$ pozostałych elementów. (w nowym porządku)\\\\
+Zakładamy, że rozwiązanie znajduje się na $i$-tej liście, możemy szukać konkretnego rozwiązania na tej liście używając binsearch'a.\\Liczba elementów mniejszych od $T_{i,k}$ jest większa od liczby elementów mniejszych od $T_{i,j}$ dla $k>j$. (Liczba elementów mniejszych zwiększa się z indeksem w każdej z tablic)\\\\
+Teraz mając konkretnego kandydata na medianę, chcemy sprawdzić czy jest on nią, tj. czy spełnia \textbf{*}, policzyć od elementów . Możemy to też zrobić binsearch'em, w każdej z $k$ list szukając od ilu elementów nasz kandydat jest większy.
+Jeżeli za mało przesuwamy się w \textit{prawo} a jak za dużo to w \textit{lewo}.\\\\
+Sprawdzamy czy jest kandydat w każdej z $k$ list, szukanie w niej kandydata trwa $\log{n}$ sprawdzenie czy dana liczba jest medianą trwa $k\cdot \log{n}$ (w każdej tablicy binsearch). Stąd $\mathcal{O}(k^2\log^2{n})$
+\clearpage
+\begin{python}
+# zakladamy juz nowy porzadek
+Ts = [] # tablica tablic
+n = len(Ts[0])
+
+def getSmaller(elm, T):
+    l = 0
+    r = n-1
+    while l < r:
+        mid = (l+r)//2
+        if T[mid] < elm:
+            l = mid
+        else:
+            r = mid - 1
+    return l
+
+def checkCandidate(elm):
+    smaller = 0
+    for T in Ts:
+        smaller+=getSmaller(elm, T)
+    if smaller < n//2:
+        return -1
+    if smaller > n//2:
+        return 1
+    return 0
+
+
+for i in range(k):
+    l = 0
+    r = n-1
+    while l < r:
+        mid = (l+r)//2
+        if checkCandidate(Ts[mid]) == 1:
+            r = mid - 1
+        if checkCandidate(Ts[mid]) == -1:
+            l = mid + 1
+        if checkCandidate(Ts[mid]) == 0:
+            return mid
 \end{python}
 \end{document}
 
