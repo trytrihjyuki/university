@@ -1,0 +1,64 @@
+-- 92, GIST, range_ops, =       -- Maurycy Borkowski, 317057
+Indeks GIST to rozszerzone B-drzewo, mamy więcej możliwości porównań niż: <,>,=. Dobrze działa dla danych które możemy podzielić na nienakładające się siebie obszary.
+
+Operatory range_ops działają na danych przedziałowych, czasowych, liczbowych (int/float).
+
+
+ZAPYTANIA:
+-- tworzymy bazę
+CREATE TABLE intervals(id int, interval int4range);
+
+-- wypełniamy ją losowo zerami
+INSERT INTO intervals SELECT generate_series(1,1000000) AS id, int4range((random()*1000)::int, 1000 + (random()*1000)::int) AS interval;
+
+-- P1
+EXPLAIN ANALYZE SELECT * FROM intervals WHERE interval = int4range(123,1234);
+-- P2
+EXPLAIN ANALYZE SELECT * FROM intervals WHERE interval = int4range(240,1273);
+
+-- Zakładanie indexów
+CREATE INDEX range_ops ON intervals USING gist(interval);
+
+
+
+BEZ INDEKSÓW:
+
+@@@@@@@@@@@@ P1 @@@@@@@@@@@@
+ Gather  (cost=1000.00..12578.43 rows=1 width=18) (actual time=25.855..44.744 rows=2 loops=1)
+   Workers Planned: 2
+   Workers Launched: 2
+   ->  Parallel Seq Scan on intervals  (cost=0.00..11578.33 rows=1 width=18) (actual time=32.702..37.990 rows=1 loops=3)
+         Filter: ("interval" = '[123,1234)'::int4range)
+         Rows Removed by Filter: 333333
+ Planning Time: 0.106 ms
+ Execution Time: 44.770 ms
+(8 rows)
+
+@@@@@@@@@@@@ P2 @@@@@@@@@@@@
+ Gather  (cost=1000.00..12578.43 rows=1 width=18) (actual time=47.142..49.275 rows=1 loops=1)
+   Workers Planned: 2
+   Workers Launched: 2
+   ->  Parallel Seq Scan on intervals  (cost=0.00..11578.33 rows=1 width=18) (actual time=44.715..45.534 rows=0 loops=3)
+         Filter: ("interval" = '[240,1273)'::int4range)
+         Rows Removed by Filter: 333333
+ Planning Time: 0.036 ms
+ Execution Time: 49.301 ms
+
+Z INDEKSAMI:
+
+@@@@@@@@@@@@ P1 @@@@@@@@@@@@
+ Index Scan using range_ops on intervals  (cost=0.29..8.30 rows=1 width=18) (actual time=59.085..98.776 rows=2 loops=1)
+   Index Cond: ("interval" = '[123,1234)'::int4range)
+ Planning Time: 0.274 ms
+ Execution Time: 98.800 ms
+(4 rows)
+
+@@@@@@@@@@@@ P2 @@@@@@@@@@@@
+ Index Scan using range_ops on intervals  (cost=0.29..8.30 rows=1 width=18) (actual time=34.344..58.409 rows=1 loops=1)
+   Index Cond: ("interval" = '[240,1273)'::int4range)
+ Planning Time: 0.040 ms
+ Execution Time: 58.421 ms
+(4 rows)
+
+
+W obu zapytaniach (i innych które przeprowadziłem) indeksowanie nie pomaga. W przypadku operatora równości i tak raczej przechodzimy po całej tabeli (ciężko ograniczyć sensownie dane), skan nie pomaga a nawet przeszkadza.
