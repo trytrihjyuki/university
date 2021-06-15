@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{polski}
+\usepackage{pythonhighlight}
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref,soul, graphicx}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\newtheorem{lemma}{Lemat}
+\newtheorem{theorem}{Twierdzenie}
+
+\title{AiSD L7}
+\date{9.06.2021}
+\author{Maurycy Borkowski}
+\begin{document}
+\maketitle
+\section{zadanie 2.}
+Dzielimy płaszczyznę na siatkę z kwadracików o boku $\frac d 2$. W każdym kwadraciku jest co najwyżej jeden punkt (założenie, że $d$ to najmniejsza odległość między sprocesowanymi już punktami).\\\\
+Rozpatrując punkt $p_i$ musimy rozpatrzeć tylko $25 = 5^2$ kwadracików (duży kwadrat o boku $2d$) w nim znajduje się okrąg bez brzegu o promieniu $d$ = wszystkie miejsca gdzie może wystąpić bliższy punkt z procesowanym $p_i$.\\\\
+Gdy żaden nie znajdziemy w podejrzanych $25$ kwadracikach zbyt bliskiego punktu, dodajemy do tablicy haszującej nowy zapełniony kwadracik z $p_i$. $\mathcal{O}(1)$\\\\
+Gdy znajdziemy punkt bliższy w podejrzanych musimy stworzyć nową siatkę z mniejszymy kwadracikami o boku $d'$. Każdy punkt na nowo trzeba wstawić do pola siatki. $\mathcal{O}(i)$\\\\
+Jeżeli punkty są przemieszane losowo (prawdopobieństwo bycia w najbliższej parze, każdy punkt ma takie samo) to prawdopodobieństwo tego, że $p_i$ jest w najbliższej parze wynosi: $\frac{i-1}{i(i-1)} = \frac{1}{i}$\\\\
+Wystarczy więc spermutować punkty na początku żeby otrzymać oczekiwany czas działania:
+$$
+\mathbb{E}Czas = \sum_{i=0}^{n} \frac{i-1}{i}\mathcal{O}(1) + \frac{1}{i}\mathcal{O}(i) = \mathcal{O}(n)
+$$
+
+\clearpage
+\section{zadanie 3.}
+Oznaczmy:
+$$
+X_i=
+\begin{cases}
+1 \text{ gdy $i$-ta lista jest pusta}\\
+0 \text{ w p.p.}
+\end{cases}
+$$
+Wtedy liczba pustch list wynosi:
+$$
+Y = \sum_{i=1}^{n}X_i
+$$
+Wartość oczekiwana $X_i$ wynosi:
+$$
+\mathbb{E}X_i = \left(1-\frac{1}{n} \right)^n
+$$
+Prawdopodobieństwo, że za każdym z $n$ razy, nie wrzucimy do $i$-tej listy.\\
+Z liniowości wartości oczekwianej:
+$$
+\mathbb{E}Y = \mathbb{E}\left(\sum_{i=1}^{n}X_i \right) = \sum_{i=1}^{n}\mathbb{E}X_i = \sum_{i=1}^{n} \left(1-\frac{1}{n} \right)^n= n \cdot \left(1-\frac{1}{n} \right)^n \leq \frac{n}{e} < \frac{n}{2}
+$$
+% Wniosek: Oczekwiana wartość kolizji dla każdej listy jest więc mniejsza niż $2$.
+\end{document}

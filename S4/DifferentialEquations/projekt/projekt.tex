@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{polski}
+\usepackage{pythonhighlight}
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref,soul, graphicx, algorithmic}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\newtheorem{lemma}{Lemat}
+\newtheorem{theorem}{Twierdzenie}
+
+\title{Zagadnienie N-ciał}
+\date{}
+\author{Maurycy Borkowski, Mateusz Biłyk, Jakub Kaczmarek}
+\begin{document}
+\maketitle
+\clearpage
+\tableofcontents
+\clearpage
+\section{Wprowadzenie}
+Problem $n$ ciał, jest to zagadnienie z mechaniki klasycznej.\\Mając dane początkową: prędkość, masę i położenie w przestrzeni, wyznaczyć trajektorie każdego z $n$ ciał. Rozwiązanie ma oczywiście być zgodne z prawami ruchu, uwzględniamy tylko oddziaływanie grawitacyjne między ciałami zgodne z prawem grawitacji Newtona.\\\\
+Dla ułatwienia zagadnienia będziemy rozważać tylko ciała jako punkty materialne, pomijamy kolizje. \\\\
+Zagadnienie wydaję się prostę, a ruch łatwy do opisania, okazuję się jednak, że nie jest to tak trywialne jak mogłoby się wydawać.\\\\
+Problem ten jest bardzo znany w świecie fizykii i astronomii, a jego rozwiązanie przyczyniło się w rozwoju np. w Ogólnej Teorii Względności.
+\clearpage
+\section{Opis ruchu}
+Zgodnie z II zasadą dynamiki Newtona, przyspiesznie z jakim porusza się ciało jest proporcjonalne do siły wypadkowej działające na to ciało:
+\begin{equation}
+\vec{a} = \frac{\vec{F}} m
+\end{equation}
+Ponadto, dla dowolnych ciał z prawa powszchnego ciążania siła ich wzajemnego przyciągania co do wartości wyraża się wzorem (leży na osi łaczącej środki mas obu ciał):
+\begin{equation}
+F = G\frac{m_1m_2}{r^2}
+\end{equation}
+gdzie $G$-stała grawitacyjna, $r$-odległość środków mas obu ciał, $m_i$ masa $i$-tego ciała.\\
+Wobec powyższego, przyspiesznie $i$-tego ciała wyraża się wzorem:
+\begin{equation}
+x_i'' = \vec{a_i} = G\sum_{j=0\\j\neq i}^n \frac{m_j}{(x_i-x_j)^2}
+\end{equation}
+Możemy więc zapisać układ równań różniczkowych:
+\begin{equation}
+\frac{d}{dt}
+\begin{bmatrix}
+s_{1,x}\\
+s_{1,y}\\
+s_{1,z}\\
+v_{1,x}\\
+v_{1,y}\\
+v_{1,z}\\
+\vdots\\
+s_{n,x}\\
+s_{n,y}\\
+s_{n,z}\\
+v_{n,x}\\
+v_{n,y}\\
+v_{n,z}\\
+\end{bmatrix}=
+\begin{bmatrix}
+v_{1,x}\\
+v_{1,y}\\
+v_{1,z}\\
+a_{1,x}\\
+a_{1,y}\\
+a_{1,z}\\
+\vdots\\
+v_{n,x}\\
+v_{n,y}\\
+v_{n,z}\\
+a_{n,x}\\
+a_{n,y}\\
+a_{n,z}\\
+\end{bmatrix}
+\end{equation}
+Niestety w takiej postaci układ równań różniczkowych jest nie rozwiązywalny w użyteczny sposób. Rozwiązanie globalne istnieje, na przykład zaproponowane przez Wang, Qiu-Dong \cite{wang}, ale używa szeregów potęgowych, które bardzo wolno zbiegają, co w praktycznych zastosowaniach nie może mieć miejsca.\\\\
+Dla specyficznych warunków początkowych i założeń istnieją już bardziej praktyczne rozwiązania.
+\clearpage
+\section{n=2}
+Układ ciał jest izolowany energetycznie, więc zgodnie z 1. zasadą dynamiki Newtona, środek masy porusza się ruchem jednostajnym prostoliniowym bądź pozostaje w spoczynku.\\\\
+Nie tracąc ogólności dla wygody możemy założyć, że środek masy dwóch ciał pozostaje w spoczynku.\\\\
+Ten podproblem został całkowicie rozwiązany przez Johnana Bernoulliego. My przedstawimy to rozwiązanie dla ułatwionej wersji problemu.
+Założenie że jedno z ciał nie zmienia swojej pozycji jest błędne, lecz daje pewien natychmiastowy pogląd na sprawe, gdyż gdyby tak było dostajemy (z praw Newtona):
+$$ m_1 a_1 = \frac{G m_1 m_2}{ r_{12}^3} (r_2-r_1)$$
+$$ m_2 a_2= \frac{G m_1 m_2}{ r_{21}^3} (r_1-r_2)$$
+Po odjęciu stronami powyższych równań otrzymamy:
+$$ a+ \frac{G(m_1+m_2)}{r_{12}^3}r=0$$
+Gdzie a jest drugą pochodną po wektorze r pomiędzy środkami mas obu obiektów. Rozwiązując to równanie dostajemy, małym wysiłkiem, pewną informację, jak mogą zachowywać się te ciała w uproszczonym przypadku.
+W ogólności każde z ciał porusza się po krzywej stożkowej a środek masy jest w jednym z jej ognisk. Tor ruchu zależy od warunków początkowych, a dokładniej energii kinetycznej i potencjalnej układu.
+\subsection*{$E_k < E_p$}
+Tor ruchu jest zamknięty, ciała poruszają się po elipsie.
+\subsection*{$E_p > E_k$}
+Ciała poruszają się po hiperboli.
+\subsection*{$E_c = 0$}
+Ciała poruszają się po paraboli, oddalają się a ich prędkości maleją wraz ze wzrostem odległości.\\\\
+Co ciekawe Kepler, jeszcze przed upublicznieniem praw Newtona, związanych z oddziaływaniem na siebie mas (użytych zresztą do naszego powyższego rozwiązania) odkrył: "Prawa Keplera ruchu planet". W tej pracy był opisany kształt orbit planet, z którymi mamy doczynienia w tym podproblemie.
+\clearpage
+\section{n=3}
+Zagadnienie dla $3$ i więcej ciał jest znacznie trudniejsze. Nie da się tego rozwiązać wprost,a nawet nie istnieje użyteczne analityczne rozwiązanie. Z praw fizyki da się wyznaczyć jedynie $10$ z $18$ potrzebnych całek. Stosuje się jednak praktyczne heurystyki.\\\\
+Jedną z popularniejszych jest założenie: $m_{1,2} \lll m_3$ wtedy możemy zaniedbać oddziaływanie przyciągania $m_{1,2}$ do $m_3$. Podobne założenie, możemy zrobić dla większej ilości ciał. Problem traktujemy wtedy jako $n$ niezależnych zagadnień dwóch ciał, gdzie to ciało z dużą masą parujemy z n-em ciał z małą masą.\\\\
+Dzięki Eulerowi umiemy również rozwiązać podproblem, gdzie wszystkie 3 ciała krążą wokół wspólnego środka masy oraz leżą na wspólnej prostej. Lagrange natomiast rozwiązał przypadek, w którym te trzy ciała tworzą trójkąt równoboczny. Niestety na tym się skończyło i są to jedyne użyteczne, analityczne rozwiązania dla problemu 3 ciał, które istnieją.\\\\
+Po odkryciach Lagrange'a i Euler'a nastąpiła długa przerwa w dalszych odkryciach na ten temat i dopiero w latach siedemdziesiątych, dzięki pomocy komputerów udoło sie uzyskać rozwiązania dla problemu cyklicznego, czyli takiego, gdzie obiekty powracają do swojej początkowego położenia.\\\\
+Łącząc trzy ciała w trójkąt i biorąc długości 2 boków tego trójkąta możemy "zmapować" położenie tych ciał na punkt na sferze i badać zachowanie tego punktu. Ta metoda pozwoliła w prostrzy sposób badać cykliczne przypadki problemów 3 ciał i dzięki niej znamy już wiele takich stabilnych układów. Należy jednak pamiętać, że takie idealne przykłady bardzo rzadko występują \textit{w przyrodzie} i dlatego te rozwiązania wnoszą, w pewnym sensie, mniej niż wcześniejsze odkrycia Lagrange'a czy Euler'a.\\\\
+W 2019 roku pojawiło się jeszcze jedno bardzo ciekawe i użyteczne podejście dla problemu 3 ciał\cite{chaotic}, wykorzystujące jego chaotyczność. W tym rozwiązaniu zpostrzeżono, że właściwie, pomimo tego, że układ jest w całości deterministyczny to tak naprawde można przyjąć, że wraz z biegiem czasu, przyjmuje on mniej więcej, losowe ułożenia z pewnym prawodopodobieństwem. Taki układ, z pewną szansą, przyjmie wszystkie konfiguracje, które są możliwe z początkowego położenia. W tym rozwiązaniu w dużym stopniu wykożystywana jest statystyka. Ta praca była nadzwyczajnie użyteczna, gdyż w prawie każdym problemie trzech ciał, który występuje w przyrodzie przynajmniej jedno z ciał w pewnym momencie opuszcza układ. Dzieki temu rozwiązaniu można wykryć, kiedy z dużym prawdopodobieństwem ten moment występuje, a potem rozwiązać już w prosty sposób przypadek dla $n=2$. \\Zaskakująco dobre rezultaty udało się też osiągnąć używajac sieci neuronowych \cite{chaotic-nn}.
+
+\clearpage
+\section{Podejście Numeryczne}
+Najbardziej praktycznym i powszechnym podejściem do tego zagadnienia jest przybliżanie trajektorii numerycznie. Jest kilka szczególnych metod:\\
+\subsection*{Particle-Particle (PP)}
+Jest to najprostsza metoda, w której dla każdej iteracji liczymy dla wszystkich ciał siły działające na nie osobno przez pozostałe $N-1$ ciał i dodajemy je do siebie. Następnie uaktualniamy pozycję każdego z ciał i przechodzimy do kolejnej iteracji. Niestety, prostota metody przekłada się na wysoką złożoność obliczniową rzędu $O(N^2)$, gdzie $N$ to liczba ciał badanego układu.
+
+\subsubsection*{Fragment kodu obliczający przyspieszenie każdego z ciał}
+\begin{algorithmic}
+\STATE DANE
+ \STATE $N\gets \text{liczba ciał}$
+ \STATE $G\gets \text{Stała grawitacyjna}$
+ \STATE $poz\gets \text{tablica N x 3 pozycji ciał}$
+ \STATE $masa\gets \text{tablica N x 1 mas ciał}$
+ \STATE $softening\gets \text{mała wartość}$
+ 
+ \STATE ZWRACA
+ \STATE $a\gets \text{tablica N x 3 przspieszeń ciał początkowo wypełniona zerami}$
+ 
+ \FOR{$i=0$ \TO $N$ }
+     \FOR{$j=0$ \TO $N$ } 
+        \IF{$i\neq j$}
+            \STATE $dx\gets poz[j][0]-poz[i][0]$
+            \STATE $dy\gets poz[j][1]-poz[i][1]$
+            \STATE $dz\gets poz[j][2]-poz[i][2]$
+            \STATE $odw\gets 1/\sqrt{dx^2+dy^2+dz^2+softening^2}^3$
+            \STATE $a[i][0]\gets G*a[i][0]+odw*dx*masa[j]$
+            \STATE $a[i][1]\gets G*a[i][1]+odw*dy*masa[j]$
+            \STATE $a[i][2]\gets G*a[i][2]+odw*dz*masa[j]$
+        \ENDIF
+      \ENDFOR
+  \ENDFOR
+ \RETURN a
+\end{algorithmic}
+
+Użyty w pseudokodzie parametr $softening$ to liczba pozwalająca uniknąć problemów numerycznych wstępujących, gdy dwa ciała będą bardzo blisko siebie i przyspieszenie jest bliskie nieskończoności.
+
+Po obliczeniu przyspieszenia pozostaje jedynie uaktualnić prędkości ciał i ich pozycje zgodnie ze wzorami:
+$$v_i=v_i+\Delta t * a_i$$
+$$r_i=r_i+\Delta t * v_i$$
+
+\subsection*{Particle-Mesh (PM)}
+W tej metodzie potencjał grawitacyjny systemu reprezentowany jest jako siatka gęstości, na podstawie której później obliczane są siły działające na ciała w zależności od tego, w której komórce siatki się ono znajduje. Dzięki rozwiązaniu związanego z siatką równania Poisson'a za pomocą Szybkiej Transformaty Fouriera taka symulacja ma złożoność obliczeniową rzędu $O(NlogN)$, jednak metoda ta źle przybliża bliskie spotkania ciał, z powodu reprezentowania układu jako siatki.
+
+\subsection*{Tree Code (TC)}
+Ta metoda dobrze sprawdza się dla systemów, w których wkład sił z dalekich odległości nie musi być obliczany z dużą dokładnością. Układ dzielony jest na sześcienne komórki, gdzie jedynie oddziaływania pomiędzy ciałami z sąsiednich komórek są rozpatrywane indywidualnie, zaś dalsze komórki traktujemy jako pojedyncze większe ciało zlokalizowane w środku masy komórki. Dzięki zastosowaniu specjalnej struktury danych metoda ta ma złożoność obliczeniową rzędu $O(NlogN)$ na iterację.
+
+
+\subsection*{Fast Multipole Method (FMM)}
+Jest to rozwinięcie idei Tree Code poprzez używanie rozwinięcia multipolowego dla dalej oddalonych komórek. Dzięki temu metoda osiąga złożoność obliczeniową rzędu $O(N)$ na iterację.
+
+\subsection*{Problematyczność}
+Jak widzimy różne metody mogą być wykorzystywane do układów o różnej charakterystyce, jednak często bliskie spotkania ciał mogą być błędnie przybliżane, a dalej oddalone ciała mogą mieć błędnie zaniżony swój wpływ. Ponadto wszystkie te metody mają ten sam problem. Są to tylko przybliżenia, oczywiście możemy zmniejszać błąd zwiększając dokładność symulacji, ale zmniejszając ziarno czasu $\Delta t$ rośnie odpowiednio liczba iteracji (obliczeń) potrzebnych do symulacji danego przedziału czasu, przez co wykorzystujemy dużo mocy obliczniowej, a wyniki są dalej jedynie przybliżone.\\
+Dlatego stosując metody numeryczne, musimy wyważyć jak dokładne chcemy mieć obliczenia na jak dużym odcinku czasu i dostosować odpowiednią metodę do charakterystyki układu.
+\clearpage
+\section{Użyteczność zagadnienia}
+ Oczywiście główną motywacją, za badaniem tego problemu, była umiejętność przewidywania ruchu słońca, księżyca, planet i innych gwiazd. Bardzo ważnym, zwłaszcza w XX wieku, zastosowaniem tego problemu było również przewidywanie zachowań gromad kulistych czyli grawitacyjnych zgrupowań gwiazd.\\\\Symulacja tego zagadnienia pozwala również przewidywać kolizje ciał w kosmosie, co może okazać się niezwykle istotne ze względu, na przykład, na bezpieczeństwo naszej planety. Naukowcy, wiedząc odpowiednio wcześnie, że pewien obiekt zmierza w kierunku ziemii, wykorzystując wiedze o chaotyczności układu, mogą lekko zmienić wektor prędkości obiektu, a on odleci wtedy w kompletnie innym kierunku, omijając w bezpiecznej odległości ziemię. Przewidując i reagując na całą sytuację wcześnie cały zabieg nie powinien być bardzo trudny.\\\\ Warto również pamiętać, że problem trzech ciał, może być wykorzystywany do obliczania miejsc dobrych do umieszczenia bazy kosmicznej. Badamy tutaj oczywiścię relację ziemia-słońce-stacja, a miejsca do umieszczenia bazy mogą być tak dobrane, aby można było zastosować rozwiązania Lagrange'a czy Euler'a, co więcej okazuje się, że te miejsca bardzo dobrze spełniają swoje zadania.\\\\
+ Należy zauważyć, że przez bardzo długą pracę wielu wybitnych naukowców (takich jak na przykład Lagrange i Euler, ale też i wielu współczesnych) problem ten dostał już rangę legendarnego. Dzieki tej pracy rozwiązania maja dużą wartość matematyczną i pozwalają lepiej rozumieć otaczający nasz wszechświat. Potwierdzają one, w pewnym sensie, idee z takich wyników jak na przykład zasada nieoznaczoności Heisenberga. 
+
+\clearpage
+\begin{thebibliography}{9}
+\bibitem{wang} 
+Wang, Qiu-Dong 
+\textit{ The global solution of the n-body problem }. 
+Celestial Mechanics and Dynamical Astronomy, 1991.
+\bibitem{chaotic}
+Nicholas C. Stone, Nathan W.C. Leigh
+\textit{A Statistical Solution to the Chaotic, Non-Hierarchical Three-Body Problem}
+Astrophysics of Galaxies, 2019.
+\bibitem{chaotic-nn}
+Philip G. Breen, Christopher N. Foley, Tjarda Boekholt, Simon Portegies Zwart
+\textit{Newton vs the machine: solving the chaotic three-body problem using deep neural networks}
+Astrophysics of Galaxies, 2019.
+\end{thebibliography}
+
+\end{document}
