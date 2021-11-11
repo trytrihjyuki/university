@@ -45,6 +45,15 @@
 
 
 ## Semester 4
+  * Algorithms and Data Structures
+
+  * Data Bases
+
+  * Neural Networks and Deep Learning
+
+  * Differential Equations
+
+  * Topology
 
 ## Semester 5
 
