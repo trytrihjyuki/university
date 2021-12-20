@@ -25,10 +25,10 @@ def pierwsze_skladana(n):
     return [i for i in range(1,n+1) if len([j for j in range(1,i+1) if i%j == 0]) == 2]
 
 def check_p(k):
-    return 2 == len((list(filter(lambda x: k%x == 0, list(range(1, k+1))))))
+    return 2 == len((list(filter(lambda x: k%x == 0, range(1, k+1)))))
 
 def pierwsze_funkcyjna(n):
-    return list(filter(check_p, list(range(1, n+1))))
+    return list(filter(check_p, range(1, n+1)))
 
 
 

@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{polski}
+\usepackage{pythonhighlight}
+\usepackage[thinlines]{easytable}
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref,soul, graphicx}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+\renewcommand{\arraystretch}{1.2}
+
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+\newtheorem{lemma}{Lemat}
+\newtheorem{theorem}{Twierdzenie}
+\begin{document}
+\section{zadanie 15}
+Oznaczmy $Y = F_X(X)$ (oczywiście $0 \leq Y \leq 1$). Wtedy:
+\begin{align*}
+F_Y(x) = P(Y\leq x)= P(F_X(X) \leq x) =P(F_X(X) \leq F_X(F_X^{-1}(x)))
+\end{align*}
+$F_X$ jest ciągła i ściśle rosnąca więc $a \leq b \iff F_X(a) \leq F_X(b)$
+$$
+F_Y(x) = P(X \leq F_X^{-1}(x)) = F_X(F_X^{-1}(x)) = x
+$$
+Z wykładu wiemy, że dystrybuanta z $U[0,1]$ to $F_U(x) = x$.\\
+Stąd na $x \in [0,1]$ mamy $F_U(x) = F_Y(x)$. \\Dystrybuanta wyznacza rozkład jednoznacznie stąd $F_X(X) = Y \sim U[0,1]$.\\\\\\
+Teraz chcemy zrobić \textit{odwrotnie} tj. z $U[0,1]$ dostać np. $exp$\\
+Generujemy $U \sim Unif[0,1].$ Dystrybuanta rozkładu wykładniczego: $$F_X(x) = 1-e^{-\lambda x}$$\\
+Liczymy funkcję odwrotną dystrybuanty: $$F_X^{-1}(y) = -\frac1\lambda \ln(1-y)$$\\
+Dalej, weźmy zmienną losową $T = F_X^{-1}(U)$ Jej dystrybuanta:
+$$
+F_T(x) = P(T \leq x) = P(F_X^{-1}(U) \leq x) = P(U \leq F_X(x)) = F_U(F_X(x)) = F_X(x)
+$$
+
+\newpage
+\section{zadanie 17}
+Promień $R \sim U[0,2]$, % więc dla $x\in[0,2]$ mamy funkcję gęstości $f_R(x) = \frac 1 2$\\
+zmienna losowa będąca polem koła $Y = A(R) =  \pi R^2$\\\\
+Mamy od razu: $A^{-1}(x) = \sqrt{\frac x \pi}$ \\Stąd dystrybuanta pola:
+$$
+F_Y(x) = P(Y \leq x) = P(A(Y) \leq x)
+$$
+dla $x \geq 0$ mamy ($A$ ściśle rosnąca, ciągła):
+$$
+F_Y(x) = P(A(R) \leq x) = P(R \leq A^{-1}(x)) = F_R(A^{-1}(x))
+$$
+Dalej:
+$$
+f_Y(x) = \frac{d}{dx}F_Y(x) = \frac{d}{dx} \left ( F_R(A^{-1}(x))\right) = F_R^\prime(A^{-1}(x)) \cdot \frac{d}{dx}A^{-1}(x)
+$$
+Z jednostajnego rozkładu $R$ mamy dla $x \in [0, 4\pi]$:
+$$
+F_R^\prime(A^{-1}(x)) = f_R(A^{-1}(x)) = \frac 1 2
+$$
+Obliczamy pochodną ($x\geq0$):
+$$
+\frac{d}{dx}A^{-1}(x) = \frac{d}{dx}\sqrt{\frac x \pi} = \frac{1}{2\sqrt{x\pi}}
+$$
+Ostatecznie mamy więc:
+$$
+f_Y(x) = \frac{1}{4\sqrt{x\pi}}
+$$
+\end{document}

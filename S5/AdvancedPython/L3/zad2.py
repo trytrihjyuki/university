@@ -36,7 +36,7 @@ def doskonale_funkcyjna(n):
 
 
 if __name__ == '__main__':
-    tests = np.logspace(1, 5, 7, endpoint=False).astype(int)
+    tests = np.logspace(1, 4, 15, endpoint=True).astype(int)
     times = {'f': [], 's': [], 'i': []}
 
     for j in tests: 
