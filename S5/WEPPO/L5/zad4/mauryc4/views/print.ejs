@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Wydruk</title>
+</head>
+<body>
+    <div>
+        <div>Imie: <%= locals[`first_name`] %></div>
+        <div>Nazwisko: <%= locals[`last_name`] %></div>
+        <div>Nazwa zajec: <%= locals[`class_name`] %></div>
+            <% for (let i = 1; i <= 10; i++) { %> 
+                <div>
+                    Zadanie <%= i %>: <%= locals[`zad${i}`] %>
+                </div>
+            <% } %> 
+    </div>
+</body>
+</html>
