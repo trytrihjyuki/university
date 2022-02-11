@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{polski}
+\usepackage{pythonhighlight}
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref,soul}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\newtheorem{lemma}{Lemat}
+\newtheorem{theorem}{Twierdzenie}
+
+\title{AiSD L5}
+\date{12.05.2021}
+\author{Maurycy Borkowski}
+\begin{document}
+% \maketitle
+\section{zadanie 15.}
+$X$ - zmienna losowa opisująca liczbę głosów \textit{za}. \\Oczywiście $X \sim B(n, p)$ gdzie $p$ to rzeczywiste poparcie.\\\\
+Oznaczmy przez $m$ oczekiwane poparcie. Z rozkładu dwumianowego:
+\begin{align*}
+m = \mathbb EX = np\\
+\text{oraz}\\
+\operatorname{Var}[X] = np(1-p)
+\end{align*}
+Interesuje nas oszacowanie dla warunku prawdopobieństwa popełnienia błędu względnego większego niż $1\%$ było mniejsze niż $5\%$:
+\begin{align}
+P\left( \frac{|X-m|}{m} \geq 0.01 \right) \leq 00.5
+\iff
+P\left( |X-m| \geq 0.01m \right) \leq 00.5
+\end{align}
+Z nierówności Czebyszewa mamy:
+\begin{align*}
+P\left( |X-m| \geq 0.01m \right) \leq \frac{np(1-p)}{\left(\frac{np}{100} \right)^2} = 10^4 \cdot \frac{(1-p)}{np}
+\end{align*}
+stąd aby warunek (1) był zachowany wystraczy by:
+\begin{align*}
+10^4 \cdot \frac{(1-p)}{np} \leq 0.05
+\end{align*}
+co daje dolne ograniczenie na $n$:
+\begin{align*}
+n \geq 2\cdot10^5\cdot\frac{1-p}p
+\end{align*}
+\clearpage
+\setcounter{equation}{0}
+\section{zadanie 17.}
+Oznaczmy przez $X$ zmienną losową opisującą zysk gracza (= strata kasyna) w $10^6$ rozgrywkach, a $X_i$ w tylko $i$-tej rozgrywce.\\\\
+Interesuje nas:
+\begin{align}
+P(X \geq 10^4)
+\end{align}
+Skorzystajmy z nierówności Chernoff'a:
+\begin{align}
+P(X \geq 10^4) \leq \min_{t\geq 0} e^{-t10^4} E(e^{tX})
+\end{align}
+rozpiszmy wyrażenie $E(e^{tX})$:
+\begin{align}
+E(e^{tX}) = E\left(e^{t\sum_{i=0}^{10^6}X_i}\right) = \prod_{i=0}^{10^6}E(e^{tX_i}) = \prod_{i=0}^{10^6} \frac{32}{200}e^{2t}+\frac{1}{200}e^{99t} + \frac{167}{200}e^{-t}
+\end{align}
+wobec powyższego
+\begin{align}
+\min_{t\geq 0} e^{-t10^4} E(e^{tX}) = \min_{t\geq 0} \left(e^{-t} \left(\frac{32}{200}e^{2t}+\frac{1}{200}e^{99t} + \frac{167}{200}e^{-t}\right)^{100}\right)^{10^4}
+\end{align}
+wyrażenie do minimalizacji jest nieujemne więc argmin będzie ten sam jak zdejmiemy potęgę:
+\begin{align}
+\min_{t\geq 0} e^{-t} \left(\frac{32}{200}e^{2t}+\frac{1}{200}e^{99t} + \frac{167}{200}e^{-t}\right)^{100}
+\end{align}
+Za pomocą programu znajdujemy przybliżenie minimum $t_{min} \approx 0.000575$.\\
+Podstawiając argmin do wzoru w nierówności otrzymujemy przybliżenie:
+$$
+P(X \geq 10^4) \leq \left(e^{-t} \left(\frac{32}{200}e^{2t}+\frac{1}{200}e^{99t} + \frac{167}{200}e^{-t}\right)^{100}\right)^{10^4} \approx (0.9991254742698236)^{10^4} \approx 0.0001586
+$$
+
+\clearpage
+
+
+\end{document}
