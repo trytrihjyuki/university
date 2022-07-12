@@ -7,3 +7,11 @@ S1/PWI/27.11/testy
 *.log
 *.aux
 *.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.swp
+
+S3/Algebra/notatki/
+S3/MachineLearning/L1/mnist.npz
+

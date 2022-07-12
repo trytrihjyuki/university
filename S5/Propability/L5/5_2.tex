@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{polski}
+\usepackage{pythonhighlight}
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref,soul}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+
+
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\newtheorem{lemma}{Lemat}
+\newtheorem{theorem}{Twierdzenie}
+
+\title{AiSD L5}
+\date{12.05.2021}
+\author{Maurycy Borkowski}
+\begin{document}
+% \maketitle
+\section*{5.2}
+Oznaczmy:\\$X_j$ - zmienna losowa przyjmująca $1$ jeżeli kupon typu $j$ jest w wybranym zbiorze oraz $0$ jeżeli tego kuponu nie ma w zbiorze.\\\\
+$X = \sum_{i=1}^n X_i$, $X$ liczba różnych kuponów w danym zbiorze. Liczymy:
+$$
+P(X_j=1) = 1-(1-p_j)^k
+$$
+$X_j$ przyjmuje wartości $\{0,1\}$ stąd, $E(X_j) = P(X_j=1)$ oraz $X_j^2 = X_j$\\\\
+Liczymy wartość oczekiwaną $X$:
+\begin{align*}
+E(X) = E\left(\sum_{i=1}^nX_i\right)=\sum_{i=1}^n\left(1-(1-p_i)^k\right) = n - \sum_{i=1}^n(1-p_i)^k
+\end{align*}
+Policzmy wariancję $X$:
+\begin{align*}
+Var(X) = E(X^2) - E(X)^2\\
+\end{align*}
+\begin{align*}
+% \text{Licz}\\
+E(X^2) = E\underbrace{\left(\sum_{i=1}^n X_i^2\right)}_{\sum_{i=1}^n X_i=X} + \sum_{\substack{(i,j) \in \{1\ldots n\}\times\{1\ldots n\} \\ i \neq j}} E(X_iX_j) = E(X) - \sum_{\substack{(i,j) \in \{1\ldots n\}\times\{1\ldots n\} \\ i \neq j}} 1 - (1-p_i - p_j)^k
+\end{align*}
+Podstawiając wyniki otrzymujemy:
+$$
+Var(X) = \sum_{\substack{(i,j) \in \{1\ldots n\}\times\{1\ldots n\} \\ i \neq j}} (1-p_i - p_j)^k + E(X) - (E(X))^2
+- n(n-1)
+$$
+
+
+
+\clearpage
+
+
+\end{document}

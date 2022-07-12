@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "traceroute.h": "c",
+        "string.h": "c",
+        "ip.h": "c"
+    }
+}

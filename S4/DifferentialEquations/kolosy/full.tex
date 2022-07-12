@@ -1,0 +1,148 @@
+\documentclass{article}
+\usepackage[utf8x]{inputenc}
+\usepackage{polski}
+\usepackage{pythonhighlight}
+
+\usepackage{amssymb, amsmath, amsfonts, amsthm, cite, mathtools, enumerate, rotating, hyperref,soul}
+\newcommand \eq[1]{\begin{equation} \begin{split}  #1 \end{split} \end{equation}}
+\usepackage[top=1.1cm, bottom=1.1cm]{geometry}
+\usepackage[normalem]{ulem}
+\makeatletter
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+\newtheorem{lemma}{Lemat}
+\newtheorem{theorem}{Twierdzenie}
+\begin{document}
+\subsection*{Rozdzielone zmienne}
+$$
+y^\prime(t) = f(t)g(y)
+$$
+dzielimy przez $g$ i całkujemy (rozdzielamy $y,t$):
+$$
+\int_{y(t_0)}^{y(t)}\frac{1}{g(z)}dz = \int_{t_0}^t f(s)ds
+$$
+\subsection*{Liniowe I-szego rzędu}
+$$
+y^\prime(t) + p(t)y(t) = q(t)
+$$
+$q(t) = 0$ to jednorodne\\
+mnożymy przez czynnik całkujący $e^{P(t)}$ i zwija się do pochodnej:
+$$
+\left( y(t)e^{P(t)}\right)^\prime = q(t)e^{P(t)} \quad \text{(lub zero)}
+$$
+$$
+y(t) = e^{-P(t)} \left (\int_{t_0}^t q(s)e^{P(s)}ds + y_0e^{P(t_0)}\right)
+$$
+\subsection*{Równanie zupełne}
+$$
+M(t,y) + N(t,y)y^\prime = 0
+$$
+tż. $\frac{\partial}{\partial y}M(t,y) = \frac{\partial}{\partial t} N(t,y)$ można zapisać alternatywnie z $y^\prime = \frac{dy}{dt}$\\
+Szukamy różniczki zupełnej $\varphi$:
+$$M(t,y) = \frac{\partial}{\partial t} \varphi(t,y)$$
+$$N(t,y) = \frac{\partial}{\partial y} \varphi(t,y)$$
+Z jednego całkujemy ($\varphi(t,y) = \int M(t,y)\textbf{dt}$) zamiast stałej ($h(y)$) i liczymy $\varphi$ do drugiego podstawiamy, różniczkujemy i mamy stałą  ($h(y)$) z $N$
+$$\frac{\frac{\partial M}{\partial y} - \frac{\partial N}{\partial t}}{N} = \phi(t)$$
+Jeżeli powyższe gówno jest zależne tylko od $t$ to $e^{\int \phi(t)}$ jest czynnikiem całkującym (uzupełnia do zupełnego). Jak poniższe gówno od tylko $y$ to $e^{\int \psi(y)}$:
+$$\frac{\frac{\partial N}{\partial t} - \frac{\partial M}{\partial y}}{M} = \psi(y)$$
+Inne dziwne gówna:
+\begin{enumerate}
+\item Bernoulliego $\frac{dy}{dt} + p(t)y(t) = q(t)+y^m(t)$. 
+Mnożymy przez $(1-m)y^{-m}$ podstawiamy $z(t) = y^{1-m}(t)$ i mamy liniowe niejednorodne
+\item Riccatiego $\frac{dy}{dt} + p(t)y(t) + q(t)y^2(t) = f(t)$
+\end{enumerate}
+\clearpage
+\begin{enumerate}
+    \item Malthus: $P^\prime(t) = aP(t) \rightarrow P(t)=P_0e^{a(t-t_0)}$ w chuj 
+    \item Von Foerstera: $P^\prime(t) = aP^2(t) \rightarrow P(t)=P_0\frac{a}{1-aP_0t}$ w chuj ale w $T_{ks}$
+    \item Benjamina Gompertza $P^\prime(t) = \lambda e^{\alpha t}P(t) \rightarrow P(t)=P_0e^{-\frac{\lambda}{\alpha}(1-e^{\alpha(t-t_0)})}$
+    \item Verhalust $P(t)^\prime = bP(t)\left(\frac{a}{b} - P(t)\right)$ pochodna zmienia znak jak duzo $P$
+    \item Ciało: $T^\prime(t) = k(T(t) - T_o) \land T(0) = T_0 \rightarrow T(t) = T_o + (T_0-T_o)e^{-kt}$ liniowe niejednordone, $o \neq 0$
+\end{enumerate}
+\subsection*{Peano - istnienie}
+$y^\prime = f(t,y)$ ciągła na prostokącie: $R = \{(t,y); t_0 \leq t \leq t_0 +a, |y-y_0| \leq b\}$\\
+$M = \max_{(t,y) \in R}|f(t,y)| \quad \alpha = \min \left\{a,\frac{b}{M}\right\}$ \\
+istnieje \textbf{conajmniej} jedno rozwiąznie na $[t_0,t_0+\alpha]$
+\subsection*{Picard-Lindelof - jedyność}
+$y^\prime = f(t,y)$ i $\frac{\partial}{\partial y} f(t,y)$ ciągła na prostokącie:\\
+$R = \{(t,y); t_0 \leq t \leq t_0 +a, |y-y_0| \leq b\}$ tak samo $M,\alpha$\\
+istnieje \textbf{dokładnie} jedno rozwiąznie na $[t_0,t_0+\alpha]$ chcemy mieć, że $\alpha$ to dowolna zmienna, wtedy mamy $[t_0,\infty]$
+\subsection*{Iteracja Picarda}
+\begin{align*}
+y_0(t) = y_0\\
+y_1(t) = y_0 + \int_{t_0}^t f(s,y_0(s))ds\\
+\vdots\\
+y_{n+1}(t) = y_0 + \int_{t_0}^t f(s,y_n(s))ds\\
+\end{align*}
+$y_n$ w granicy to rozwiązanie
+\subsection*{Lemat Gronwalla}
+$U(t)$ nieujemna funkcja:
+$$
+u(t) \leq a+ b\int_{t_0}^t u(s)ds
+$$
+dla $a,b \geq 0$, wtedy:
+$$
+u(t) \leq ae^{b(t-t_0)}
+$$
+\clearpage
+\textbf{II rzędu}\\
+Jednorodne: $y''+ p(t)y' + q(t)y = 0$ oraz $y(t_0) = y_0, y'(t_0)=y_1$\\
+Wrońskian $y_1(t)y_2'(t)-y_1'(y)y_2(t)(= 0)$ wtedy LNZ.\\Jak $y_1,y_2$ są to rozwy to ogólne to kombinacja liniowa.\\
+\textbf{a,b,c = const}\\
+Liczymy wielomian charakterystyczny: $ar^2 + br + c = 0$\\
+$\Delta > 0$ ogólne: $y(t) = C_1e^{r_1t} + C_2e^{r_2t}$\\
+$\Delta = 0$ ogólne: $y(t) = C_1e^{r_0t} + C_2te^{r_0t}$\\
+$\Delta < 0$ ogólne: $y(t) = C_1e^{\alpha t}\cos{\beta t} + C_2e^{\alpha t}\sin{\beta t}$ gdzie $\alpha = Re r_1, \beta = Im r_1$\\
+\textbf{f(t) $\neq$ 0}\\
+M. uzmienniania stałej: zakładamy rozwiązanie $y(t)=C_1(t)y_1(t)+C_2(t)y_2(t)$\\
+Gdzie $y_1, y_2$ rozwiązania fundamentalne jednorodnego, z wielomianu itd.\\
+Liczymy: $\begin{pmatrix} y_1(t) & y_2(y)\\ y_1'(t) & y_2'(y) \end{pmatrix} \begin{pmatrix} C'_1 \\ C'_2\end{pmatrix} = \begin{pmatrix} 0 \\ f(t)\end{pmatrix}$\\
+\textbf{n rzędu}\\
+$r_1,r_2,\ldots,r_n$ pierwiastki wielomianu to rozwiązanie:\\
+$y(t) = C_1e^{r_1t}+C_2e^{r_2t}+\ldots+C_ne^{r_nt}$ gdy $r_i$ $k$-krotny: $e^{r_it},\ldots,t^{k-1}e^{r_it}$\\
+Gdy zespo $z_1 = a +bi$, $z_2 = a-bi$ rozwy: $Re(z_1)=e^{at}$i $Im(z_1)=e^{at}\sin(bt)$\\
+\textbf{Szeregów potęgowych}\\
+Zakładamy funkcje: $y(t) = a_0 + a_1t + a_tt^2 \ldots$,wtedy $y'(t) = \sum_{n=0}^\infty na_nt^{n-1}$ itd.\\
+\textbf{Transformata Laplace'a}\\
+$F(s) = \mathcal{L}\{f(t)\}(s) = \int_0^\infty e^{-st}f(t)dt$, jest liniowa, $f$-wzrost podwykładniczy
+$\mathcal{L}\{\sin{(\alpha t)}\}(s) = \frac{\alpha}{s^2 + \alpha^2},\mathcal{L}\{\cos{(\alpha t)}\}(s) = \frac{s}{s^2 + \alpha^2}, \mathcal{L}\{e^{at}\}(s) = \frac{1}{s-a}, \mathcal{L}\{1\}(s) = \frac{1}{s}$\\
+Tw1. $\mathcal{L}\{e^{at}f(t)\}(s) = F(s-a)$ oraz $\mathcal{L}\{-tf(t)\}(s) = \frac{d}{ds}F(s)$\\
+Tw2. $\mathcal{L}\{f'(t)\}(s) = sF(s) - f(0)$ oraz $\mathcal{L}\{f''(t)\}(s) = s^2F(s) - sf(0)-f'(0)$
+$Y(s)$-transformata, $\mathcal{L}(rownanie) =$ ze wzorów wyż. $=\mathcal{L}(f(t))$ (prawa strona)\\
+Znajdujemy $Y(s)$ i reverse engineering żeby znaleźć co ją zrobiło ($y(t)$)\\
+\textbf{Układy równań liniowych}\\
+wektorowo: $x' = Ax$ ($n$-zmiennych). Tw: dowolne $n$-rzędu na $n$-rownań:\\
+dane: $a_nx^{(n)}(t) + \ldots a_1x = 0$, dalej $y_1(t) =x(t), y_2(t)=x', \ldots y_n(t)=x^{(n-1)}(t)$\\
+mamy: $y_1'(t) = (x'(t) =) y_2(t), \ldots, y'_{n-1}(t) = y_n(t)$, ostatnie liczymy:
+$y'_n(t) =x^{(n)}(t) = -\frac{a_{n-1}}{a_n}x^{(n-1)}(t) - \ldots -\frac{a_0}{a_n}x(t) = -\frac{a_{n-1}}{a_n}y_n(t) - \ldots -\frac{a_0}{a_n}y_1(t)$\\
+stąd mamy $x'=Ax$, gdzie $A$, 1 na przekątnej nad diag, $-\frac{a_i}{a_n}$ w dolnym wierszu.\\\\
+$x_1,x_2\ldots,x_n$ są rozwiązaniami i tworzą $n$-wymiarową przestrzeń liniową\\
+NWSR: $x_1(t), \ldots, x_n(t) \forall t$ LNZ $x_1(t), \ldots, x_n(t)$ LNZ\\
+\textbf{Metoda wartości własnych}\\
+TW: rozwiązanie $x_j = e^{\lambda_j}v_j$ gdzie $\lambda, v$ to wart. i wekt. własny\\
+Ogólne: $x(t) = C_je^{\lambda_jt}v_j$\\
+$z = x + iy$ jest rozwem (to $x,y$ rozwami) \quad $e^{tA} = \sum_{k=0}^\infty \frac{(tA)^k}{k!}$\\
+\uuline{Rozw $x'=Ax \quad x(0) = x_0$ jest dane: $x(t) = e^{tA}x_0$}\\
+$AB=BA \implies e^{A+B} = e^A+e^B$ oraz $e^{\lambda I dt} = e^{\lambda t}v$\\
+Jak ($\geq$)dwie wartości własne i jeden wektor własny $v_1$ to drugi $(A-\lambda_1Id)v_2=v_1$\\
+pierwsze klasycznie: $e^{t\lambda_1}v_1$ a drugi $e^{tA}v_2=e^{t\lambda_1}(v_2+tv_1)$\\\\
+\textbf{Macierz fundamentalna}\\
+Kolumnami są rozwiązania $x_1(t), \ldots, x_n(t)$ wtedy $e^{tA}=X(t)X^{-1}(0)$\\
+$x'=Ax+f(t)$ wtedy rozw $x(t) = e^{tA}x_0 + \int_{0}^{t}e^{tA}e^{-sA}f(s)ds$
+\clearpage
+\textbf{Równanie transportu}\\
+$a\frac{\partial}{\partial x}u(x,y) + b \frac{\partial}{\partial y} u(x,y) = 0$, $ay-bx=C$ charakterystki, stałe rozwy\\
+$u(x,y) = f(C) = f(ay-bx)$ dla pewnej $f$ się liczy z war. pocz.\\
+Istnienie, czy na wszystkich charakterystykach jest stałe?\\\\
+$a(x,y)\frac{\partial}{\partial x}u(x,y) + b(x,y) \frac{\partial}{\partial y} u(x,y) = f(u)$,\\
+charakterystyki rozwy: $\frac{dy}{dx} = \frac{b(x,y)}{a(x,y)}$ szukamy $C$ podstawiamy $f(C) = f(guwno)$ z war. pocz. $f$\\\\
+\textbf{Równanie struny}\\
+$u_{tt}(x,t) = c^2 \Delta u(x,t)$\quad$\Delta=$suma drugich pochodnych\\
+Wzór d'Alemberta: $$u(x,t)=\frac{1}{2}(\phi(x+ct)+\phi(x-ct)) +\frac{1}{2c}\int_{x-ct}^{x+ct}\psi(y)dy$$
+gdzie: $u(x,0) = \phi(x)$ oraz $u_t(x,0) = \psi(x)$
+\end{document}

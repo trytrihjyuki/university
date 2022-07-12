@@ -1,0 +1,3022 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\providecommand{\thmautorefname}{Theorem}
+\providecommand{\corautorefname}{Corollary}
+\providecommand{\lemautorefname}{Lemma}
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+\makeatletter
+\let\old@start@align\start@align
+\def\start@align{\setcounter{equation}{0}\old@start@align}
+\makeatother
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-std
+\end_modules
+\maintain_unincluded_children false
+\language polish
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style polish
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\br}[1]{\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\brq}[1]{\left[#1\right]}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\pr}[1]{\mathbb{P}\brq{#1}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\set}[1]{\left\{  #1\right\}  }
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\prcond}[2]{\mathbb{P}\brq{\left.#1\right|#2}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\prm}[1]{ #1^{\prime} }
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\exls}[2]{\mathbb{E}_{#1}\left[#2\right]}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\setst}[2]{\left\{  #1\left|#2\right.\right\}  }
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\ind}[1]{\boldsymbol{1}\brq{#1}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\excondls}[3]{\mathbb{E}_{#1}\brq{\left.#2\right|#3}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\ex}[1]{\mathbb{E}\brq{#1}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\prcondls}[3]{\mathbb{P}_{#1}\brq{\left.#2\right|#3}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\pc}{\br{p_{c}}_{c\in C}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\cok}{C_{\text{ok}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Optymalizacja wyceny przejazdów w 
+\emph on
+ride-hailingu
+\emph default
+ za pomocą narzędzi obliczeniowej mikroekonomii 
+\end_layout
+
+\begin_layout Abstract
+W pracy Hikima et al.
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hikima_Akagi_Kim_Kohjima_Kurashima_Toda_2021"
+literal "false"
+
+\end_inset
+
+ autorzy przedstawili model wyceny przejazdów samochodowych w usługach tak
+ zwanego 
+\emph on
+ride-hailingu
+\emph default
+ jak Uber czy Bolt.
+ W tym modelu zaproponowali algorytm 3-aproksymacyjny dla problemu maksymalizacj
+i zysku z przejazdów.
+ W niniejszej pracy pokazujemy 2-aproksymacyjny dla problemu, który zdaje
+ się być znacznie prostszy w potencjalnej implementacji.
+ Ponadto, jego gwarancja aproksymacji odnosi się do znacznie silniejszego
+ ograniczenia górnego w porównaniu do tego, którego użyto w pracy
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hikima_Akagi_Kim_Kohjima_Kurashima_Toda_2021"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Wstęp
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+iffalse
+\end_layout
+
+\begin_layout Plain Layout
+
+Obliczanie skojarzeń w grafach dwudzielnych bardzo często pojawia się w
+ realnym życiu, kojarzenie zadań do maszyn, pacjentów do szpitali, pracowników
+ do prac i wiele innych.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+Nowszym i jeszcze bardziej życiowym problemem jest budowanie skojarzenia
+ w warunkach niepewności, gdzie chcemy maksymalizować oczekiwaną wartość
+ skojarzenia.
+ Na przykład w problemie skojarzenia dawców i biorców organów, gdzie pytanie
+ o istnienie każdej krawędzi (czy jest możliwa transplantacja dla danej
+ pary) jest kosztowne i czasochłonne, ale znamy wartości prawdopodobieństwa
+ istnienia krawędzi ().
+\end_layout
+
+\begin_layout Plain Layout
+
+Kolejnym zastosowaniem tego problemu może być wycena przejazdów w ride-hailingu,
+ gdzie mamy zbiór taksówek obsługujących przejazdy i chcemy skojarzyć je
+ z zamawiającymi.
+ Każdemu klientowi wyceniamy jego przejazd, na podstawie zaproponowanej
+ ceny on ją akceptuje lub nie.
+ Czyli w tym modelu możemy niejako sterować rozkładami prawdopodobieństw
+ istnienia krawędzi za pomocą cen, nazywanych zmiennymi sterującymi ponieważ
+ określają (sterują) one rozkład(em).
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fi
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Rozważmy sposób działania aplikacji oferujących usługę 
+\emph on
+ride-hailingu
+\emph default
+ np.
+ Uber albo Bolt.
+ W aplikacji użytkownik zamawiający przejazd zaznacza adres docelowy, do
+ którego chce dojechać oraz adres odbioru, w którym się znajduje.
+ Dostawca wycenia jego przejazd i oferuje mu cenę, którą klient akceptuje
+ lub nie.
+ Jeżeli zaakceptuje cenę to dostawca przydziela mu kierowcę, który obsłuży
+ jego przejazd za ustaloną cenę i przyjedzie go odebrać w niedługim (
+\begin_inset Formula $\approx5$
+\end_inset
+
+ min.) czasie.
+ Może się jednak zdarzyć, że dostawca nie ma żadnej taksówki w pobliżu klienta
+ i wtedy wysyła informacje z odpowiednim komunikatem i w tym momencie nie
+ obsługuje jego przejazdu.
+ Jest to oczywiście niepożądane i jako dostawca zależy nam na jak najmniejszej
+ liczbie takich sytuacji.
+\end_layout
+
+\begin_layout Standard
+Z punktu widzenia przewoźnika dostajemy w każdej minucie kilkadziesiąt czy
+ nawet kilkaset zapytań w danej lokacji o przejazdy.
+ Mamy dane lokalizacje wolnych taksówek i informacje, które z nich są w
+ stanie dotrzeć w niedługim czasie do pewnego klienta.
+ Nasz serwis ma za zadanie wyznaczenia cen dla klientów.
+ Na zbiorze zamawiających, którzy zaakceptowali cenę liczymy 
+\emph on
+najlepsze
+\emph default
+ skojarzenie (dopasowanie klient-taksówka), 
+\emph on
+najlepsze
+\emph default
+ tj.
+ takie, które maksymalizuje dochód minus koszty przejazdów.
+ Na etapie (liczenie skojarzenia) może się zdarzyć, że pewnych klientów
+ nie skojarzymy z taksówką mimo tego, że zaakceptowali oni cenę.
+\end_layout
+
+\begin_layout Standard
+W tej pracy przybliżymy rozwiązanie problemu optymalizacji oczekiwanego
+ zysku 
+\emph on
+ride-hailingu
+\emph default
+, przedstawione przez Hikimę
+\begin_inset space ~
+\end_inset
+
+et.
+\begin_inset space ~
+\end_inset
+
+al w pracy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hikima_Akagi_Kim_Kohjima_Kurashima_Toda_2021"
+literal "false"
+
+\end_inset
+
+, a następnie zaproponujemy prostszy i efektywniejszy algorytm optymalizujący
+ ten problem.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+iffalse
+\end_layout
+
+\begin_layout Plain Layout
+
+W tej pracy przybliżymy rozwiązanie problemu optum
+\end_layout
+
+\begin_layout Plain Layout
+
+Rozważmy sobie sposób działania aplikacji takiej jak Uber lub Bolt.
+\end_layout
+
+\begin_layout Plain Layout
+
+- uzytkownik zaznacza dokad chce jechac
+\end_layout
+
+\begin_layout Plain Layout
+
+- dostaje cene: akceptuje lub nie
+\end_layout
+
+\begin_layout Plain Layout
+
+- jesli akceptuje, to czeka niedlugo na przejazd, chociaz czasem moze dostac
+ informacje, ze jednak nie ma taksowek
+\end_layout
+
+\begin_layout Plain Layout
+
+z punktu widzenia przewoznika wyglada to tak:
+\end_layout
+
+\begin_layout Plain Layout
+
+- w danej minucie serwis dostaje kilkadziesiat lub kilkaset zgloszen
+\end_layout
+
+\begin_layout Plain Layout
+
+- dane sa lokalizacje wolnych taksowek oraz informacja ktore taksowki sa
+ w stanie dostac sie danego klienta w ciagu mniej niz 5 minut
+\end_layout
+
+\begin_layout Plain Layout
+
+- serwis ma za zadanie wyznaczenie cen
+\end_layout
+
+\begin_layout Plain Layout
+
+- na zbiorze klientow ktorzy zaakceptowali liczymy najlepsze skojarzenie,
+ tj.
+ takie ktore maksymalizuje zysk minus koszt przejazdu
+\end_layout
+
+\begin_layout Plain Layout
+
+ w tym kroku moze sie zdarzyc, ze pewnych klientow nie skojarzymy z zadna
+ taksowka mimo ze sie zgodzili.
+\end_layout
+
+\begin_layout Plain Layout
+
+Jak widac z powyzszego opisu, jedyna rzecz, na ktora serwis ma wplyw to
+ ceny proponowane klientom.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+W tej pracy przybliżymy rozwiązanie problemu optymalizacji oczekiwanego
+ zysku ride-hailingu, przedstawione przez Hikimęet.al w pracy , a następnie
+ zaproponujemy prostszy i efektywniejszy algorytm optymalizujący ten problem.
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fi
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Section
+Definicja problemu
+\end_layout
+
+\begin_layout Standard
+W swojej pracy 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hikima_Akagi_Kim_Kohjima_Kurashima_Toda_2021"
+literal "false"
+
+\end_inset
+
+ Hikima
+\begin_inset space ~
+\end_inset
+
+et.
+ al przedstawili następujące sformułownanie modelu.
+\end_layout
+
+\begin_layout Subsection
+Model
+\end_layout
+
+\begin_layout Subsubsection
+Instancja problemu
+\end_layout
+
+\begin_layout Standard
+Dany jest ważony graf dwudzielny 
+\begin_inset Formula $G=\br{C,T,E}$
+\end_inset
+
+.
+ Zbiór wierzchołków 
+\begin_inset Formula $C$
+\end_inset
+
+ interpretujemy jako zbiór klientów, natomiast 
+\begin_inset Formula $T$
+\end_inset
+
+ jako zbiór taksówek, które możemy potencjalnie przypisać zamawiającym.
+ Krawędzie zadają relację osiągalności poszczególnych taksówek do konkretnych
+ agentów tj.
+ dla każdej krawędzi 
+\begin_inset Formula $\br{c,t}\in E$
+\end_inset
+
+ oznacza, że taksówka 
+\begin_inset Formula $t$
+\end_inset
+
+ może obsłużyć klienta 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ Koszt każdej krawędzi oznaczamy jako 
+\begin_inset Formula $w_{c,t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Model rozwiązania i procedura skojarzenia
+\end_layout
+
+\begin_layout Standard
+Rozwiązanie sprowadza się do znalezienia wektora cen 
+\begin_inset Formula $\br{\pi_{c}}_{c\in C}$
+\end_inset
+
+.
+ Dla każdego klienta 
+\begin_inset Formula $c$
+\end_inset
+
+, na podstawie ceny 
+\begin_inset Formula $\pi_{c}$
+\end_inset
+
+ stochastycznie decyduje się, czy bierze on udział w kolejnym etapie procesu
+ tworzenia skojarzenia: klient kontynuuję procedurę (przechodzi do kolejnego
+ etapu) z prawdopodobieństwem 
+\begin_inset Formula $\pr{v_{c}\geq\pi_{c}}$
+\end_inset
+
+ albo odchodzi z prawdopodobieństwem 
+\begin_inset Formula $1-\pr{v_{c}\geq\pi_{c}}$
+\end_inset
+
+.
+ Jeżeli klient 
+\begin_inset Formula $c$
+\end_inset
+
+ nie akceptuje zaproponowanej ceny, usuwamy z grafu jego wierzchołek i krawędzie
+ incydentne z nim.
+\end_layout
+
+\begin_layout Standard
+Oznaczmy jako 
+\begin_inset Formula $G_{\text{ok }}=\br{\cok,T,E_{\text{ok}}}$
+\end_inset
+
+ graf powstały po wyrzuceniu wszystkich klientów, którzy nie zaakceptowali
+ ceny, oraz wszystkich krawędzi z nimi związanych.
+ Z tego grafu wybieramy skojarzenie 
+\begin_inset Formula $M\subseteq E_{\text{ok}}$
+\end_inset
+
+ (zbiór krawędzi nie posiadających wspólnych wierzchołków).
+ Wartością rozwiązania jest suma cen pomniejszonych o wagę, tj.
+ 
+\begin_inset Formula $\pi_{c}-w_{c,t}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsubsection
+Skojarzenia
+\end_layout
+
+\begin_layout Standard
+Zauważmy, że gdy ceny 
+\begin_inset Formula $\br{\pi_{c}}_{c\in C}$
+\end_inset
+
+ są ustalone i poznaliśmy decyzje klientów na temat ich akceptacji, tj.
+ wektor 
+\begin_inset Formula $\br{\ind{v_{c}\geq\pi_{c}}}_{c\in C}$
+\end_inset
+
+ — czy też równoważnie zbiór 
+\begin_inset Formula $C_{\text{ok}}=\setst{c\in C}{v_{c}\geq\pi_{c}}$
+\end_inset
+
+ — , to nasz problem sprowadza się do klasycznego problemu znajdowania maksymaln
+ego skojarzenia w ważonym grafie dwudzielnym, który możemy opisać następujący
+ programem liniowym:
+\begin_inset Formula 
+\begin{align*}
+f\br{\pi_{1},...,\pi_{n};\cok}=\,\,\max_{z_{c,t}\in C\times T}\sum_{\br{c,t}\in E} & \br{\pi_{c}-w_{c,t}}\cdot z_{c,t}\\
+\text{{s.t.}}\sum_{t\in\delta\br c} & z_{c,t}\leq\ind{c\in\cok}\quad\forall_{c\in C}\\
+\sum_{c\in\delta\br t} & z_{c,t}\leq1\quad\forall_{t\in T}\\
+ & z_{c,t}\in\{0,1\}\quad\forall_{\br{c,t}\in E}
+\end{align*}
+
+\end_inset
+
+gdzie 
+\begin_inset Formula $\delta\br c$
+\end_inset
+
+ oznacza zbiór taksówek incydentnych z 
+\begin_inset Formula $c$
+\end_inset
+
+ — i analogicznie 
+\begin_inset Formula $\delta\br t$
+\end_inset
+
+ oznacza zbiór klientów incydentnych z 
+\begin_inset Formula $t$
+\end_inset
+
+ — 
+\begin_inset Formula $z_{c,t}\in\{0,1\}$
+\end_inset
+
+ określa czy 
+\begin_inset Formula $\br{c,t}\in E$
+\end_inset
+
+ są ze sobą skojarzone (
+\begin_inset Formula $z_{c,t}=1$
+\end_inset
+
+) czy nie (
+\begin_inset Formula $z_{c,t}=0$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+Pierwsze ograniczenie mówi, że tylko wierzchołek 
+\begin_inset Formula $c$
+\end_inset
+
+, który zaakceptuje zaproponowaną cenę może zostać skojarzony z jedną taksówką
+ 
+\begin_inset Formula $t$
+\end_inset
+
+; drugie gwarantuje, że każdy wierzchołek 
+\begin_inset Formula $t$
+\end_inset
+
+ może zostać skojarzony tylko z jednym klientem 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Problem ride-hailingu
+\end_layout
+
+\begin_layout Standard
+Funkcja 
+\begin_inset Formula $f\br{\pi_{1},...,\pi_{n};\br{v_{c}}_{c\in C}}$
+\end_inset
+
+ wyznacza maksymalne skojarzenie dla zadanych przez nas cen 
+\begin_inset Formula $\br{\pi_{c}}_{c\in C}$
+\end_inset
+
+ przy jednoczesnej wiedzy o tym, którzy klienci zaakceptowali zaproponowane
+ im ceny.
+ Jednakże przed wyznaczeniem cen 
+\begin_inset Formula $\br{\pi_{c}}_{c\in C}$
+\end_inset
+
+ nie znamy jeszcze realizacji 
+\begin_inset Formula $\br{\ind{v_{c}\geq\pi_{c}}}_{c\in C}$
+\end_inset
+
+.
+ A w związku z tym nasze zadanie to znalezienie takiego wektora 
+\begin_inset Formula $\br{\pi_{c}}_{c\in C}$
+\end_inset
+
+, który zmaksymalizuje nam średnią wartość skojarzenia, gdzie średnia jest
+ wzięta po wszystkich możliwych realizacjach wektora 
+\begin_inset Formula $\br{\ind{v_{c}\geq\pi_{c}}}_{c\in C}$
+\end_inset
+
+.
+ Innymi słowy nasze zadanie polega na maksymalizacji następującej funkcji
+ wektora 
+\begin_inset Formula $\br{\pi_{c}}_{c\in C}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\max_{\br{\pi_{c}}_{c\in C}\in\mathbb{R}_{+}^{|C|}}\exls{\br{v_{c}}{}_{c\in C}}{f\br{\pi_{1},...,\pi_{n};\setst c{v_{c}\geq\pi_{c}}}}.\qquad\text{(RH-PROBLEM)}
+\]
+
+\end_inset
+
+Powyższą zwięzłą formułę 
+\begin_inset Formula $\exls{\br{\pi_{c}}_{c\in C}}{f\br{\pi_{1},...,\pi_{n};\setst c{v_{c}\geq\pi_{c}}}}$
+\end_inset
+
+ można zapisać w nieco bardziej zrozumiały sposób:
+\begin_inset Formula 
+\begin{align*}
+\exls{\br{v_{c}}{}_{c\in C}}{f\br{\pi_{1},...,\pi_{n};\setst c{v_{c}\geq\pi_{c}}}} & =\sum_{\cok\subseteq C}\br{\prod_{c\in\cok}\pr{v_{c}\geq\pi_{c}}\cdot\prod_{c\notin\cok}\br{1-\pr{v_{c}\geq\pi_{c}}}\cdot f\br{\pi_{1},...,\pi_{n};\cok}}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Podejście Hikimy
+\begin_inset space ~
+\end_inset
+
+et al.
+\end_layout
+
+\begin_layout Standard
+Z tego sformułowania widać od razu, że nasz problem jest trudny obliczeniowo,
+ ponieważ występuje w nim sumowanie po wykładniczej ilości składników.
+ Jednocześnie funkcja celu nie jest wklęsła wg
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hikima_Akagi_Kim_Kohjima_Kurashima_Toda_2021"
+literal "false"
+
+\end_inset
+
+, co uniemożliwia użycie standardowych narzędzi optymalizacji wypukłej.
+\end_layout
+
+\begin_layout Standard
+W związku z tym Hikima et al.
+\begin_inset space ~
+\end_inset
+
+w swoim podejściu postawili nowy problem matematyczny:
+\begin_inset Formula 
+\begin{align*}
+\max_{\br{\pi_{c}}_{c\in C}\in\mathbb{R}_{+}^{C}}\max_{z_{c,t}\in C\times T}\sum_{\br{c,t}\in E} & \br{\pi_{c}-w_{c,t}}\cdot z_{c,t}\qquad\text{(UP-PROBLEM)}\\
+\text{{s.t.}}\sum_{t\in\delta\br c} & z_{c,t}\leq\pr{v_{c}\geq\pi_{c}}\quad\forall_{c\in C}\\
+\sum_{c\in\delta\br t} & z_{c,t}\leq1\quad\forall_{t\in T}\\
+ & z_{c,t}\in\br{0,1}\quad\forall_{\br{c,t}\in E}
+\end{align*}
+
+\end_inset
+
+Następnie pokazali, że optymalne rozwiązanie programu (UP-PROBLEM) jest
+ 
+\begin_inset Formula $1/3$
+\end_inset
+
+-aproksymacją optymalnego rozwiązania (RH-PROBLEM).
+ Ostatecznie ich rozwiązanie sprowadzało się do znalezienia optymalnego
+ rozwiązania (UP-PROBLEM) za pomocą metody szukania wypukłego przepływu
+ o minimalnym koszcie.
+\end_layout
+
+\begin_layout Standard
+Dodatkowo poczynili oni pewne założenia dotyczące rozkładu zmiennych 
+\begin_inset Formula $v_{c}$
+\end_inset
+
+.
+ W jednym wariancie założyli, że klient się zgodzi się na zaproponowaną
+ cenę 
+\begin_inset Formula $\pi_{c}$
+\end_inset
+
+ z prawdopodobieństwem:
+\end_layout
+
+\begin_layout Itemize
+ReLU:
+\begin_inset Formula 
+\[
+\pr{v_{c}\geq\pi_{c}}:=1-F_{c}^{ReLU}\br{\pi_{c}}=\begin{cases}
+1 & \br{\pi_{c}<q_{c}}\\
+-\frac{1}{\br{\alpha-1}\cdot q_{c}}\cdot\pi_{c}+\frac{\alpha}{\alpha-1} & \br{q_{c}\leq\pi_{c}\leq\alpha\cdot q_{c}}\\
+0 & \br{\pi_{c}>\alpha\cdot q_{c}}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Sigmoid:
+\begin_inset Formula 
+\[
+\pr{v_{c}\geq\pi_{c}}:=1-F_{c}^{Sigmoid}\br{\pi_{c}}=1-\frac{1}{1+e^{\frac{-\br{\pi_{c}-\beta\cdot q_{c}}}{\gamma\cdot|q_{c|}}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+gdzie 
+\begin_inset Formula $\alpha,\beta,\gamma,q_{c}$
+\end_inset
+
+to stałe a 
+\begin_inset Formula $q_{c}$
+\end_inset
+
+ w powyższym modelu oznacza minimalną cenę, dla której klient na pewno się
+ zgodzi.
+ Funkcji postaci Sigmoidy możemy użyć gdy zależy nam by była ona różniczkowalna
+ we wszystkich miejscach.
+\end_layout
+
+\begin_layout Standard
+W naszym modelu nie musimy wykonywać takich założeń.
+ Wystarczy nam pewne, znacznie bardziej ogólne założenie, które przybliżymy
+ w poniższej sekcji.
+\end_layout
+
+\begin_layout Subsection
+Rozkłady ewaluacji 
+\begin_inset Formula $v_{c}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Aby można było użyć zaproponowanego przez nas rozwiązania potrzebujemy założenia
+, że funkcja 
+\begin_inset Formula $R_{c}\br{p_{c}}=F_{c}^{-1}\br{1-p_{c}}\cdot p_{c}$
+\end_inset
+
+ jest funkcją wklęsłą.
+ W tej sekcji podamy intuicję co ta funkcja oznacza, zilustrujemy to na
+ przykładzie dystrybuanty rozkładu ewaluacji 
+\begin_inset Formula $F_{c}$
+\end_inset
+
+ typu ReLU, którą również zaproponowali Hikima
+\begin_inset space ~
+\end_inset
+
+et.
+\begin_inset space ~
+\end_inset
+
+al.
+ w swojej pracy.
+\end_layout
+
+\begin_layout Standard
+Zdefiniujmy funkcję 
+\begin_inset Formula $R_{c}\br{p_{c}}=F_{c}^{-1}\br{1-p_{c}}\cdot p_{c}$
+\end_inset
+
+, w naszym rozwiązaniu będziemy proponować każdemu klientowi cenę 
+\begin_inset Formula $F_{c}^{-1}\br{1-p_{c}}$
+\end_inset
+
+, czyli tak na prawdę cenę odpowiadającą kwantylowi rzędu 
+\begin_inset Formula $p_{c}$
+\end_inset
+
+ rozkładu empirycznego cen.
+ Przy takiej propozycji cen klient zgodzi się na nią z prawdopodobieństwem
+ 
+\begin_inset Formula $p_{c}$
+\end_inset
+
+ (Dowód Lematu 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ Wtedy funkcja 
+\begin_inset Formula $R_{c}$
+\end_inset
+
+ określa nam oczekiwany dochód z każdego klienta 
+\begin_inset Formula $c$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Rozważymy funkcję postaci ReLU z założeniami, że klient zgodzi się na przejazd
+ z prawdopodobieństwem równym 
+\begin_inset Formula $1$
+\end_inset
+
+ tylko dla ceny równej 
+\begin_inset Formula $0$
+\end_inset
+
+ oraz każda 
+\begin_inset Formula $v_{c}\leq\pi_{c}^{max}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Proponujemy poniższą, prostszą (dla ułatwienia zrozumienia) postać dystrybuanty
+ dla każdego klienta 
+\begin_inset Formula $c$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+F_{c}\br{\pi_{c}}=\begin{cases}
+0 & \br{\pi_{c}=0}\\
+\frac{\pi_{c}}{\pi_{c}^{max}} & \br{0<\pi_{c}\leq\pi_{c}^{max}}\\
+1 & \br{\pi_{c}>\pi_{c}^{max}}
+\end{cases}
+\]
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename wykresy_pi/relu.png
+	lyxscale 30
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Wykres 
+\begin_inset Formula $F_{c}\br{\pi_{c}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename wykresy_pi/relu_inv.png
+	lyxscale 30
+	scale 60
+	BoundingBox 0bp 0bp 397bp 280bp
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Wykres 
+\begin_inset Formula $F_{c}^{-1}\br{p_{c}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Wykres 
+\begin_inset Formula $R_{c}\br{p_{c}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename wykresy_pi/R.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Jak widać z wykresu 
+\begin_inset Formula $R_{c}\br{p_{c}}$
+\end_inset
+
+ lub po prostu wyliczając jej postać, widzimy, że jest ona wklęsła i spełnia
+ nasze założenie.
+\end_layout
+
+\begin_layout Standard
+W ogólności dystrybuanta 
+\begin_inset Formula $F_{c}$
+\end_inset
+
+ nie musi być taka, że 
+\begin_inset Formula $R_{c}$
+\end_inset
+
+ będzie wklęsła, ale nie będziemy się tym zajmować w tej pracy.
+ Istnieje procedura nazywana 
+\emph on
+żelazkowaniem
+\emph default
+, która pozwala pominąć to założenie i uogólnia model.
+ Użycie tej metody prezentował Qigi Yan w 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "article"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Nasze podejście
+\end_layout
+
+\begin_layout Standard
+Hikima et al.
+\begin_inset space ~
+\end_inset
+
+w swojej pracy (
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hikima_Akagi_Kim_Kohjima_Kurashima_Toda_2021"
+literal "false"
+
+\end_inset
+
+) przedstawili rozwiązanie 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+(UP-PROBLEM) za pomocą algorytmu minimalnych przepływów, osiągając rozwiązanie
+ 3-aproksymacyjne.
+ Zaproponujemy rozwiązanie o lepszej skuteczności (2-aproksymacja), używające
+ drastycznie prostszego algorytmu.
+ Ponadto, co nawet istotniejsze, Hikima
+\begin_inset space ~
+\end_inset
+
+et
+\begin_inset space ~
+\end_inset
+
+al.
+\begin_inset space ~
+\end_inset
+
+porównywali swoje rozwiązanie do optymalnego algorytmu 
+\family default
+\series default
+\shape default
+\size default
+\emph on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+postowanych cen
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+(klientowi proponowana jest cena on ją odrzuca lub nie)
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+.
+ Nasz algorytm porównywamy potem (Sekcja 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Optymalizacja-względem-optymalne"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.) do optymalnej aukcji Bayesowskiej (klient proponuję cenę, my ją odrzucamy
+ lub nie), która siłą rzeczy jest mechanizmem mocniejszym, ale nie możliwym
+ do zaimplementowania w warunkach 
+\family default
+\series default
+\shape default
+\size default
+\emph on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ride-hailingu
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+, tym mocniejszy jest jednak nasz wynik.
+\end_layout
+
+\begin_layout Subsection
+Problem
+\end_layout
+
+\begin_layout Standard
+Chcemy rozwiązać problem propozycji cen przejazdów dla klientów tak by zoptymali
+zować oczekiwany zysk.
+ 
+\end_layout
+
+\begin_layout Standard
+Na potrzebę łatwiejszego zrozumienia dodamy i zmienimy niektóre oznaczenia.
+ Każdemu klientowi będziemy proponować cenę 
+\begin_inset Formula $\pi_{c}$
+\end_inset
+
+.
+ Wagi krawędzi dalej oznaczamy przez 
+\begin_inset Formula $w_{c,t}$
+\end_inset
+
+.
+ Każdy klient 
+\begin_inset Formula $c$
+\end_inset
+
+ ma własną ewaluację, na którą wycenia swój przejazd, oznaczymy ją przez
+ 
+\series bold
+
+\begin_inset Formula $v_{c}$
+\end_inset
+
+
+\series default
+.
+ Nie jest nam ona dana oczywiście wprost, ale zakładamy znajomość rozkładów
+ ewaluacji dla każdego klienta, co jest sensownym założeniem, w realnym
+ świecie rozkłady te możemy wyliczać na podstawie danych z poprzednich przejazdó
+w, których przewoźnicy mają wystarczająco dużo.
+\end_layout
+
+\begin_layout Standard
+W naszym modelu klient zgadza się na przejazd wtedy i tylko wtedy gdy 
+\begin_inset Formula $v_{c}\geq\pi_{c}$
+\end_inset
+
+, dzieje się to z prawdopodobieństwem 
+\begin_inset Formula $\pr{v_{c}\geq\pi_{c}}=1-F_{c}\br{\pi_{c}}$
+\end_inset
+
+, które znamy lub możemy szybko policzyć na podstawie dystrybuanty przybliżonego
+ rozkładu ewaluacji 
+\begin_inset Formula $F_{c}$
+\end_inset
+
+.
+ Przez 
+\begin_inset Formula $p_{c,t}\forall_{\br{c,t}\in E}$
+\end_inset
+
+ oznaczymy prawdopodobieństwo tego, że rozważymy dla klienta 
+\begin_inset Formula $c$
+\end_inset
+
+ przejazd taksówką 
+\begin_inset Formula $t$
+\end_inset
+
+ (jeżeli 
+\begin_inset Formula $c$
+\end_inset
+
+ zgodzi się na cenę), a przez 
+\begin_inset Formula $p_{c}=\sum_{t\in\delta\br c}p_{c,t}$
+\end_inset
+
+, prawdopodobieństwo, że obsłużymy klienta 
+\begin_inset Formula $c$
+\end_inset
+
+ (jeśli zgodzi się na zaproponowaną cenę).
+ Przez zysk rozumiemy oczywiście sumę 
+\begin_inset Formula $\pi_{c}-w_{c,t}$
+\end_inset
+
+ dla tych klientów 
+\begin_inset Formula $c$
+\end_inset
+
+, których przejazdy obsługujemy.
+\end_layout
+
+\begin_layout Standard
+Skoro tak na prawdę dalej budujemy skojarzenie na grafie dwudzielnym dobrze
+ myśleć o problemie 
+\emph on
+ride-hailingu
+\emph default
+ analogicznie.
+ Przez dodanie krawędzi 
+\begin_inset Formula $\br{c,t}$
+\end_inset
+
+ będziemy rozumieć pomyślne skojarzenie klienta 
+\begin_inset Formula $c$
+\end_inset
+
+ z taksówką 
+\begin_inset Formula $t$
+\end_inset
+
+ (klient 
+\begin_inset Formula $c$
+\end_inset
+
+ jedzie do miejsca docelowego taksówką 
+\begin_inset Formula $t$
+\end_inset
+
+).
+ Powiemy, że krawędź 
+\begin_inset Formula $\br{c,t}$
+\end_inset
+
+ jest 
+\emph on
+zablokowana
+\emph default
+ przez
+\emph on
+ 
+\emph default
+
+\begin_inset Formula $t$
+\end_inset
+
+, jeśli taksówka 
+\begin_inset Formula $t$
+\end_inset
+
+ została pomyślnie skojarzona z innym klientem i obsługuje już jego przejazd.
+\end_layout
+
+\begin_layout Subsection
+Program liniowy
+\end_layout
+
+\begin_layout Standard
+Pokażemy, że rozwiązanie poniższego programu liniowego jest górnym ograniczeniem
+ problemu 
+\emph on
+ride-hailingu
+\emph default
+.
+ Co więcej, nie jest to nawet ograniczenie optymalnego problemu ustalania
+ cen, ale jest to ograniczenie górne na wynik optymalnej aukcji Bayesowskiej
+ (Sekcja 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Optymalizacja-względem-optymalne"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.).
+ Program jest inspirowany wynikiem Qiqi Yana
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "article"
+literal "false"
+
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align}
+\max & \sum_{c}\br{F_{c}^{-1}\br{1-p_{c}}\cdot p_{c}}-\sum_{\br{c,t}\in E}p_{c,t}\cdot w_{c,t}\qquad\text{(PRICE-MATCH-LP)}\nonumber \\
+\text{s.t.\ensuremath{\quad}} & \sum_{t\in\delta\br c}p_{c,t}\leq1\qquad\forall_{c}\label{eq:lp_1}\\
+ & \sum_{c\in\delta\br t}p_{c,t}\leq1\qquad\forall_{t}\label{eq:lp_2}\\
+ & p_{c}=\sum_{t\in\delta\br c}p_{c,t}\qquad\forall_{c}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+
+\emph on
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:(PRICE-MATCH-LP)-upper_bound_opt"
+
+\end_inset
+
+
+\emph default
+Rozwiązanie
+\emph on
+ 
+\shape up
+\emph default
+(PRICE-MATCH-LP)
+\emph on
+ jest górnym ograniczeniem 
+\begin_inset Formula $OPT$
+\end_inset
+
+ (aukcji postowanych cen).
+\end_layout
+
+\begin_deeper
+\begin_layout Proof
+Rozważmy optymalny mechanizm (w modelu aukcji postowanych cen), pokażemy,
+ że 
+\begin_inset Formula $p_{c,t}^{*}=\pr{OPT\text{\,przewozi }c\text{ taksówką }t}$
+\end_inset
+
+ jest dopuszczalnym rozwiązaniem.
+ W następnym kroku pokażemy, że optymalny mechanizm, średnio na kliencie
+ 
+\begin_inset Formula $c$
+\end_inset
+
+ nie zarobi, więcej jak 
+\begin_inset Formula $R_{c}\br{p_{c}^{*}}=F_{c}^{-1}\br{1-p_{c}^{*}}\cdot p_{c}^{*}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Rozwiązanie 
+\begin_inset Formula $OPT$
+\end_inset
+
+ musi spełniać 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:lp_1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ i 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:lp_2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, ponieważ 
+\begin_inset Formula $OPT$
+\end_inset
+
+ odpowiada pewnemu średniemu skojarzeniu a spełnienie 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:lp_1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ i 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:lp_2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ to warunek konieczny i wystarczający
+\color red
+ 
+\color inherit
+średniego skojarzenia, stąd 
+\begin_inset Formula $p_{c,t}^{*}$
+\end_inset
+
+ jest dopuszczalnym rozwiązaniem.
+\end_layout
+
+\begin_layout Proof
+Kiedy 
+\begin_inset Formula $OPT$
+\end_inset
+
+ ma ustalone ceny 
+\begin_inset Formula $\pi_{c}$
+\end_inset
+
+ dla każdego klienta 
+\begin_inset Formula $c$
+\end_inset
+
+ (na przejazd 
+\begin_inset Formula $t$
+\end_inset
+
+) to zgadza się on na nią z prawdopodobieństwem 
+\begin_inset Formula $\pr{v_{c}\geq\pi_{c}}=1-F_{c}\br{\pi_{c}}$
+\end_inset
+
+.
+ Pokażemy, że 
+\begin_inset Formula $\ex{OPT\br c}$
+\end_inset
+
+ czyli średni uzysk 
+\begin_inset Formula $OPT$
+\end_inset
+
+-a na kliencie 
+\begin_inset Formula $c$
+\end_inset
+
+ jest nie większy niż 
+\begin_inset Formula $F_{c}^{-1}\br{1-p_{c}^{*}}\cdot p_{c}^{*}$
+\end_inset
+
+.
+ Wiemy, że 
+\begin_inset Formula 
+\[
+\ex{OPT\br c}=\pi_{c}\cdot\pr{c\text{ zgadza się na }\pi_{c}\text{ ORAZ }OPT\text{ przewozi }c}=\pi_{c}\cdot\pr{v_{c}\geq\pi_{c}}\cdot\prcond{OPT\text{ przewozi }c}{v_{c}\geq\pi_{c}}.
+\]
+
+\end_inset
+
+ Ale jednocześnie 
+\begin_inset Formula $\pi_{c}=F_{c}^{-1}\br{1-\pr{v_{c}\geq\pi_{c}}}$
+\end_inset
+
+, a więc
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\begin{align*}
+\ex{OPT\br c} & =\pi_{c}\cdot\pr{v_{c}\geq\pi_{c}}\cdot\prcond{OPT\text{ przewozi }c}{v_{c}\geq\pi_{c}}\\
+ & =F_{c}^{-1}\br{1-\pr{v_{c}\geq\pi_{c}}}\cdot\pr{v_{c}\geq\pi_{c}}\cdot\prcond{OPT\text{ przewozi }c}{v_{c}\geq\pi_{c}}\\
+ & \leq F_{c}^{-1}\br{1-\pr{v_{c}\geq\pi_{c}}\cdot\prcond{OPT\text{ przewozi }c}{v_{c}\geq\pi_{c}}}\cdot\pr{v_{c}\geq\pi_{c}}\cdot\prcond{OPT\text{ przewozi }c}{v_{c}\geq\pi_{c}}\\
+ & =R_{c}^{*}\br{\pr{v_{c}\geq\pi_{c}}\cdot\prcond{OPT\text{ przewozi }c}{v_{c}\geq\pi_{c}}}\\
+ & =R_{c}^{*}\br{p_{c}^{*}},
+\end{align*}
+
+\end_inset
+
+co wynika z tego, że funkcja 
+\begin_inset Formula $F_{c}^{-1}\br{\cdot}$
+\end_inset
+
+ jest monotoniczna, a 
+\begin_inset Formula $\prcond{OPT\text{ przewozi }c}{v_{c}\geq\pi_{c}}\leq1$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Theorem
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:Program-(PRICE-MATCH-LP)-możemy"
+
+\end_inset
+
+Program 
+\shape up
+(PRICE-MATCH-LP) 
+\emph on
+możemy rozwiązać efektywnie o ile 
+\begin_inset Formula $R_{c}$
+\end_inset
+
+ jest wklęsła.
+\end_layout
+
+\begin_layout Proof
+Rozważmy funkcję 
+\begin_inset Formula $R_{c}\br{p_{c}}=F_{c}^{-1}\br{1-p_{c}}\cdot p_{c}$
+\end_inset
+
+ (dla 
+\begin_inset Formula $p_{c}\in\brq{0,1}$
+\end_inset
+
+) .
+ Z definicji przyjętej przez nas postaci 
+\begin_inset Formula $F_{c}$
+\end_inset
+
+ otrzymujemy 
+\begin_inset Formula $R_{c}\br{p_{c}}=F_{c}^{-1}\br{1-p_{c}}\cdot p_{c}=q_{c}^{max}\cdot\br{1-p_{c}}\cdot p_{c}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Ta funkcja jest oczywiście wklęsła, stąd funkcja celu 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+(PRICE-MATCH-LP)
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ jest wklęsła (odejmowane liniowe składniki nie zaburzają tej własności).
+ 
+\end_layout
+
+\begin_layout Proof
+Zatem jej maksymalizacja po wypukłym obszarze (tj.
+ obszarze skojarzeń zdefiniowanych przez 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:lp_1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ i 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:lp_2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) jest możliwa w czasie wielomianowym, na przykład 
+\emph on
+metodą elipsoid 
+\emph default
+przedsawioną w 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Elipsoid"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Algorytm
+\end_layout
+
+\begin_layout Standard
+Na podstawie 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+(PRICE-MATCH-LP
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+) proponujemy poniższy algorytm, który będzie dawał 2-aproksymacyjne rozwiązanie
+ problemu 
+\emph on
+ride-hailingu
+\emph default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "alg:algos"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+For each 
+\series default
+client 
+\begin_inset Formula $c$
+\end_inset
+
+ in random order:
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+\begin_inset Formula $\quad$
+\end_inset
+
+propose 
+\begin_inset Formula $c$
+\end_inset
+
+ 
+\series default
+price 
+\series bold
+
+\begin_inset Formula $\pi_{c}=F_{c}^{-1}\br{1-p_{c}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\quad$
+\end_inset
+
+
+\series bold
+if
+\series default
+ 
+\begin_inset Formula $c$
+\end_inset
+
+ accepts price 
+\begin_inset Formula $\pi_{c}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\quad\quad$
+\end_inset
+
+
+\series bold
+pick
+\series default
+ taxi 
+\begin_inset Formula $t$
+\end_inset
+
+ with propability 
+\begin_inset Formula $\frac{p_{c,t}}{p_{c}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\quad\quad$
+\end_inset
+
+
+\series bold
+if 
+\begin_inset Formula $\br{c,t}$
+\end_inset
+
+
+\series default
+ is not blocked:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\quad\quad\quad$
+\end_inset
+
+
+\series bold
+serve 
+\begin_inset Formula $c$
+\end_inset
+
+ 
+\series default
+with taxi 
+\begin_inset Formula $t$
+\end_inset
+
+ for price 
+\begin_inset Formula $\pi_{c}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Uzasadnienie 2-aproksymacji
+\end_layout
+
+\begin_layout Lemma
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:3"
+
+\end_inset
+
+Krawędź 
+\begin_inset Formula $\br{c,t}$
+\end_inset
+
+ jest zablokowana przez 
+\begin_inset Formula $t$
+\end_inset
+
+ z prawdopodobieństwem co najwyżej 
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Krawędź 
+\begin_inset Formula $\br{c,t}$
+\end_inset
+
+ będzie zablokowana przez 
+\begin_inset Formula $t$
+\end_inset
+
+ wtedy i tylko wtedy, gdy taksówka 
+\begin_inset Formula $t$
+\end_inset
+
+ została 
+\emph on
+skojarzona 
+\emph default
+już z innym klientem 
+\begin_inset Formula $\prm c$
+\end_inset
+
+, wtedy powiemy, że 
+\begin_inset Formula $\br{c,t}$
+\end_inset
+
+ jest zablokowana przez 
+\begin_inset Formula $\br{\prm c,t}$
+\end_inset
+
+.
+ Klient 
+\begin_inset Formula $\prm c$
+\end_inset
+
+ został skojarzony z taksówką 
+\begin_inset Formula $t$
+\end_inset
+
+ tylko wtedy gdy algorytm rozważył klienta 
+\begin_inset Formula $\prm c$
+\end_inset
+
+ przed 
+\begin_inset Formula $c$
+\end_inset
+
+, 
+\begin_inset Formula $\prm c$
+\end_inset
+
+ zgodził się na zaproponowaną mu cenę i algorytm zaproponował taksówkę 
+\begin_inset Formula $t$
+\end_inset
+
+ klientowi 
+\begin_inset Formula $\prm c$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Z konstrukcji algorytmu, klientów rozważamy w losowej kolejności stąd prawdopodo
+bieństwo, że 
+\begin_inset Formula $\prm c$
+\end_inset
+
+ wystąpi przed 
+\begin_inset Formula $c$
+\end_inset
+
+ w losowej permutacji dla ustalonego 
+\begin_inset Formula $c$
+\end_inset
+
+ wynosi 
+\begin_inset Formula $\frac{1}{2}$
+\end_inset
+
+.
+ Proponujemy cenę 
+\begin_inset Formula $\pi_{c}=F_{c}^{-1}\br{1-p_{c}}$
+\end_inset
+
+ natomiast 
+\begin_inset Formula $\prm c$
+\end_inset
+
+ zgadza się na nią z prawdopodobieństwem:
+\begin_inset Formula 
+\[
+\pr{v_{\prm c}\geq\pi_{\prm c}}=1-\pr{v_{\prm c}\leq\pi_{\prm c}}=1-F_{\prm c}\br{\pi_{\prm c}}=1-F_{\prm c}\br{F_{\prm c}^{-1}\br{1-p_{\prm c}}}=p_{\prm c}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Jeżeli 
+\begin_inset Formula $\prm c$
+\end_inset
+
+ zgodzi się na cenę to przydzielimy mu taksówkę 
+\begin_inset Formula $t$
+\end_inset
+
+ z prawdopodobieństwem 
+\begin_inset Formula $\frac{p_{\prm c,t}}{p_{\prm c}}$
+\end_inset
+
+.
+ Wobec powyższego krawędź 
+\begin_inset Formula $\br{c,t}$
+\end_inset
+
+ zostanie zablokowana przez 
+\begin_inset Formula $\br{\prm c,t}$
+\end_inset
+
+ z prawdopodobieństwem:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+\pr{\br{c,t}\text{is blocked by }\text{\br{\prm c,t}}}\leq\frac{1}{2}\cdot p_{\prm c}\cdot\frac{p_{\prm c,t}}{p_{\prm c}}=\frac{1}{2}\cdot p_{\prm c,t}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Dla ustalonego klienta 
+\begin_inset Formula $c$
+\end_inset
+
+ i taksówki 
+\begin_inset Formula $t$
+\end_inset
+
+, krawędź 
+\begin_inset Formula $\br{c,t}$
+\end_inset
+
+ będzie zablokowana gdy będzie zablokowana przez jakąkolwiek z krawędzi
+ 
+\begin_inset Formula $\br{\prm c,t}\forall_{\prm c\in\delta\br t\setminus\set c}$
+\end_inset
+
+, z dowolności wyboru 
+\begin_inset Formula $\prm c$
+\end_inset
+
+ w powyższym rozważaniu otrzymujemy ostatecznie:
+\begin_inset Formula 
+\[
+\pr{\br{c,t}\text{is blocked by }t}\leq\sum_{\prm c\in\delta\br t}\pr{\br{c,t}\text{is blocked by }\text{\br{\prm c,t}}}\leq\frac{1}{2}\cdot\sum_{\prm c\in\delta\br t}p_{\prm c,t}\leq\frac{1}{2}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Przy czym ostatnia nierówność wynika z 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:lp_2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ w 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+(PRICE-MATCH-LP), a przedostatnia to po prostu wyciągnięcie stałej przed
+ sumę.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Theorem
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:Algorytm--oblicza-2apro"
+
+\end_inset
+
+Algorytm 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "alg:algos"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ oblicza 2-aproksymację 
+\begin_inset Formula $OPT$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+Z Twierdzenia 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "thm:(PRICE-MATCH-LP)-upper_bound_opt"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ wiemy, że 
+\begin_inset Formula $OPT$
+\end_inset
+
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+(PRICE-MATCH-LP)
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ jest górnym ograniczeniem problemu 
+\emph on
+ride-hailingu
+\emph default
+ w modelu aukcji Bayesowskiej.
+ Pokażemy, że 
+\begin_inset Formula $\frac{OPT}{2}$
+\end_inset
+
+ jest dolnym ograniczeniem 
+\begin_inset Formula $ALG$
+\end_inset
+
+, (wynik Algorytmu 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "alg:algos"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Proof
+Przez 
+\begin_inset Formula $p_{c,t}$
+\end_inset
+
+ oznaczmy prawdopodobieństwo z jaką 
+\begin_inset Formula $OPT$
+\end_inset
+
+ rozważy 
+\begin_inset Formula $\br{c,t}$
+\end_inset
+
+.
+ Obliczmy oczekiwany zysk 
+\begin_inset Formula $ALG$
+\end_inset
+
+ określonego przez wartości 
+\begin_inset Formula $p_{c,t}$
+\end_inset
+
+.
+ Z rozważań w dowodzie Lematu 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "lem:3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ wiemy, że prawdopodobieństwo, tego że klient 
+\begin_inset Formula $c$
+\end_inset
+
+ zgodzi się na cenę 
+\begin_inset Formula $F_{\prm c}^{-1}\br{1-p_{\prm c}}$
+\end_inset
+
+ wynosi 
+\begin_inset Formula $p_{c}$
+\end_inset
+
+, stąd i z konstrukcji algorytmu otrzymujemy:
+\begin_inset Formula 
+\begin{align}
+ALG & =\sum_{c}\br{\sum_{t\in\delta\br c}p_{c}\cdot\frac{p_{c,t}}{p_{c}}\cdot\pr{\br{c,t}\text{ is not blocked by }t}\cdot\br{F_{\prm c}^{-1}\br{1-p_{\prm c}}-w_{c,t}}}\geq\label{eq:1}\\
+\geq & \sum_{c}\br{\sum_{t\in\delta\br c}p_{c,t}\cdot\frac{1}{2}\cdot\br{F_{\prm c}^{-1}\br{1-p_{\prm c}}-w_{c,t}}}=\label{eq:2}\\
+= & \frac{1}{2}\sum_{c}\br{\sum_{t\in\delta\br c}p_{c,t}\cdot F_{\prm c}^{-1}\br{1-p_{\prm c}}-\sum_{t\in\delta\br c}p_{c,t}\cdot w_{c,t}}=\\
+= & \frac{1}{2}\brq{\sum_{c}\br{F_{\prm c}^{-1}\br{1-p_{\prm c}}\cdot\sum_{t\in\delta\br c}p_{c,t}}-\sum_{\br{c,t}\in E}p_{c,t}\cdot w_{c,t}}=\\
+= & \frac{1}{2}\brq{\sum_{c}\br{F_{\prm c}^{-1}\br{1-p_{\prm c}}\cdot p_{c}}-\sum_{\br{c,t}\in E}p_{c,t}\cdot w_{c,t}}=\frac{OPT}{2}
+\end{align}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+przy czym przejście między 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ a 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ wynika z Lematu 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "lem:3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Optymalizacja-względem-optymalne"
+
+\end_inset
+
+Porównanie do optymalnego mechanizmu aukcji 
+\emph on
+Bayesowskiej
+\end_layout
+
+\begin_layout Standard
+Istnieje bardzo bogata teoria dotycząca tworzenia efektywnych mechanizmów
+ sprzedaży.
+ Wśród niej jednym z głównych wyników jest teoria Myersona
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Myerson"
+literal "false"
+
+\end_inset
+
+, za którą Myerson otrzymał nagrodę Nobla.
+ Teoria Myersona pozwala na stworzenie mechanizmu przydziału klientów do
+ taksówek, który w 
+\emph on
+optymalny
+\emph default
+ sposób maksymalizuje zysk przewoźnika.
+ Poniżej krótko przedstawiamy jak wygląda mechanizm Myersona w przypadku
+ problemu 
+\emph on
+ride-hailingu
+\emph default
+.
+\end_layout
+
+\begin_layout Subsection
+Mechanizm Myersona
+\end_layout
+
+\begin_layout Standard
+Formalnie, rozważamy mechanizm aukcji 
+\emph on
+Bayesowskiej
+\emph default
+ z jednym sprzedawcą (systemem ride-hailingowym) i 
+\begin_inset Formula $n$
+\end_inset
+
+ uczestnikami z 
+\emph on
+jednym parametrem
+\emph default
+, którzy licytują usługę (w tym przypadku przejazd).
+ 
+\emph on
+Jeden parametr
+\emph default
+ oznacza, że z każdym klientem 
+\begin_inset Formula $c$
+\end_inset
+
+ jest związana jego prywatna informacja reprezentowana przez 
+\begin_inset Formula $v_{c}$
+\end_inset
+
+, jedna liczba, która jest jego ewaluacją ceny.
+ Ceny są losowe i niezależne między sobą i zakładamy, że pochodzą ze znanych
+ rozkładów 
+\begin_inset Formula $\mathcal{D}_{c}$
+\end_inset
+
+ dla każdego klienta 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ Ewaluacje nie są jawne, ale rozkłady 
+\begin_inset Formula $\mathcal{D}_{c}$
+\end_inset
+
+ już tak.
+\end_layout
+
+\begin_layout Standard
+Każdy klient 
+\begin_inset Formula $c$
+\end_inset
+
+ składa 
+\emph on
+ofertę 
+\emph default
+
+\begin_inset Formula $b_{c}$
+\end_inset
+
+ reprezentującą jego ewaluacje.
+ Sprzedawca ma ograniczenie na obsługę klientów 
+\begin_inset Formula $\mathcal{I}\subseteq2^{\brq n}$
+\end_inset
+
+ i może obsłużyć dowolny zbiór agentów z 
+\begin_inset Formula $\mathcal{I}$
+\end_inset
+
+ — naszym przypadku 
+\begin_inset Formula $\mathcal{I}$
+\end_inset
+
+ reprezentuje warunek, że każdy klient musi być skojarzony z co najwyżej
+ jedną taksówką, a taksówka może przewieźć co najwyżej jednego klienta,
+ tj.
+ reprezentuje skojarzenia w grafie.
+\end_layout
+
+\begin_layout Standard
+Mechanizm jest funkcją, która odwzorowuje wektor 
+\emph on
+ofert
+\series bold
+\emph default
+ 
+\series default
+
+\begin_inset Formula $\boldsymbol{b}$
+\end_inset
+
+ na 
+\emph on
+alokację
+\emph default
+ 
+\begin_inset Formula $A\br{\boldsymbol{b}}\in\mathcal{I}$
+\end_inset
+
+, z 
+\emph on
+cenami
+\emph default
+ 
+\begin_inset Formula $\pi_{c}\br{\boldsymbol{b}}$
+\end_inset
+
+ płaconymi przez każdego klienta 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ Dla ułatwienia notacji definiujemy przez 
+\begin_inset Formula $X_{c}\br{\boldsymbol{b}}:=\boldsymbol{1}_{c\in A\br{\boldsymbol{b}}}$
+\end_inset
+
+ funkcję, która określa czy mechanizm obsługuje agenta 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ 
+\emph on
+Zysk
+\emph default
+ każdego klienta 
+\begin_inset Formula $c$
+\end_inset
+
+ pod warunkiem wektora 
+\emph on
+ofert
+\emph default
+ 
+\series bold
+
+\begin_inset Formula $\boldsymbol{b}$
+\end_inset
+
+
+\series default
+, określamy przez 
+\begin_inset Formula $v_{c}\cdot X_{c}\br{\boldsymbol{b}}-\pi_{c}\br{\boldsymbol{b}}$
+\end_inset
+
+.
+ Mechanizmy rozważane przez Myersona spełniają następujące założenia:
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Dobrowolny udział
+\emph default
+: klient płaci tylko wtedy gdy go obsługujemy i robimy to za cenę równą
+ co najwyżej złożonej przez niego 
+\emph on
+ofercie
+\emph default
+.
+ Dla każdego wektora składanych 
+\emph on
+ofert
+\emph default
+ 
+\begin_inset Formula $\boldsymbol{b}$
+\end_inset
+
+ mamy, 
+\begin_inset Formula $\pi_{c}\br{\boldsymbol{b}}\leq X_{c}\br{\boldsymbol{b}}\cdot b_{c}\quad\forall_{c}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Transfer w jedną stronę
+\emph default
+: mechanizm nie płaci klientom, 
+\begin_inset Formula $\pi_{c}\br{\boldsymbol{b}}\geq0\quad\forall_{c}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Oczekiwana prawdomówność
+\emph default
+: dla każdego klienta 
+\begin_inset Formula $c$
+\end_inset
+
+, jeżeli 
+\begin_inset Formula $v_{c}$
+\end_inset
+
+ jest jego prawdziwą ewaluacją, wtedy złożenie 
+\emph on
+oferty
+\emph default
+ 
+\begin_inset Formula $v_{c}$
+\end_inset
+
+ daje oczekiwany 
+\emph on
+zysk
+\emph default
+ nie mniejszy niż przy złożeniu jakiejkolwiek innej 
+\emph on
+oferty
+\emph default
+ 
+\begin_inset Formula $b_{c}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\exls{b_{\prm c}\leftarrow\mathcal{D}_{\prm c}:\prm c\neq c}{v_{c}\cdot X_{i}\br{\boldsymbol{b}_{-c},v_{c}}-\pi_{c}\br{\boldsymbol{b}_{-c},v_{c}}}\geq\exls{b_{\prm c}\leftarrow\mathcal{D}_{\prm c}:\prm c\neq c}{v_{c}\cdot X_{i}\br{\boldsymbol{b}_{-c},b_{c}}-\pi_{c}\br{\boldsymbol{b}_{-c},b_{c}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Myerson a ride-hailing
+\end_layout
+
+\begin_layout Standard
+Jednakże gdyby system ride-hailingowy chciał skorzystać z tego mechanizmu
+ to zupełnie zmieniłby on sposób działania aplikacji — użytkownik zamiast
+ akceptawać cenę, musiałby najpierw zaproponować własną cenę za przejazd,
+ a następnie czekać na potwierdzenie systemu, czy ta cena jest akceptowalna
+ czy nie, a nawet jeśli jest akceptowalna, to czy przejazd się odbędzie.
+\end_layout
+
+\begin_layout Standard
+Siłą rzeczy więc jesteśmy (tzn.
+ przewoźnik jest) skazani na mechanizm postowanych cen, czyli taki jak rozważali
+śmy wcześniej.
+ Powstaje jednak naturalne pytanie:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centerline{
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+emph
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+Jak efektywny jest nasz mechanizm w porównaniu z optymalnym mechanizmem
+ Myersona?
+\backslash
+newline
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Główne twierdzenie niniejszej pracy jest więc następujące:
+\end_layout
+
+\begin_layout Theorem
+Algorytm
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:algos"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ jest mechanizmem dla problemu ride-hailingu, który jest 2-aproksymacją
+ optymalnego mechanizmu Bayesowskiego wg.
+ teorii Myersona.
+\end_layout
+
+\begin_layout Standard
+Dowód tego twierdzenia sprowadza się jednak dość prosto do następującego
+ lematu.
+\end_layout
+
+\begin_layout Lemma
+Rozwiązanie
+\emph on
+ 
+\shape up
+\emph default
+(PRICE-MATCH-LP)
+\emph on
+ jest górnym ograniczeniem wartości optymalnej aukcji Bayesowskiej.
+\end_layout
+
+\begin_layout Standard
+Przypomnijmy więc (PRICE-MATCH-LP):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\max & \sum_{c}\br{F_{c}^{-1}\br{1-p_{c}}\cdot p_{c}}-\sum_{\br{c,t}\in E}p_{c,t}\cdot w_{c,t}\qquad\text{(PRICE-MATCH-LP)}\nonumber \\
+\text{s.t.\ensuremath{\quad}} & \sum_{t\in\delta\br c}p_{c,t}\leq1\qquad\forall_{c}\\
+ & \sum_{c\in\delta\br t}p_{c,t}\leq1\qquad\forall_{t}\\
+ & p_{c}=\sum_{t\in\delta\br c}p_{c,t}\qquad\forall_{c}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Rozważmy optymalny mechanizm Bayesowski 
+\begin_inset Formula $OPT$
+\end_inset
+
+.
+ Niech 
+\begin_inset Formula $OPT(c)$
+\end_inset
+
+ to będzie zysk mechanizmu z klienta 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ Załóżmy, że 
+\begin_inset Formula $p_{c}$
+\end_inset
+
+ to prawdopodobieństwo, że 
+\begin_inset Formula $OPT$
+\end_inset
+
+ przewozi klienta 
+\begin_inset Formula $c$
+\end_inset
+
+, a 
+\begin_inset Formula $p_{c,t}$
+\end_inset
+
+ to prawdopodobieństwo, że mechanizm przewozi klienta 
+\begin_inset Formula $c$
+\end_inset
+
+ taksówką 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ Oczywiście te prawdopodobieństwa spełniają nierówności powyższego programu
+ liniowego.
+ Koszt jaki optymalny mechanizm płaci za przewóz klienta 
+\begin_inset Formula $c$
+\end_inset
+
+ taksówką 
+\begin_inset Formula $t$
+\end_inset
+
+ to 
+\begin_inset Formula $p_{c,t}\cdot w_{c,t}$
+\end_inset
+
+.
+ Pozostaje więc pokazać jedynie, że 
+\begin_inset Formula 
+\[
+\sum_{c}\ex{OPT\br c}\leq\sum_{c}\br{F_{c}^{-1}\br{1-p_{c}}\cdot p_{c}}.
+\]
+
+\end_inset
+
+Myerson w swojej pracy
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Myerson"
+literal "false"
+
+\end_inset
+
+ pokazał, że jeśli 
+\begin_inset Formula $\pr{OPT\text{ przewozi }c}=p_{c}$
+\end_inset
+
+, to 
+\begin_inset Formula $\ex{OPT\br c}\leq\br{F_{c}^{-1}\br{1-p_{c}}\cdot p_{c}}$
+\end_inset
+
+ dla każdego klienta 
+\begin_inset Formula $c$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Proof
+To oznacza ostatecznie, że wektor 
+\begin_inset Formula $\br{p_{c}}_{c\in C}=\br{\pr{OPT\text{ przewozi }c}}_{c\in C}$
+\end_inset
+
+ jest rozwiązaniem dopuszczalnym programu (PRICE-MATCH-LP) o wartości nie
+ mniejszej niż wartość 
+\begin_inset Formula $\ex{OPT}$
+\end_inset
+
+, co kończy dowód.
+\end_layout
+
+\begin_layout Standard
+Wobec powyższego lematu oraz z Twierdzenia 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:Algorytm--oblicza-2apro"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, Algorytm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:algos"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ oblicza 2-aproksymację porównując do optymalnego mechanizmu aukcji 
+\emph on
+Bayesowskiej.
+\end_layout
+
+\begin_layout Section
+Podsumowanie i otwarty problem
+\end_layout
+
+\begin_layout Standard
+W powyższej pracy zaprezentowaliśmy rozwiązanie problemu 
+\emph on
+ride-hailingu
+\emph default
+.
+ Przedstawiliśmy podejście i rozwiązanie tego problemu autorstwa Hikimy
+ et.
+ al, którzy osiągnęli 3-aproksymację porównując do mechanizmu aukcji postowanych
+ cen.
+ Następnie pokazaliśmy Algorytm 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "alg:algos"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, osiągający 2-aproksymację 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+(PRICE-MATCH-LP) porównując do mechanizmu aukcji bayesowskiej co zostało
+ pokazane w Sekcji 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Optymalizacja-względem-optymalne"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+W bogatej literaturze dotyczącej optymalizacji stochastycznej pojawia się
+ wiele wyników, które wskazują na to, że możliwym jest, aby uzyskać mechanizm
+ 
+\begin_inset Formula $\br{1-\frac{1}{e}}$
+\end_inset
+
+-aproksymacyjny korzystając z faktu, że struktura kombinatoryczna, na której
+ pracujemy to skojarzenia.
+ Pozostawiamy więc otwartym pytanie, czy da się poprawić 2-aproksymację
+ na 
+\begin_inset Formula $\br{1-\frac{1}{e}}$
+\end_inset
+
+-aproksymację.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "maurycy"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
