@@ -1,0 +1,24 @@
+<!doctype html>
+<meta http-equiv="refresh" content="5">                
+<title>Photothief</title>
+<center><h1>Watch the process!</h1></center>
+<div>
+    <div>
+        <center>
+            Input photo:
+            <br style="line-height:3"> 
+            <img src="{{ url_for('static', filename='uploads/'+photo) }}">
+        </center>
+    </div>
+    <br style="line-height:5">
+    <div>
+        <center>
+            Recent result photo:
+            <br style="line-height:6"> 
+            <img src="{{ url_for('static', filename='run/recent_result.png') }}">  <br> <br>
+            <img src="{{ url_for('static', filename='run/loss_plot.png') }}">  <br>
+            Loss: {{loss}} <br>
+            Step: {{step}} / {{num_steps}}
+        </center>
+    </div>
+</div>

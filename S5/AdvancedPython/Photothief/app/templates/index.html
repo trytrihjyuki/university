@@ -1,0 +1,32 @@
+<!doctype html>
+<title>Photothief</title>
+<center> <h1>Welcome to Photothief</h1> </center>
+<center> Upload watermarked photo and file with this watermarked to unmark it. </center>
+<br style="line-height:10"> 
+<form method=post enctype=multipart/form-data>
+        <center>
+            Watermarked photo:
+            <input type=file name=photo_file>
+        </center>
+        <br style="line-height:10"> 
+        <center>
+            Watermark:
+            <input type=file name=watermark_file>
+        </center>
+        <br style="line-height:5"> 
+        <center>
+            Upload all files
+            <input type=submit value=Upload> 
+        </center>
+        {% if ext_instruction %}
+        <center>
+            Add correct files of input picture and watermark. Available extensions are: .png, .jpg, .jpeg. 
+        </center>
+        {% endif %}
+        {% if dim_instruction %}
+        <br style="line-height:5"> 
+        <center>
+            Uploaded files i.e. Watermark and watermarked photo <b> MUST </b> have same sizes!
+        </center>
+        {% endif %}
+    </form>
