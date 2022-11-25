@@ -1,0 +1,1748 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\br}[1]{\left(#1\right)}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\brq}[1]{\left[#1\right]}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\pr}[1]{\mathbb{P}\brq{#1}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\set}[1]{\left\{  #1\right\}  }
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\prcond}[2]{\mathbb{P}\brq{\left.#1\right|#2}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\prm}[1]{ #1^{\prime} }
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\exls}[2]{\mathbb{E}_{#1}\left[#2\right]}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\setst}[2]{\left\{  #1\left|#2\right.\right\}  }
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\ind}[1]{\boldsymbol{1}\brq{#1}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\excondls}[3]{\mathbb{E}_{#1}\brq{\left.#2\right|#3}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\ex}[1]{\mathbb{E}\brq{#1}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\prcondls}[3]{\mathbb{P}_{#1}\brq{\left.#2\right|#3}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\pc}{\br{p_{c}}_{c\in C}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\lang polish
+\begin_inset FormulaMacro
+\newcommand{\cok}{C_{\text{ok}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+
+\lang polish
+Theoretical Foundations of Large Data Sets 
+\begin_inset Newline newline
+\end_inset
+
+List 1
+\end_layout
+
+\begin_layout Author
+
+\lang polish
+Maurycy Borkowski
+\end_layout
+
+\begin_layout Part*
+EX.
+ 1
+\end_layout
+
+\begin_layout Subsection*
+a) 
+\end_layout
+
+\begin_layout Standard
+By definition we calculate likelihood and log-likelihood functions:
+\begin_inset Formula 
+\begin{align*}
+L\br{\alpha} & =\prod_{i=1}^{n}f\br{x_{i},\alpha}=\br{\alpha+1}^{n}\cdot\prod_{i=1}^{n}x_{i}^{\alpha}\\
+l\br{\alpha} & =n\cdot\log{\br{\alpha+1}}+\alpha\cdot\sum_{i=1}^{n}\log{\br{x_{i}}}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Now we find first and second derivative of 
+\begin_inset Formula $l$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+\frac{dl}{d\alpha} & =\frac{n}{\alpha+1}+\sum_{i=1}^{n}\log{\br{x_{i}}}\\
+\frac{d^{2}l}{d\alpha^{2}} & =\frac{-n}{\br{\alpha+1}^{2}}<0
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Second derivative is negative for all possible 
+\begin_inset Formula $\alpha$
+\end_inset
+
+(
+\begin_inset Formula $>-1$
+\end_inset
+
+) hence there is one global maximum.
+ Let's find 
+\begin_inset Formula $\hat{\alpha}_{MLE}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+0= & \frac{n}{\hat{\alpha}+1}+\sum_{i=1}^{n}\log{\br{x_{i}}}\\
+\hat{\alpha}= & -\frac{n+\sum_{i=1}^{n}\log{x_{i}}}{\sum_{i=1}^{n}\log{x_{i}}}=-1-\frac{n}{\sum_{i=1}^{n}\log{x_{i}}}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+b)
+\end_layout
+
+\begin_layout Standard
+Now because 
+\begin_inset Formula $\log{f\br{x|\alpha}}$
+\end_inset
+
+ satisfies regularity conditions, we find Fisher Information:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+I\br{\alpha} & =-\int_{0}^{1}\br{\frac{\partial^{2}}{\partial\alpha^{2}}\log{f\br{x|\alpha}}}f\br{x|\alpha}dx=\int_{0}^{1}\frac{1}{\br{\alpha+1}^{2}}f\br{x|\alpha}dx=\\
+= & \int_{0}^{1}\frac{\br{\alpha+1}x^{\alpha}}{\br{\alpha+1}^{2}}dx=\br{\alpha+1}^{-1}\int_{0}^{1}x^{\alpha}dx=\br{\alpha+1}^{-2}
+\end{align*}
+
+\end_inset
+
+Once we calculated Fisher Information, we calculate an asymptotic distribution
+ of 
+\begin_inset Formula $\hat{\alpha}$
+\end_inset
+
+, by Central Limit Theorem we have:
+\begin_inset Formula 
+\begin{align*}
+\sqrt{nI\br{\alpha_{0}}}\br{\hat{\alpha}-\alpha_{0}} & \xrightarrow{d}N\br{0,1}\\
+\hat{\alpha}\sim N\br{\alpha_{0},\frac{1}{nI\br{\alpha_{0}}}} & =N\br{\alpha_{0},\frac{\br{\alpha_{0}+1}^{2}}{n}}
+\end{align*}
+
+\end_inset
+
+Now we can estimate MSE of (MLE) estimator 
+\begin_inset Formula $\hat{\alpha}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{align*}
+E\left[\br{\hat{\alpha}-\alpha_{0}}^{2}\right] & =E\br{\hat{\alpha}^{2}}+E\br{\alpha_{0}^{2}}-2\alpha_{0}E\br{\hat{\alpha}}\\
+ & =var\br{\hat{\alpha}}+E\br{\hat{\alpha}}^{2}+\hat{\alpha_{0}}^{2}-2\alpha_{0}E\br{\hat{\alpha}}\\
+ & =var\br{\hat{\alpha}}+\br{E\br{\hat{\alpha}}-\alpha_{0}}^{2}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Since 
+\begin_inset Formula $\hat{\alpha}$
+\end_inset
+
+ is MLE, then in asymptotic way it's unbiased and we we can estimate by
+ simple variance:
+\begin_inset Formula 
+\[
+MSE\approx var\br{\hat{\alpha}}=\frac{\br{\alpha_{0}+1}^{2}}{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+c)
+\end_layout
+
+\begin_layout Standard
+Firstly let's calculate 
+\begin_inset Formula $E\br X$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+E\br X=\int_{0}^{1}x\br{\alpha+1}x^{\alpha}dx=\frac{\alpha+1}{\alpha+2}
+\]
+
+\end_inset
+
+Then:
+\begin_inset Formula 
+\[
+\hat{\mu}_{1}=\frac{1}{n}\sum_{i=1}^{n}x_{i}=\frac{\alpha+1}{\alpha+2}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+finally:
+\begin_inset Formula 
+\[
+\hat{\alpha}_{mom}=\frac{2\overline{X}-1}{1-\overline{X}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+d)
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha-\hat{\alpha}_{mle}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-1.2062211816616504
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\alpha-\hat{\alpha}_{mom}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-1.0772026751962702
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\br{\alpha-\hat{\alpha}_{mle}}^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.454969539089228
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\br{\alpha-\hat{\alpha}_{mom}}^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.1603656034500012
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As we can see it turns out that moment estimation is better in this case.
+\end_layout
+
+\begin_layout Subsection*
+e)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig1"
+
+\end_inset
+
+Histograms comparing 
+\begin_inset Formula $\hat{\alpha}_{mle}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\alpha}_{mom}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename plots/histogram.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Box-plots comparing 
+\begin_inset Formula $\hat{\alpha}_{mle}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\alpha}_{mom}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename plots/boxplot.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename plots/mleqq.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Q-q plot for 
+\begin_inset Formula $\alpha_{mom}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename plots/momqq.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Q-q plot for 
+\begin_inset Formula $\alpha_{mle}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+II
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bias
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Variance
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MSE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Confidence interval
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MLE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.279
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.184
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.155
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(5.187, 5.371)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MOM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.240
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.188
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.157
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(5.148, 5.332)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $N\br{5,1.8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(4.211, 5.789)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Looking just onto results, both estimators have similar performance.
+ MLE seems a bit better when comparing MSE and it's seems to be more stable
+ (after comparing histograms on Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Subsection*
+f)
+\end_layout
+
+\begin_layout Subsubsection*
+I
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig1-1"
+
+\end_inset
+
+Histograms comparing 
+\begin_inset Formula $\hat{\alpha}_{mle}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\alpha}_{mom}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename plots/histogram200.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Box-plots comparing 
+\begin_inset Formula $\hat{\alpha}_{mle}$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{\alpha}_{mom}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename plots/boxplot200.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename plots/mleqq200.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Q-q plot for 
+\begin_inset Formula $\alpha_{mom}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename plots/momqq200.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Q-q plot for 
+\begin_inset Formula $\alpha_{mle}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+II
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bias
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Variance
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MSE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Confidence interval
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MLE
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0210
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.187
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.349
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(4.994, 5.048)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MOM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.0167
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.192
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.353
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(4.989, 5.044)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $N\br{5,1.8}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.18
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.18
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(4.975, 5.025)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When we increase sample size to 
+\begin_inset Formula $n=200$
+\end_inset
+
+ both estimators works much better.
+ Bias decreased more then tenfold! Variance tends closer to asymptotic distribut
+ion variance.
+ Again estimators performs similar, but if we have to choose one, 
+\begin_inset Formula $\hat{\alpha}_{mle}$
+\end_inset
+
+ is winner when it comes to MSE compering.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part*
+EX.
+ 2
+\end_layout
+
+\begin_layout Subsection*
+a)
+\end_layout
+
+\begin_layout Standard
+Let's calculate, by definition of 
+\begin_inset Formula $f$
+\end_inset
+
+ we got:
+\begin_inset Formula 
+\[
+L\br{\lambda,X}=\lambda^{n}e^{-\lambda\sum x_{i}}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+then in our case:
+\begin_inset Formula 
+\[
+\frac{L\br{5,X}}{L\br{3,X}}=\br{\frac{5}{3}}^{n}e^{-2\sum x_{i}}\leq k
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+now:
+\begin_inset Formula 
+\begin{align*}
+-2\sum x_{i} & \leq\log{\br{\br{\frac{3}{5}}^{n}\cdot k}}\\
+\sum x_{i}\geq- & \frac{\log{\br{\br{\frac{3}{5}}^{n}\cdot k}}}{2}=k^{*}
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+we now that 
+\begin_inset Formula $Y=\sum x_{i}\sim Erlang\br{n,\lambda}$
+\end_inset
+
+, let 
+\begin_inset Formula $k$
+\end_inset
+
+ be such a number for which:
+\begin_inset Formula 
+\[
+0.05=\alpha=P\br{Y\geq k^{*}|\lambda=5}=1-P\br{Y\leq k^{*}|\lambda=5}=\sum_{i=1}^{n}\frac{\br{5k^{*}}^{i}}{i!e^{5k^{*}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+holds.
+\begin_inset Newline newline
+\end_inset
+
+Now let's define 
+\begin_inset Formula $C=\left\{ \br{x_{1},\ldots,x_{n}}:\sum x_{i}\geq k^{*}\right\} $
+\end_inset
+
+, since that:
+\begin_inset Formula 
+\begin{align*}
+P_{H_{0}}\br{X\in C} & =\alpha\\
+\frac{L\br{5,X}}{L\br{3,X}} & \leq k\text{\ensuremath{\quad}for\ensuremath{\quad}}x\ensuremath{\in}C\\
+\frac{L\br{5,X}}{L\br{3,X}} & \geq k\text{\ensuremath{\quad}for\ensuremath{\quad}}x\ensuremath{\in}C^{c}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+in view of the above and under the Neyman–Pearson Lemma, 
+\begin_inset Formula $C$
+\end_inset
+
+ is a best critical region of size 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ for testing 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $H_{1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+b)
+\end_layout
+
+\begin_layout Standard
+We define 
+\begin_inset Formula $Y^{\prime}=\sum x_{i}\sim Erlang\br{n,3}$
+\end_inset
+
+, then power of the test is:
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Formula 
+\[
+P_{H_{1}}\br{X\in C}=P\br{Z\geq k^{*}|\lambda=3}=1-P\br{Z\leq k^{*}|\lambda=3}=\sum_{i=0}^{n-1}\frac{\br{3k^{*}}^{i}}{i!e^{3k^{*}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+c)
+\end_layout
+
+\begin_layout Standard
+We calculate p-values using mean as statistic:
+\begin_inset Formula 
+\[
+P_{H_{0}}\br{\overline{X}\geq\overline{x}}=P_{H_{0}}\br{Y\geq n\overline{x}}=\sum_{i=0}^{n-1}\frac{\br{5n\overline{x}}^{i}}{i!e^{5n\overline{x}}}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+calculated p-values for data from 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $H_{1}$
+\end_inset
+
+ are respective 
+\begin_inset Formula $0.56232>\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $0.01283<\alpha$
+\end_inset
+
+.
+ Hence we don't reject null hypothesis and reject 
+\end_layout
+
+\begin_layout Subsection*
+d)
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ is true then p-value comes from 
+\begin_inset Formula $U[0,1]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+e)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename plots/2/hist0.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Histogram of 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ p-values
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hfill{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename plots/momqq200.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Q-q plot for 
+\begin_inset Formula $\alpha_{mle}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
