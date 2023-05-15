@@ -1626,7 +1626,7 @@ Theoretical FWER
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.114
+0.079
 \end_layout
 
 \end_inset
@@ -1682,7 +1682,7 @@ Theoretical FWER
 \begin_inset Text
 
 \begin_layout Plain Layout
-1.0
+0.66
 \end_layout
 
 \end_inset
@@ -1738,7 +1738,7 @@ Theoretical FWER
 \begin_inset Text
 
 \begin_layout Plain Layout
-1.0
+0.94
 \end_layout
 
 \end_inset
@@ -1794,7 +1794,7 @@ Theoretical FWER
 \begin_inset Text
 
 \begin_layout Plain Layout
-1.0
+0.99
 \end_layout
 
 \end_inset
@@ -1928,7 +1928,7 @@ Theoretical FWER
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.034
+0.0017
 \end_layout
 
 \end_inset
@@ -1937,7 +1937,7 @@ Theoretical FWER
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.08
+0.07
 \end_layout
 
 \end_inset
@@ -1993,7 +1993,7 @@ Theoretical FWER
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.1
+0.13
 \end_layout
 
 \end_inset
@@ -2096,7 +2096,7 @@ Theoretical FWER
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.06
+0.076
 \end_layout
 
 \end_inset
@@ -2105,7 +2105,7 @@ Theoretical FWER
 \begin_inset Text
 
 \begin_layout Plain Layout
-0.06
+0.08
 \end_layout
 
 \end_inset
@@ -2383,8 +2383,47 @@ FWER
 
 \end_layout
 
+\begin_layout Standard
+From the results, we clearly see what multiple testing without any adjustment
+ leads to.
+ We occurred many FP hence our accuracy was not good, especially in bigger
+ models.
+ Naturally, when number of non-significant coefficients increases FDR /
+ FWER also increases.
+\end_layout
+
+\begin_layout Standard
+Another think is performance of correction methods, as we can see they are
+ pretty good, both FDR and FWER decreases also number of average FP is smaller
+ compering to base model, however using them we lose some SC true discoveries.
+\end_layout
+
 \begin_layout Subsection*
 Summary
+\end_layout
+
+\begin_layout Standard
+When the number of 
+\series bold
+
+\begin_inset Formula $\beta$
+\end_inset
+
+
+\series default
+ coefficients is large (nearly the same as the number of samples), we need
+ to use caution while employing the regression model.
+ To identify significant individual coefficients, tests can efficiently
+ detect only the non-zero coefficients if the number of variables is significant
+ly smaller than the number of samples.
+ However, if the number of variables is almost the same, these tests have
+ a high false discovery rate (FDR) of almost 1.
+ To address this issue, we can use either the Bonferroni correction or the
+ Benjamini-Hochberg correction methods.
+ These techniques decrease and manage both the FDR and the FWER.
+ They are particularly valuable when we are concerned about a limited number
+ of false discoveries and we don't pay attention so much for finding all
+ SC's.
 \end_layout
 
 \end_body

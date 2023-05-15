@@ -11,7 +11,8 @@ S1/PWI/27.11/testy
 *.fls
 *.fdb_latexmk
 *.swp
-
+*.lyx~
+.ipynb_checkpoints
 S3/Algebra/notatki/
 S3/MachineLearning/L1/mnist.npz
 
