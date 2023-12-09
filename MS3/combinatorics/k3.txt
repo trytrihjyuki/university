@@ -1,0 +1,143 @@
+10 października 2023
+
+Zadania z kombinatoryki, lista nr 3
+1. Pokaż, że
+(x + y)n =
+
+X n
+k
+
+k
+
+(x + y)n =
+
+X n
+k
+
+k
+
+2. Pokaż że
+
+n−1
+X
+k=0
+n
+X
+
+xk y n−k ;
+xk y n−k .
+
+km =
+
+nm+1
+m+1
+
+km =
+
+nm+1
+m+1
+
+k=1
+
+3. Pokaż, że liczba k elementowych podzbiorów zbioru {1, . . . , n} nie zawierających żadnej pary kolejnych
+liczb wynosi
+
+
+n−k+1
+.
+k
+n
+4. Niech k ∈ {0, 1, . . . , n} i M (n) oznacza liczbę k, dla której wartość
+k jest największa (jeśli istnieje więcej
+
+takich k, to wybieramy największe z nich). Pokaż że ciąg nk jest rosnący dla pewnej ilości początkowych
+k, potem dla co najwyżej dwóch liczb k przyjmuje wartość największą, a następnie jest malejący dla
+wszystkich pozostałych k. Udowodnij też, że 0 ≤ M (n) − M (n − 1) ≤ 1.
+5. Mówimy, że permutacja π ma minimum lokalne w πi , jeśli πj > πi dla wszystkich
+j < i. Pokaż, że liczba
+
+permutacji n elementów o dokładnie k minimach lokalnych równa jest nk .
+6. Pokaż, że średnia liczba cykli dla losowo wybranej permutacji n elementów wynosi
+ 
+n
+X
+1 X n
+1
+=
+k
+k
+n!
+k
+k
+
+k=1
+
+7. Udowodnij wzory:
+ 
+X
+n
+(a)
+=
+m1 m2 · · · mn−k
+k
+0<m1 <m2 <...<mn−k <n
+ 
+X
+n
+(b)
+=
+m1 m2 · · · mn−k
+k
+0≤m1 ≤m2 ≤...≤mn−k ≤k
+
+8. Liczbą Bella Bn nazywamy liczbę podziałów zbioru n-elementowego na podzbiory. Oczywiście
+X n 
+Bn =
+.
+k
+k
+
+Udowodnij, że
+Bn+1 =
+
+n  
+X
+n
+k=0
+
+k
+
+Bk .
+
+9. Wykaż, że jeśli Bn jest n-tą liczbą Bella, to
+∞
+X
+Bn xn
+n=0
+
+n!
+
+x
+
+= ee −1
+
+10. (Dobiński) Pokaż, że
+∞
+
+Bn =
+
+1 X mn
+.
+e m=1 m!
+
+11. Niech dn będzie liczbą nieporządków n-elementowych (permutacji w których żaden i nie jest na swoim
+miejscu). Pokaż zależność rekurencyjną:
+X n
+n! =
+dn−k .
+k
+k
+
+Wywnioskuj z niej wykładniczą funkcję tworzącą D̂(x) ciągu dn i jego jawną postać.
+
+
